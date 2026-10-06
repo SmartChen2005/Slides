@@ -46,9 +46,9 @@ python scripts/build_archive.py --output _site
 
 ## Interaction
 
-- Hover: the top sheet lifts, underlying sheets fan slightly, and actual slide previews appear.
-- Pointer movement: stacks within a small radius tilt less than one degree; updates are scheduled once per frame and stop on touch or reduced motion.
-- Click: a sheet is pulled to the center; browsers supporting cross-document View Transitions expand it into the presentation stage. Other browsers retain the initial pull animation and regular navigation.
+- Hover: the cover lifts 5px and thin lower sheets separate independently. After 220ms, real preview sheets fan from beneath the cover and retreat on exit. No separate preview popup.
+- Pointer movement: proximity gently lifts the cover and dampens perspective, capped at 1 degree X / 1.5 degrees Y. Sheets settle with controlled easing. Updates are scheduled once per frame and stop on touch or reduced motion.
+- Click: surrounding decks dim, the lower sheets gather, and the cover is pulled into the center before expanding to the actual 16:9 presentation stage. Navigation follows the expansion; cross-document View Transitions provide a short shared-sheet content handoff where supported. The whole page does not fade.
 - Keyboard: native links/buttons, visible focus, preview visibility on deck focus, and announced filter results.
 - Mobile: one column, readable labels, persistent previews, and no cursor perspective.
 

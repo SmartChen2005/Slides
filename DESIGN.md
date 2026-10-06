@@ -12,8 +12,8 @@ colors:
 typography:
   sans:
     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
-  mono:
-    fontFamily: '"Courier New", monospace'
+  notation:
+    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
 rounded:
   DEFAULT: "0"
 spacing:
@@ -49,15 +49,15 @@ One light theme: table background, white sheets, near-black ink, neutral muted t
 
 ## Typography
 
-Helvetica/Arial system fonts inherit the existing presentation's Swiss typography without network font requests. Large tight uppercase archive heading; bold, readable deck titles. Courier New utility metadata conveys dates and slide counts. Normal prose stays sentence case. Dates use explicit UTC formatting to preserve the recorded calendar day.
+One Helvetica/Arial system family inherits the existing presentation's Swiss typography without network requests. The archive heading is sized like an exhibition index rather than a full-width hero. Cover titles dominate, with type sized relative to the sheet's width. Metadata is small, spaced sans-serif with tabular numerals; slide counts use three digits (005 SLIDES). Normal prose stays sentence case. Dates use explicit UTC formatting to preserve the recorded calendar day.
 
 ## Layout
 
-Page max 1920px, horizontal gutters from 22px to 80px. Masthead, large title, subtitle, filter bar, then year groups. The year gutter is 82px on desktop; grid is two columns by default, three at 1240px, four at 1740px. At 900px year labels sit above the grid; at 600px decks collapse to one column. Only real decks occupy cells. Preview space is reserved so hover does not move neighboring content.
+Page max 1920px, horizontal gutters from 22px to 80px. The original masthead, title, subtitle, filters, and year groups retain their arrangement. The year gutter is 82px on desktop; grid is two columns by default, three at 1240px, four at 1740px. At 900px year labels sit above the grid; at 600px decks collapse to one column. Sheets are presentation-native 16:9. Generous space beneath each stack reserves its internal preview fan without moving neighboring content.
 
 ## Elevation & Depth
 
-Each deck has at most four underlying sheets based on its actual slide count. Shadows are soft and neutral. Top sheet lifts 7px on hover; lower sheets fan by several pixels. Pointer perspective stays below one degree. Shadows belong to sheets, never to generic page containers.
+Each deck has up to four underlying sheets, using ceil(log2(slideCount)) layers and a small count-dependent edge offset. The stack is nearly flat at rest: sub-2px increments, 1px edges, slight opacity variation, tiny inter-sheet shadows. Engaged covers lift 5px; lower sheets independently separate in 1.5px horizontal and 2.3px vertical increments, rotating at most 0.48 degrees. Real thumbnail sheets reside behind the cover and slide into an overlapping fan after 220ms of hover. They retract when the cursor leaves. Perspective limits are 1 degree X / 1.5 degrees Y, further damped by distance. Shadows belong to sheets, never to generic page containers.
 
 ## Shapes
 
@@ -79,7 +79,7 @@ Real deck paths remain independent static HTML pages. Filters persist in URL que
 
 ### Forms and overlays
 
-No forms or dialogs. The temporary cloned sheet during opening is aria-hidden, noninteractive, and removed after history restoration. Existing presentation controls remain untouched.
+No forms or dialogs or preview popups. Preview sheets are real children of the stack. The temporary cloned cover during opening is aria-hidden, noninteractive, and removed after history restoration. Existing presentation controls remain untouched.
 
 ### Iconography
 
@@ -87,7 +87,7 @@ No icon library; the typographic northeast arrow supplements the explicit Open d
 
 ### Motion
 
-Native CSS transforms for sheet lift/fan; requestAnimationFrame for cursor perspective; Web Animations for the 340ms center pull (220ms touch). Shared cross-document View Transitions take 520ms where supported. No continuous loops or scroll hijacking. Reduced motion disables spatial motion and uses immediate native navigation. Back restores the deck's visibility and interaction state.
+All material motion uses cubic-bezier(.22,1,.36,1), with no bounce or overshoot. Native transforms animate independent sheets; requestAnimationFrame schedules perspective only on pointer input. On opening, surrounding decks dim, the selected cover lifts, and lower layers gather for 160ms (100ms touch). A 620ms cover animation (380ms touch) translates into the center first, then expands to the actual presentation stage before navigation. Cross-document View Transitions connect the cover to the live slide with a short 240ms content handoff; the page itself does not fade. No continuous loops or scroll hijacking. Reduced motion uses immediate native navigation; toggling it during opening cancels the remaining animation. Back restores sheet visibility and interaction state.
 
 ### Content and data visualization
 

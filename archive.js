@@ -8,10 +8,13 @@ const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
 const categories = filters.map(button => button.dataset.category);
 const decks = Array.isArray(window.SLIDE_ARCHIVE) ? window.SLIDE_ARCHIVE : null;
 let opening = false;
+let openingAnimation;
 let frame = 0;
 let pointer = null;
 let stackRects = [];
 let measuredScrollY = 0;
+const materialEase = "cubic-bezier(.22,1,.36,1)";
+const previewTimers = new Set();
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -33,7 +36,8 @@ function makeDeck(deck) {
   link.href = deck.path;
   link.setAttribute("aria-label", `${deck.title}, ${deck.category}, ${dateLabel(deck.date)}, ${deck.slideCount} slides. Open presentation.`);
   const stack = element("div", "stack");
-  const layers = Math.min(4, Math.max(0, deck.slideCount - 1));
+  const layers = Math.min(4, Math.ceil(Math.log2(deck.slideCount)));
+  stack.style.setProperty("--sheet-step", `${1 + Math.min(1.3, deck.slideCount / 40)}px`);
   for (let layer = layers; layer > 0; layer--) {
     const sheet = element("div", "sheet under-sheet");
     sheet.style.setProperty("--layer", layer);
@@ -42,7 +46,7 @@ function makeDeck(deck) {
   }
   const front = element("div", "sheet front-sheet");
   const meta = element("div", "sheet-meta");
-  meta.append(element("span", "", deck.category), element("span", "", `${String(deck.slideCount).padStart(2, "0")} SLIDES`));
+  meta.append(element("span", "", deck.category), element("span", "", `${String(deck.slideCount).padStart(3, "0")} SLIDES`));
   const heading = element("div", "sheet-heading");
   heading.append(element("h3", "", deck.title));
   if (deck.description) heading.append(element("p", "", deck.description));
@@ -60,20 +64,47 @@ function makeDeck(deck) {
   article.append(link);
   const previews = deck.thumbnails?.length ? deck.thumbnails : deck.cover ? [deck.cover] : [];
   if (previews.length) {
-    const strip = element("div", "preview-strip");
-    strip.setAttribute("aria-hidden", "true");
-    previews.slice(0, 3).forEach(src => {
+    previews.slice(0, 3).forEach((src, index) => {
+      const sheet = element("div", "sheet preview-sheet");
+      sheet.setAttribute("aria-hidden", "true");
+      sheet.style.setProperty("--preview-index", index);
+      sheet.style.setProperty("--preview-angle", `${(index - 1) * .55}deg`);
       const image = element("img");
       image.src = src;
       image.alt = "";
       image.width = 320;
       image.height = 180;
       image.loading = "lazy";
-      image.addEventListener("error", () => image.remove(), { once: true });
-      strip.append(image);
+      image.addEventListener("error", () => sheet.remove(), { once: true });
+      sheet.append(image);
+      stack.insertBefore(sheet, front);
     });
-    article.append(strip);
   }
+  let previewTimer;
+  const stopPreviewTimer = () => {
+    clearTimeout(previewTimer);
+    previewTimers.delete(previewTimer);
+  };
+  article.addEventListener("pointerenter", event => {
+    if (!finePointer.matches || event.pointerType === "touch" || opening) return;
+    link.classList.add("is-engaged");
+    stopPreviewTimer();
+    previewTimer = setTimeout(() => {
+      previewTimers.delete(previewTimer);
+      if (!opening) link.classList.add("is-previewing");
+    }, 220);
+    previewTimers.add(previewTimer);
+  });
+  article.addEventListener("pointerleave", () => {
+    stopPreviewTimer();
+    if (!link.matches(":focus-visible")) link.classList.remove("is-engaged", "is-previewing");
+  });
+  link.addEventListener("focus", () => {
+    if (link.matches(":focus-visible")) link.classList.add("is-engaged", "is-previewing");
+  });
+  link.addEventListener("blur", () => {
+    if (!article.matches(":hover")) link.classList.remove("is-engaged", "is-previewing");
+  });
   link.addEventListener("click", event => openDeck(event, link, front));
   return article;
 }
@@ -84,6 +115,8 @@ function categoryFromUrl() {
 }
 
 function render(category) {
+  previewTimers.forEach(clearTimeout);
+  previewTimers.clear();
   archive.replaceChildren();
   filters.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.category === category)));
   if (!decks) {
@@ -151,25 +184,46 @@ async function openDeck(event, link, front) {
   event.preventDefault();
   if (opening) return;
   opening = true;
+  previewTimers.forEach(clearTimeout);
+  previewTimers.clear();
+  link.closest(".deck").classList.add("is-selected");
   document.body.classList.add("opening");
+  link.classList.remove("is-previewing");
   link.setAttribute("aria-busy", "true");
+  status.textContent = "Opening presentation.";
+  // Gather the actual lower sheets before pulling the cover out of the stack.
+  await new Promise(resolve => setTimeout(resolve, finePointer.matches ? 160 : 100));
+  if (reducedMotion.matches) {
+    location.assign(link.href);
+    return;
+  }
   const rect = front.getBoundingClientRect();
   const flight = front.cloneNode(true);
+  // Preserve sheet-relative typography when the cover leaves its CSS container.
+  ["h3", ".sheet-heading p"].forEach(selector => {
+    const original = front.querySelector(selector);
+    if (original) flight.querySelector(selector).style.fontSize = getComputedStyle(original).fontSize;
+  });
   flight.classList.add("deck-flight");
   flight.setAttribute("aria-hidden", "true");
   Object.assign(flight.style, { left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px`, transform: "none", viewTransitionName: "open-deck" });
   document.body.append(flight);
   front.style.visibility = "hidden";
-  status.textContent = "Opening presentation.";
-  const width = Math.min(innerWidth - 40, (innerHeight - 120) * 16 / 9, 1100);
+  const width = Math.min(innerWidth, Math.max(1, innerHeight - 80) * 16 / 9);
   const height = width * 9 / 16;
+  const centerX = (document.documentElement.clientWidth - rect.width) / 2 - rect.left;
+  const centerY = (innerHeight - 80 - rect.height) / 2 - rect.top;
+  const finalX = (innerWidth - width) / 2 - rect.left;
+  const finalY = (innerHeight - 80 - height) / 2 - rect.top;
   try {
-    // First pull the sheet into the center, then let the browser match it to
-    // the real presentation stage across the navigation (where supported).
-    await flight.animate([
-      { transform: "none" },
-      { transform: `translate(${(innerWidth - width) / 2 - rect.left}px, ${(innerHeight - height - 60) / 2 - rect.top}px) scale(${width / rect.width}, ${height / rect.height})` }
-    ], { duration: finePointer.matches ? 340 : 220, easing: "cubic-bezier(.22,.68,0,1.01)", fill: "forwards" }).finished;
+    // Translate first, then expand to the presentation's exact 16:9 stage.
+    // Only transform/opacity animate; the page and neighboring sheets stay put.
+    openingAnimation = flight.animate([
+      { transform: "none", offset: 0, easing: materialEase },
+      { transform: `translate(${centerX}px, ${centerY}px)`, offset: .42, easing: materialEase },
+      { transform: `translate(${finalX}px, ${finalY}px) scale(${width / rect.width}, ${height / rect.height})`, offset: 1 }
+    ], { duration: finePointer.matches ? 620 : 380, fill: "forwards" });
+    await openingAnimation.finished;
   } catch {
     // An interrupted animation must never strand the navigation.
   }
@@ -178,10 +232,17 @@ async function openDeck(event, link, front) {
 
 function resetOpening() {
   opening = false;
+  openingAnimation?.cancel();
+  openingAnimation = undefined;
   document.body.classList.remove("opening");
+  document.querySelectorAll(".is-selected").forEach(node => node.classList.remove("is-selected"));
   document.querySelectorAll(".deck-flight").forEach(node => node.remove());
   document.querySelectorAll(".front-sheet").forEach(node => { node.style.visibility = ""; });
-  document.querySelectorAll(".stack-link").forEach(node => node.removeAttribute("aria-busy"));
+  document.querySelectorAll(".stack-link").forEach(node => {
+    node.removeAttribute("aria-busy");
+    node.classList.remove("is-engaged", "is-previewing");
+  });
+  resetPerspective();
 }
 addEventListener("pageshow", resetOpening);
 addEventListener("pagereveal", event => {
@@ -199,10 +260,11 @@ function updatePerspective() {
   stackRects.forEach(({ node, rect }) => {
     const dx = pointer ? pointer.x - rect.left - rect.width / 2 : 0;
     const dy = pointer ? pointer.y - rect.top - rect.height / 2 : 0;
-    const near = pointer && Math.hypot(dx, dy) < Math.max(rect.width, rect.height) * 1.15;
-    const weight = near ? .9 : 0;
-    node.style.setProperty("--rx", `${(-Math.max(-1, Math.min(1, dy / rect.height)) * weight).toFixed(2)}deg`);
-    node.style.setProperty("--ry", `${(Math.max(-1, Math.min(1, dx / rect.width)) * weight).toFixed(2)}deg`);
+    const radius = Math.max(rect.width, rect.height) * 1.05;
+    const proximity = pointer ? Math.max(0, 1 - Math.hypot(dx, dy) / radius) : 0;
+    node.style.setProperty("--rx", `${(-Math.max(-1, Math.min(1, dy / rect.height)) * proximity).toFixed(2)}deg`);
+    node.style.setProperty("--ry", `${(Math.max(-1, Math.min(1, dx / rect.width)) * proximity * 1.5).toFixed(2)}deg`);
+    node.style.setProperty("--near-lift", `${(-proximity * 1.5).toFixed(2)}px`);
   });
 }
 function queuePerspective() { if (!frame) frame = requestAnimationFrame(updatePerspective); }
@@ -220,9 +282,14 @@ new ResizeObserver(measureStacks).observe(archive);
 document.addEventListener("pointerover", measureStacks, { passive: true });
 function resetPerspective() {
   pointer = null;
-  stackRects.forEach(({ node }) => { node.style.removeProperty("--rx"); node.style.removeProperty("--ry"); });
+  stackRects.forEach(({ node }) => {
+    ["--rx", "--ry", "--near-lift"].forEach(name => node.style.removeProperty(name));
+  });
 }
 reducedMotion.addEventListener("change", resetPerspective);
+reducedMotion.addEventListener("change", () => {
+  if (reducedMotion.matches) openingAnimation?.cancel();
+});
 finePointer.addEventListener("change", resetPerspective);
 
 if (decks) {
