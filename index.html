@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f3f2">
+  <meta name="description" content="Smart Chen's slide archive. Presentations, research, projects, and experiments.">
+  <title>Slide Archive | Smart Chen</title>
+  <link rel="icon" href="ensemble-mutual/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="deck-transition.css">
+  <script src="archive-data.js" defer></script>
+  <script src="archive.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#archive">Skip to presentations</a>
+  <div class="page">
+    <header class="masthead"><a class="wordmark" href="./" aria-label="Smart Chen, archive home">SMART CHEN</a><span class="masthead-note">A collection of slides</span></header>
+    <main>
+      <div class="intro">
+        <h1>SLIDE ARCHIVE</h1>
+        <p>Presentations, research, projects, and experiments.</p>
+      </div>
+      <nav class="archive-tools" aria-label="Filter presentations by category">
+        <div class="filters">
+          <button type="button" data-category="ALL" aria-pressed="true">ALL</button><span aria-hidden="true">/</span>
+          <button type="button" data-category="DESIGN" aria-pressed="false">DESIGN</button><span aria-hidden="true">/</span>
+          <button type="button" data-category="FILM" aria-pressed="false">FILM</button><span aria-hidden="true">/</span>
+          <button type="button" data-category="TECH" aria-pressed="false">TECH</button><span aria-hidden="true">/</span>
+          <button type="button" data-category="RESEARCH" aria-pressed="false">RESEARCH</button>
+        </div>
+        <span class="sort-label">Newest first</span>
+      </nav>
+      <div id="archive" tabindex="-1" aria-label="Presentations by year"></div>
+      <noscript><p class="empty-state">Enable JavaScript to browse the archive, or <a href="ensemble-mutual/">open Ensemble Mutual</a>.</p></noscript>
+      <p id="archive-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    </main>
+    <footer class="archive-footer"><p id="archive-totals">Presentation archive</p><p>SMART CHEN <span aria-hidden="true">/</span> <span>Ideas, in sequence.</span></p></footer>
+  </div>
+</body>
+</html>
