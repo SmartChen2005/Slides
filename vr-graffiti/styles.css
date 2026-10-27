@@ -78,9 +78,11 @@ svg,canvas{display:block}svg{width:100%;height:auto;overflow:visible}svg text{fo
 .space-zones h3{font-size:25px;font-weight:600;letter-spacing:-.025em;margin-bottom:9px}
 .space-zones p{font-size:21px;line-height:1.4;color:var(--muted);max-width:280px}
 
-/* Open studio: the learning sequence hands over to personal creation. */
-.playground-scene{position:absolute;top:195px;left:68px;right:68px;height:376px}
-.playground-scene svg{width:1144px;height:376px}
-.playground-ideas{position:absolute;left:92px;right:92px;top:590px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:32px;text-align:center}
+/* The player authors the surfaces as well as the artwork. */
+.playground-scene{position:absolute;top:184px;left:68px;right:68px;height:396px}
+.playground-scene canvas{width:1144px;height:360px}
+.playground-scene figcaption{font-size:18px;color:var(--accent);line-height:1.4;text-align:center;margin-top:8px}
+.playground-ideas{position:absolute;left:84px;right:84px;top:605px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
 .playground-ideas h3{font-size:25px;font-weight:600;letter-spacing:-.025em}
-.playground-ideas p{font-size:20px;line-height:1.35;color:var(--muted);margin-top:10px}
+.playground-ideas p{font-size:19px;line-height:1.35;color:var(--muted);margin-top:9px}
+.playground-ideas .is-current h3{color:var(--accent)}

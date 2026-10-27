@@ -49,13 +49,14 @@ Then run `python scripts/build_archive.py` to refresh the archive thumbnails.
 `scripts/verify_vr_graffiti.cjs` exercises the browser presentation controls.
 
 Slide 5 introduces the proposed learning environment: a concrete virtual studio
-with a practice wall, nearby tools and a free creation wall. The real interior
+with a practice wall, nearby tools and a creative playground. The real interior
 photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
 It references material and light; it does not depict the proposed VR layout.
 Original source metadata is in `assets/architecture/source-metadata.json`.
 
-Slide 9 is Free Space to Practice: an open playground for personal artwork.
-It follows the guided lesson and leads into slide 10, Beyond Traditional 3D Art,
-which introduces Temporal Layers and Time-to-Space as creative extensions.
-The playground animation illustrates player-led wall painting with no target
-or ghost overlay. The former evaluation-pilot slide has been removed.
+Slide 9 is Free Space to Practice: players create walls of different sizes,
+move and rotate them, and build a personal layout. A projected 3D animation
+shows surface creation, arrangement and a gesture leaving a wall for open space.
+Editable walls belong to the core playground; spatial strokes are a creative
+extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
+The former evaluation-pilot slide has been removed.

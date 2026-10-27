@@ -46,7 +46,23 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   }
   await page.evaluate(() => deckAPI.preparePrint());
   await page.emulateMedia({ media: "print" });
-  await page.pdf({ path: path.join(pdfRoot, "VR-Graffiti-Concept.pdf"), printBackground: true, preferCSSPageSize: true, tagged: true, displayHeaderFooter: false });
+  // Preserve the browser-rendered canvas pixels in PDF, including clipped 3D materials.
+  await page.evaluate(async () => {
+    for (const node of document.querySelectorAll("canvas")) {
+      const size = getComputedStyle(node), snapshot = new Image();
+      snapshot.src = node.toDataURL("image/png");
+      snapshot.alt = node.getAttribute("aria-label") || node.textContent;
+      snapshot.className = node.className;
+      snapshot.style.width = size.width; snapshot.style.height = size.height;
+      await snapshot.decode(); node.replaceWith(snapshot);
+    }
+  });
+  const pdfBytes = await page.pdf({ printBackground: true, preferCSSPageSize: true, tagged: true, displayHeaderFooter: false });
+  const pdfPath = path.join(pdfRoot, "VR-Graffiti-Concept.pdf");
+  // Update the existing synced file in place; some OneDrive files reject open-with-truncate.
+  const pdfHandle = fs.openSync(pdfPath, fs.existsSync(pdfPath) ? "r+" : "w");
+  try { fs.writeFileSync(pdfHandle, pdfBytes); fs.ftruncateSync(pdfHandle, pdfBytes.length); }
+  finally { fs.closeSync(pdfHandle); }
   // Confirm the single-file deliverable boots without adjacent files or a server.
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -61,7 +77,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
     await page.locator("#reference-close").click();
   }
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone-lettering.png"), animations: "disabled" });
-  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(11); deckAPI.settleTransitions(); });
+  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(16); deckAPI.settleTransitions(); });
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone-playground.png"), animations: "disabled" });
   await page.evaluate(() => { deckAPI.showSlide(9); deckAPI.seek(12); deckAPI.settleTransitions(); });
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone.png"), animations: "disabled" });

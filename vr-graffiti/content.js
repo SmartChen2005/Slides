@@ -52,7 +52,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 20,
     "name": "Learning environment",
     "notes": [
-      "Players practice inside a quiet virtual concrete studio. The reference is Tadao Ando’s Langen Foundation: exposed concrete, natural light and a restrained interior. Our proposed layout places a guided practice wall beside a tool station, with a separate wall for free creation. The photograph is an architectural reference, not the proposed room layout."
+      "Players begin in a quiet virtual concrete studio. The reference is Tadao Ando’s Langen Foundation: exposed concrete, natural light and a restrained interior. A guided practice wall and nearby tools provide a starting point. The creative playground lets players build their own arrangement of painting surfaces. The photograph references the material and light of the space."
     ],
     "refs": [
       "spacePhoto"
@@ -81,7 +81,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 55,
     "name": "Learning science",
     "notes": [
-      "The guidance separates three layers: a target mark on the wall, a motion trail in front of it, and the hand and tool pose. Observational learning informs the demonstration of stroke order and timing. Scaffolding informs the move from full support to a faint trail and finally no overlay. Feedback distinguishes how the movement was performed from the resulting painted path. Yu and colleagues’ XR guidance framework also distinguishes advance movement cues from corrective feedback. VR is useful because these cues occupy the same space as the tracked hand and wall. The independent attempt lets learners practice without an overlay before moving to the free creation wall."
+      "The guidance separates three layers: a target mark on the wall, a motion trail in front of it, and the hand and tool pose. Observational learning informs the demonstration of stroke order and timing. Scaffolding informs the move from full support to a faint trail and finally no overlay. Feedback distinguishes how the movement was performed from the resulting painted path. Yu and colleagues’ XR guidance framework also distinguishes advance movement cues from corrective feedback. VR is useful because these cues occupy the same space as the tracked hand and wall. The independent attempt lets learners practice without an overlay before entering the creative playground."
     ],
     "refs": [
       "han",
@@ -95,7 +95,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 45,
     "name": "Creative playground",
     "notes": [
-      "After the guided lesson, players can move to a free creation wall in the same studio. This is their playground: they choose their own subject, colors and tools, experiment with lettering and composition, and make an artwork that matters to them. They can return to a demonstration when they need help, but the space has no target letter or prescribed sequence. The aim is to use what they have practiced to express an idea of their own. The wall animation illustrates that open-ended activity."
+      "Players can build their own practice environment. They create walls of different sizes, move and rotate them, and arrange a layout around the artwork they want to make. The animation first adds surfaces, then rearranges them into a personal studio. Finally, a gesture continues off a wall into open space. That is the broader creative direction: users decide both what to paint and where painting can happen. Editable walls are part of the core playground; free-space strokes extend it toward spatial artwork. They can return to a lesson whenever they want guidance."
     ],
     "refs": []
   },
@@ -113,7 +113,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 50,
     "name": "Implementation and feasibility",
     "notes": [
-      "The technical plan uses a Meta Quest headset with tracked controllers, Unity and C#, OpenXR, and the XR Interaction Toolkit. Tool input feeds a shared stroke engine. For the first planar wall, ray hits map to UV coordinates and brush stamps accumulate in a bounded RenderTexture. A recorder stores timestamped pose, tool settings and stroke data in wall coordinates. That supports ghost replay, lesson state and local metrics. The main risks are rendering cost and replay alignment. We would profile early on Quest, cap history, lower texture resolution if necessary, and calibrate wall height and reach. If scope slips, we simplify contact tools and protect the complete spray lesson."
+      "The technical plan uses Meta Quest controllers, Unity and C#, OpenXR, and the XR Interaction Toolkit. A placement mode creates, moves and rotates simple wall surfaces. Each surface has an ID and a transform. Painting maps ray hits to its local UV coordinates and stores strokes relative to that surface, so the paint moves with the wall. A shared recorder supports ghost replay, lesson state and local metrics. The main risks are rendering cost and replay alignment. We would profile early, cap paint history and calibrate the learning wall. Free-space strokes would use spatial curves as a creative extension. If scope slips, protect the spray lesson and basic wall placement."
     ],
     "refs": [
       "unity"
@@ -124,7 +124,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 40,
     "name": "Ownership and roadmap",
     "notes": [
-      "I’m developing this project solo, drawing on experience with Unity XR, interactive systems, visual design and media production. I own the design, code, creative direction, instrumentation and evaluation planning. The roadmap has four gates: a working spray wall, basic tools and the S target, recorded guidance with fading, and an independent attempt with logging and polish. Dates will follow the course deadline. The protected deliverable is one complete lesson. A participant pilot and temporal art interactions follow only if that core is stable. I’d welcome feedback on the guidance and the scope."
+      "I’m developing this project solo, drawing on experience with Unity XR, interactive systems, visual design and media production. I own the design, code, creative direction, instrumentation and evaluation planning. The roadmap has four gates: a working spray wall with basic surface placement, basic tools and the S target, recorded guidance with fading, and an independent attempt with logging and polish. Dates will follow the course deadline. The protected deliverable is one complete lesson. Spatial painting, a participant pilot and temporal art interactions follow only if that core is stable. I’d welcome feedback on the guidance and the scope."
     ],
     "refs": []
   },

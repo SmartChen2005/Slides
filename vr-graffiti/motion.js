@@ -104,17 +104,93 @@ window.GraffitiMotion = (() => {
     const settle=ramp(t,6.5,10.5);root.querySelector('.layer-front').setAttribute('transform',`translate(${132-settle*75} ${settle*20})`);
   }
   function playground(root,t) {
-    const strokes=[...root.querySelectorAll('.playground-stroke')];
-    let active;
-    strokes.forEach(node=>{
-      const from=+node.dataset.from,to=+node.dataset.to,p=ramp(t,from,to);
-      node.style.strokeDasharray='1';node.style.strokeDashoffset=String(1-p);
-      if(t>=from&&t<=to)active={node,p};
+    const {ctx}=reset('playground-motion'),move=ramp(t,3.2,6.8),turn=ramp(t,4.3,7.3);
+    const yaw=.22+ramp(t,13.8,15.8)*.12,pitch=.26;
+    const project3=p=>{
+      const x=p.x*Math.cos(yaw)+p.z*Math.sin(yaw),z=-p.x*Math.sin(yaw)+p.z*Math.cos(yaw),y=p.y-132;
+      const depth=z*Math.cos(pitch)+y*Math.sin(pitch),scale=900/(1050-depth);
+      return {x:562+x*scale,y:186-(y*Math.cos(pitch)-z*Math.sin(pitch))*scale,z:depth,scale};
+    };
+    const polygon=(points,fill,stroke)=>{
+      ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();
+      if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}
+    };
+    const floor=(x,z)=>project3({x,y:0,z});
+    polygon([floor(-600,-340),floor(600,-340),floor(600,360),floor(-600,360)],'#fafbfc');
+    for(let n=-550;n<=550;n+=55)line(ctx,[floor(n,-300),floor(n,330)],'#ebedf0',.8);
+    for(let n=-275;n<=330;n+=55)line(ctx,[floor(-550,n),floor(550,n)],'#ebedf0',.8);
+    const panels=[
+      {x:lerp(-145,-245,move),z:lerp(-40,45,move),theta:-.24*turn,width:280,height:260,lift:0,alpha:ramp(t,.05,.9)},
+      {x:lerp(145,20,move),z:lerp(-40,-90,move),theta:.33*turn,width:230,height:220,lift:0,alpha:ramp(t,1.05,1.95)},
+      {x:lerp(390,290,move),z:lerp(-40,110,move),theta:-.65*turn,width:190,height:170,lift:25*move,alpha:ramp(t,2.05,2.95)}
+    ];
+    const local=(p,u,v,back=0)=>({x:p.x+u*Math.cos(p.theta)-back*Math.sin(p.theta),y:v+p.lift,z:p.z-u*Math.sin(p.theta)-back*Math.cos(p.theta)});
+    const corners=p=>[local(p,-p.width/2,0),local(p,p.width/2,0),local(p,p.width/2,p.height),local(p,-p.width/2,p.height)];
+    // Surface transforms move the attached paint; the camera projects actual world coordinates.
+    panels.forEach(p=>{
+      ctx.globalAlpha=p.alpha;
+      const foot=corners(p).map(q=>floor(q.x+q.y*.24,q.z-q.y*.18));
+      polygon(foot,'rgba(46,55,67,.055)');ctx.globalAlpha=1;
     });
-    const can=root.querySelector('.playground-tool');
-    if(active){const q=active.node.getPointAtLength(active.node.getTotalLength()*active.p);can.setAttribute('transform',`translate(${q.x+17} ${q.y+12}) rotate(-12) scale(.7)`);can.style.opacity='1';}
-    else can.style.opacity='0';
-    alpha(root,'.playground-wash',ramp(t,.1,.8));alpha(root,'.playground-finish',ramp(t,9.4,10.5));
+    const selected=t<1.05?0:t<2.05?1:t<3.2?2:t<5.2?0:2;
+    const handleAlpha=(1-ramp(t,7.2,7.8));
+    const objects=panels.map((p,index)=>({z:corners(p).map(project3).reduce((s,q)=>s+q.z,0)/4,draw:()=>{
+      if(!p.alpha)return;ctx.save();ctx.globalAlpha=p.alpha;
+      const front=corners(p).map(project3),back=[local(p,-p.width/2,0,7),local(p,p.width/2,0,7),local(p,p.width/2,p.height,7),local(p,-p.width/2,p.height,7)].map(project3);
+      polygon([front[1],back[1],back[2],front[2]],'#c9d0d3');polygon([front[2],back[2],back[3],front[3]],'#edf0f1');
+      const material=ctx.createLinearGradient(front[3].x,front[3].y,front[1].x,front[1].y);material.addColorStop(0,'#f0f1ef');material.addColorStop(1,'#dce1de');
+      polygon(front,material,'#cbd1ce');
+      ctx.save();polygon(front);ctx.clip();
+      line(ctx,[project3(local(p,0,0)),project3(local(p,0,p.height))],'rgba(120,132,127,.16)',.7);
+      line(ctx,[project3(local(p,-p.width/2,p.height/2)),project3(local(p,p.width/2,p.height/2))],'rgba(120,132,127,.16)',.7);
+      [-.36,.36].forEach(u=>[.13,.48,.86].forEach(v=>{const q=project3(local(p,p.width*u,p.height*v));ctx.beginPath();ctx.arc(q.x,q.y,1.4*q.scale,0,Math.PI*2);ctx.fillStyle='#bec6c1';ctx.fill();}));
+      if(index<2){
+        const progress=ramp(t,index?9:7.8,index?10.6:9.8),pts=[];
+        for(let j=0;j<=100*progress;j++){const u=j/100,uv=index?{u:-78+150*u,v:95+45*Math.sin(u*Math.PI*1.5)}:{u:-100+184*u,v:125+63*Math.sin(u*Math.PI*1.8)};pts.push(project3(local(p,uv.u,uv.v)));}
+        line(ctx,pts,index?'#af52de':'#0071e3',index?10:15);
+        if(index===0){const accent=Array.from({length:Math.ceil(60*ramp(t,9.1,10.3))},(_,j)=>{const u=j/59;return project3(local(p,-87+165*u,66+10*Math.sin(u*Math.PI)));});line(ctx,accent,'#f08cab',5);}
+      }
+      ctx.restore();
+      if(index===selected&&handleAlpha){ctx.globalAlpha=p.alpha*handleAlpha;polygon(front,null,'#0071e3');front.forEach(q=>{ctx.fillStyle='white';ctx.strokeStyle='#0071e3';ctx.lineWidth=1.5;ctx.beginPath();ctx.roundRect(q.x-3.5,q.y-3.5,7,7,1);ctx.fill();ctx.stroke();});}
+      ctx.restore();
+    }}));
+    if(t>4&&t<7.8){
+      ctx.save();ctx.globalAlpha=ramp(t,4,4.5)*(1-ramp(t,7.1,7.8));ctx.setLineDash([4,5]);
+      const p=panels[2],arc=Array.from({length:35},(_,j)=>{const a=-.6+j/34*1.8;return floor(p.x+Math.cos(a)*95,p.z+Math.sin(a)*95);});
+      line(ctx,arc,'#79a9dd',1.5);ctx.setLineDash([]);const q=arc.at(-1);polygon([{x:q.x-4,y:q.y-6},{x:q.x+5,y:q.y},{x:q.x-5,y:q.y+4}],'#79a9dd');ctx.restore();
+    }
+    const start=local(panels[0],84,125+63*Math.sin(Math.PI*1.8)),progress=ramp(t,10.5,14.5),spatial=[];
+    for(let j=0;j<=180*progress;j++){
+      const u=j/180,world={x:start.x+600*u,y:start.y+150*Math.sin(Math.PI*u)+40*Math.sin(3*Math.PI*u),z:start.z+130*Math.sin(2*Math.PI*u)+140*u};
+      spatial.push({...project3(world),u,world});
+    }
+    if(spatial.length>1)line(ctx,spatial.map(p=>floor(p.world.x,p.world.z)),'rgba(74,87,110,.10)',2);
+    objects.sort((a,b)=>a.z-b.z).forEach(o=>o.draw());
+    // Ray/plane visibility lets the ribbon leave its wall continuously and pass behind other surfaces.
+    const camera={x:-1050*Math.cos(pitch)*Math.sin(yaw),y:132+1050*Math.sin(pitch),z:1050*Math.cos(pitch)*Math.cos(yaw)};
+    const hidden=point=>panels.some(p=>{
+      if(p.alpha<.98)return false;
+      const nx=Math.sin(p.theta),nz=Math.cos(p.theta),denom=nx*(camera.x-point.x)+nz*(camera.z-point.z);
+      if(Math.abs(denom)<.0001)return false;
+      const distance=(nx*(p.x-point.x)+nz*(p.z-point.z))/denom;
+      if(distance<=.0001||distance>=1)return false;
+      const x=point.x+(camera.x-point.x)*distance-p.x,z=point.z+(camera.z-point.z)*distance-p.z;
+      const u=x*Math.cos(p.theta)-z*Math.sin(p.theta),v=point.y+(camera.y-point.y)*distance-p.lift;
+      return Math.abs(u)<p.width/2&&v>0&&v<p.height;
+    });
+    const highlights=[];let visibleRun=[];
+    for(let i=1;i<spatial.length;i++){
+      const a=spatial[i-1],b=spatial[i],mid={x:(a.world.x+b.world.x)/2,y:(a.world.y+b.world.y)/2,z:(a.world.z+b.world.z)/2};
+      if(hidden(mid)){if(visibleRun.length)highlights.push(visibleRun);visibleRun=[];continue;}
+      const width=(10+3*Math.sin(b.u*Math.PI))*b.scale;line(ctx,[a,b],color(b.u),width);
+      if(!visibleRun.length)visibleRun.push(a);visibleRun.push(b);
+    }
+    if(visibleRun.length)highlights.push(visibleRun);
+    highlights.forEach(run=>line(ctx,run.map(p=>({x:p.x-.6,y:p.y-1.4})),'rgba(255,255,255,.2)',1.1));
+    if(progress>0&&progress<1&&spatial.length){const tip=spatial.at(-1);ctx.beginPath();ctx.arc(tip.x,tip.y,4,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();ctx.strokeStyle=color(tip.u);ctx.lineWidth=2;ctx.stroke();}
+    const phase=t<3.2?0:t<7.8?1:2;
+    document.getElementById('playground-phase').textContent=['Add walls of different sizes','Move and rotate them into your own layout','Paint across surfaces and into open space'][phase];
+    root.querySelectorAll('[data-playground-step]').forEach((node,i)=>node.classList.toggle('is-current',phase===i));
   }
   function temporal(t) {
     const {ctx,w}=reset('layers-motion');
@@ -148,5 +224,5 @@ window.GraffitiMotion = (() => {
   function init() {
     const ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('width','0');s.setAttribute('height','0');s.style.position='absolute';s.setAttribute('aria-hidden','true');pathNode=document.createElementNS(ns,'path');pathNode.setAttribute('d',S_PATH);s.appendChild(pathNode);document.body.appendChild(s);pathLength=pathNode.getTotalLength();samples=Array.from({length:241},(_,i)=>({...point(i/240),u:i/240}));
   }
-  return {init,render,staticTimes:[7,8,0,17.5,0,13,7.7,5,11,12,7,0,0,0]};
+  return {init,render,staticTimes:[7,8,0,17.5,0,13,7.7,5,16,12,7,0,0,0]};
 })();

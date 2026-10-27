@@ -99,10 +99,16 @@ fs.mkdirSync(out, { recursive: true });
     assert.equal(await page.locator(`[data-reference="${key}"]`).evaluate(node => node === document.activeElement), true);
   }
   await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(0); deckAPI.settleTransitions(); });
-  const blankWall = await page.locator('.playground-scene').innerHTML();
-  await page.evaluate(() => deckAPI.seek(11));
-  assert.notEqual(await page.locator('.playground-scene').innerHTML(), blankWall);
-  assert.equal(await page.locator('.playground-stroke').last().evaluate(node => +node.style.strokeDashoffset), 0);
+  const playgroundFrames = [];
+  const playgroundPhases = [];
+  for (const time of [.9, 2.9, 5.4, 7, 10.6, 16]) {
+    await page.evaluate(t => deckAPI.seek(t), time);
+    playgroundFrames.push(await page.locator('#playground-motion').evaluate(node => node.toDataURL()));
+    playgroundPhases.push(await page.locator('#playground-phase').textContent());
+    await page.screenshot({path:path.join(out,`playground-${time}.png`)});
+  }
+  assert.equal(new Set(playgroundFrames).size, 6);
+  assert.equal(new Set(playgroundPhases).size, 3);
   assert.equal(await page.locator('#slide-9 h2').textContent(), 'Free Space to Practice');
   assert.equal(await page.locator('#slide-10 h2').textContent(), 'Beyond Traditional 3D Art');
   await page.evaluate(() => deckAPI.showSlide(9));
@@ -143,7 +149,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), stopped);
   assert.deepEqual(errors, []);
-  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "three lettering styles and photo dialogs", "three word construction animations across six frames", "open playground artwork animation", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
+  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "three lettering styles and photo dialogs", "three word construction animations across six frames", "surface creation, placement and spatial painting animation", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
   fs.writeFileSync(path.join(out, "browser-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   await browser.close();
