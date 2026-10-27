@@ -20,11 +20,11 @@ There are strong existing tools. Kingspray’s official PC listing already descr
 
 [Kingspray, official PC description](https://store.steampowered.com/app/471660/Kingspray_Graffiti_VR/). [Open Brush](https://openbrush.app/)
 
-## 4. Real-world lettering references
+## 4. Learn different lettering styles
 
-These four photographs show real lettering. The YANK tag emphasizes signature rhythm. SPLEEN uses inflated, rounded contours. The large 1UP uses broad fills and straight edges. The German Wildstyle piece combines letter bodies with overlaps and extensions. Below, the studies show those construction ideas in whole words, rather than four versions of an S. They illustrate structure, not the artists’ recorded stroke order. Bubble S remains our semester lesson. The other styles show possible curriculum directions, with Wildstyle reserved for a future showcase.
+The curriculum explores different graffiti lettering styles. Handstyle develops signature rhythm. Bubble lettering uses inflated, rounded contours. Wildstyle combines letter bodies, overlaps and extensions. The photographs show how these styles appear on actual walls, while the animations break down their construction. Bubble S remains the semester lesson; Handstyle is a possible next lesson, and Wildstyle is a future direction.
 
-[YANK tag (photo: Crazyank)](https://commons.wikimedia.org/wiki/File:Tag_yank.jpg). [SPLEEN, NSW (photo: Notcharizard)](https://commons.wikimedia.org/wiki/File:Bubble_writing_graffiti.jpg). [1UP, Berlin (photo: Singlespeedfahrer)](https://commons.wikimedia.org/wiki/File:Graffiti_1UP_Stuttgarter_Platz_Berlin-Charlottenburg.jpg). [Germany, wall detail (photo: KOchstudiO)](https://commons.wikimedia.org/wiki/File:Wildstyle_graffiti.JPG)
+[YANK tag (photo: Crazyank)](https://commons.wikimedia.org/wiki/File:Tag_yank.jpg). [SPLEEN, NSW (photo: Notcharizard)](https://commons.wikimedia.org/wiki/File:Bubble_writing_graffiti.jpg). [Germany, wall detail (photo: KOchstudiO)](https://commons.wikimedia.org/wiki/File:Wildstyle_graffiti.JPG)
 
 ## 5. A quiet space to practice
 

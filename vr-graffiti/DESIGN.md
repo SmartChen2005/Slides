@@ -54,9 +54,9 @@ No learning results, physical transfer or VR prototype are implied. Actual
 photography sources are recorded in `assets/sources.json`, on slide 6 and in
 speaker notes. Photo crops preserve the product's labels and proportions.
 
-Slide 4 pairs four real-world lettering references with whole-word construction
-studies: Handstyle/YANK, Bubble/SPLEEN, Block/1UP and a FLOW Wildstyle study.
-The animations teach signature rhythm, inflated contours, fill/edge sequencing,
+Slide 4 introduces different lettering styles with photographs and whole-word construction
+studies: Handstyle/YANK, Bubble/SPLEEN and a FLOW Wildstyle study.
+The animations teach signature rhythm, inflated contours,
 and letter skeletons with overlaps. They do not reconstruct the photographed
 artists' actual stroke order. Each photo links its original source and license.
 The reference viewer pauses playback, shows the full photo, closes with Escape,

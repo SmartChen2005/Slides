@@ -35,7 +35,7 @@ apple-design skill. It retains the archive route and 1280 × 720 dimensions.
 visualizations, and `app.js` owns playback and interruptible spring navigation.
 Real tool photography is credited in `assets/sources.json` and the slides.
 
-Slide 4 pairs each lettering family with a real-world photo and an animated
+Slide 4 introduces different lettering styles through a photo and an animated
 word construction study. Select a reference to inspect its full photograph;
 the lesson pauses at the current frame. Photo credits and license links appear
 below each reference, with metadata in `assets/lettering/sources.json`.

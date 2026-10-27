@@ -38,8 +38,8 @@ const layouts = [
     html:`<h2 class="comparison-title">Learn through the gesture</h2><table class="comparison"><thead><tr><th>Existing approach</th><th>Available today</th><th>Proposed focus</th></tr></thead><tbody><tr><td>Kingspray</td><td>VR spray, replay,<br>projection and tutorials*</td><td>Fading motion cues.<br>Unguided assessment.</td></tr><tr><td>Open Brush</td><td>Expressive 3D painting</td><td>Recorded gestures for<br>learning and temporal art</td></tr><tr><td>Video + practice</td><td>Demonstrations.<br>Real material feedback.</td><td>Tracked motion and feedback<br>at the virtual wall</td></tr></tbody></table><p class="takeaway">One connected lesson. Outcomes to test.</p>${footer(cite("king","brush")+". *PC feature description. Capabilities may differ across platforms.")}`
   },
   {
-    title:"Real-world lettering references", theme:"lettering-slide", duration:21.5,
-    html:`<h2 class="centered">Four styles. Real references.</h2><p class="lead centered">Real lettering. Animated construction.</p><div class="style-gallery">${GraffitiLettering.build()}</div>${footer("Select a photo for the original. Studies illustrate construction, not the artist’s stroke order.")}`
+    title:"Learn different lettering styles", theme:"lettering-slide", duration:17.5,
+    html:`<h2 class="centered">Learn different lettering styles</h2><p class="lead centered">From signature rhythm to interlocking letters.</p><div class="style-gallery">${GraffitiLettering.build()}</div>${footer("Select a photo for the original. Studies illustrate construction, not the artist’s stroke order.")}`
   },
   {
     title:"A quiet space to practice", theme:"space-slide", duration:0,

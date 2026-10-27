@@ -40,7 +40,7 @@ svg,canvas{display:block}svg{width:100%;height:auto;overflow:visible}svg text{fo
 @media print{@page{size:1280px 720px;margin:0}html,body{width:1280px;height:auto;background:white}.presentation,.with-notes .presentation{display:block;height:auto;padding:0}.stage,.with-notes .stage{display:block;position:static;width:1280px;max-width:none;height:auto;aspect-ratio:auto;margin:0;overflow:visible}.slide-canvas{position:static;width:1280px;height:auto;transform:none}.slide,.slide[hidden]{display:block!important;position:relative;width:1280px;height:720px;break-after:page;page-break-after:always;transform:none!important;opacity:1!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.slide:last-child{break-after:auto;page-break-after:auto}.site-footer,.progress-track,#notes,.skip-link,.sr-only,noscript{display:none!important}}
 
 /* Lettering references and word-based construction studies. */
-.lettering-slide .style-gallery { position:absolute; left:68px; right:68px; top:193px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:0; }
+.lettering-slide .style-gallery { position:absolute; left:68px; right:68px; top:193px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:0; }
 .lettering-tile { min-width:0; text-align:center; }
 .lettering-tile h3 { font-size:23px; font-weight:600; letter-spacing:-.026em; line-height:1.2; height:30px; margin-bottom:13px; white-space:nowrap; }
 .lettering-tile.is-current h3 { color:var(--accent); }

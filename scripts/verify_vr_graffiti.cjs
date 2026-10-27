@@ -80,15 +80,15 @@ fs.mkdirSync(out, { recursive: true });
   }
   assert.equal(new Set(snapshots).size, 4);
   await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(0); deckAPI.settleTransitions(); });
-  assert.equal(await page.locator(".reference-button").count(), 4);
+  assert.equal(await page.locator(".reference-button").count(), 3);
   const stylesBefore = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
-  for (const time of [2.7, 6.7, 11.7, 14.6, 18.7, 21.5]) {
+  for (const time of [2.7, 6.7, 9.8, 11.4, 14.3, 17.5]) {
     await page.evaluate(t => deckAPI.seek(t), time);
     await page.screenshot({ path: path.join(out, `lettering-${time}.png`) });
   }
   const stylesAfter = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
   stylesBefore.forEach((value, index) => assert.notEqual(value, stylesAfter[index]));
-  for (const key of ["handstyle", "bubble", "block", "wildstyle"]) {
+  for (const key of ["handstyle", "bubble", "wildstyle"]) {
     await page.locator(`[data-reference="${key}"]`).click();
     assert.equal(await page.locator("#lettering-reference").isVisible(), true);
     assert.equal(await page.locator("#reference-image").evaluate(node => node.complete && node.naturalWidth > 0), true);
@@ -136,7 +136,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), stopped);
   assert.deepEqual(errors, []);
-  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "four real lettering references and zoom dialogs", "four word construction animations across six frames", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
+  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "three lettering styles and photo dialogs", "three word construction animations across six frames", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
   fs.writeFileSync(path.join(out, "browser-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   await browser.close();

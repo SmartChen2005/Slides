@@ -53,8 +53,8 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.emulateMedia({ media: "screen" });
   await page.goto(pathToFileURL(standalone).href, { waitUntil: "networkidle" });
   if (errors.length || await page.locator(".slide").count() !== deck.length) throw new Error(`Standalone export failed: ${errors}`);
-  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(21.5); deckAPI.settleTransitions(); });
-  for (const key of ["handstyle", "bubble", "block", "wildstyle"]) {
+  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(17.5); deckAPI.settleTransitions(); });
+  for (const key of ["handstyle", "bubble", "wildstyle"]) {
     await page.locator(`[data-reference="${key}"]`).click();
     const valid = await page.locator("#reference-image").evaluate(node => node.src.startsWith("data:image/") && node.complete && node.naturalWidth > 0);
     if (!valid) throw new Error(`Offline lettering reference failed: ${key}`);

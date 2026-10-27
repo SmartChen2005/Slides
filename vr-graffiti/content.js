@@ -35,16 +35,15 @@ window.GRAFFITI_CONTENT = [
     ]
   },
   {
-    "title": "Real-world lettering references",
+    "title": "Learn different lettering styles",
     "seconds": 35,
     "name": "Learning objectives",
     "notes": [
-      "These four photographs show real lettering. The YANK tag emphasizes signature rhythm. SPLEEN uses inflated, rounded contours. The large 1UP uses broad fills and straight edges. The German Wildstyle piece combines letter bodies with overlaps and extensions. Below, the studies show those construction ideas in whole words, rather than four versions of an S. They illustrate structure, not the artists’ recorded stroke order. Bubble S remains our semester lesson. The other styles show possible curriculum directions, with Wildstyle reserved for a future showcase."
+      "The curriculum explores different graffiti lettering styles. Handstyle develops signature rhythm. Bubble lettering uses inflated, rounded contours. Wildstyle combines letter bodies, overlaps and extensions. The photographs show how these styles appear on actual walls, while the animations break down their construction. Bubble S remains the semester lesson; Handstyle is a possible next lesson, and Wildstyle is a future direction."
     ],
     "refs": [
       "handstyleRef",
       "bubbleRef",
-      "blockRef",
       "wildstyleRef"
     ]
   },
