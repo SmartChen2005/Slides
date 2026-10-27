@@ -53,7 +53,7 @@ One native system family provides platform typography without network requests. 
 
 ## Layout
 
-Page max 1280px, horizontal gutters from 22px to 64px. A quiet masthead contains only VegShark.com, linking to https://vegshark.com/. The centered intro contains only the sentence-case Slide archive title, without an eyebrow, subtitle, or collection note. The rounded material toolbar sits above the collection. Year labels sit above a generous two-column grid; at 600px decks collapse to one column. Sheets are presentation-native 16:9. Generous space beneath each stack reserves its internal preview fan without moving neighboring content.
+Page max 1280px, horizontal gutters from 22px to 64px. A quiet masthead contains only VegShark.com, linking to http://vegshark.com/. The centered intro contains only the sentence-case Slide archive title, without an eyebrow, subtitle, or collection note. The rounded material toolbar sits above the collection. Year labels sit above a generous two-column grid; at 600px decks collapse to one column. Sheets are presentation-native 16:9. Generous space beneath each stack reserves its internal preview fan without moving neighboring content.
 
 ## Elevation & Depth
 
