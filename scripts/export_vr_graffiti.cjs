@@ -61,6 +61,8 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
     await page.locator("#reference-close").click();
   }
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone-lettering.png"), animations: "disabled" });
+  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(11); deckAPI.settleTransitions(); });
+  await page.screenshot({ path: path.join(artifacts, "qa", "standalone-playground.png"), animations: "disabled" });
   await page.evaluate(() => { deckAPI.showSlide(9); deckAPI.seek(12); deckAPI.settleTransitions(); });
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone.png"), animations: "disabled" });
   console.log(JSON.stringify({ standalone, pdf: path.join(pdfRoot, "VR-Graffiti-Concept.pdf"), slides: deck.length, mainSeconds: time, mainScriptWords: deck.filter(s => !s.backup).map(s => s.notes.join(" ")).join(" ").split(/\s+/).length, standaloneErrors: errors }, null, 2));

@@ -44,19 +44,17 @@ Imagine a beginner entering the studio and choosing Bubble S. First, Observe pla
 
 ## 8. Guidance that steps back
 
-The guidance separates three layers: a target mark on the wall, a motion trail in front of it, and the hand and tool pose. Observational learning informs the demonstration of stroke order and timing. Scaffolding informs the move from full support to a faint trail and finally no overlay. Feedback distinguishes how the movement was performed from the resulting painted path. Yu and colleagues’ XR guidance framework also distinguishes advance movement cues from corrective feedback. VR is useful because these cues occupy the same space as the tracked hand and wall. We still need an unguided test: success while following an overlay is not enough to establish learning.
+The guidance separates three layers: a target mark on the wall, a motion trail in front of it, and the hand and tool pose. Observational learning informs the demonstration of stroke order and timing. Scaffolding informs the move from full support to a faint trail and finally no overlay. Feedback distinguishes how the movement was performed from the resulting painted path. Yu and colleagues’ XR guidance framework also distinguishes advance movement cues from corrective feedback. VR is useful because these cues occupy the same space as the tracked hand and wall. The independent attempt lets learners practice without an overlay before moving to the free creation wall.
 
 [Han et al., 2022](https://doi.org/10.3390/ijerph191610109). [Wulf et al., 2010](https://doi.org/10.1111/j.1365-2923.2009.03421.x). [Yu et al., CHI 2024](https://doi.org/10.1145/3613904.3642143). [Levac et al., 2019](https://doi.org/10.1186/s12984-019-0587-8)
 
-## 9. An unguided test of learning
+## 9. Free Space to Practice
 
-The optional pilot compares a conventional visual demonstration and target with ghost hand, tool and spatial trail. We would randomly assign beginners to a condition, keep practice duration equal, and use unguided pretests and posttests. For painted trajectory error, we anchor both paths to the same wall coordinates, resample the learner centerline at equal arc-length intervals, and average distance to the target curve. Separately, we log variation in can-to-wall distance while spraying. We compare change in those metrics, not an invented accuracy score. A small pilot would establish feasibility, not physical transfer.
+After the guided lesson, players can move to a free creation wall in the same studio. This is their playground: they choose their own subject, colors and tools, experiment with lettering and composition, and make an artwork that matters to them. They can return to a demonstration when they need help, but the space has no target letter or prescribed sequence. The aim is to use what they have practiced to express an idea of their own. The wall animation illustrates that open-ended activity.
 
-[Levac et al., 2019](https://doi.org/10.1186/s12984-019-0587-8)
+## 10. Beyond Traditional 3D Art
 
-## 10. The recording becomes material
-
-The same recording could also become creative material. Temporal Layers keeps earlier attempts as translucent parts of a composition. Instead of erasing every previous version, the artist makes that history visible. Time-to-Space maps elapsed stroke time to depth: early and late parts of a flat mark occupy different positions away from the wall. The perspective change shows the resulting spatial line. Both are concept animations and stretch directions. The semester commitment remains the lettering lesson, while the creative vision grows from data that lesson already needs.
+The playground leads into a further creative direction: using the history of making as part of the artwork. Temporal Layers lets earlier gestures remain visible as translucent layers in a composition. Time-to-Space maps elapsed stroke time to depth, so different moments of a gesture occupy different positions away from the wall. These ideas add time and process to the painted form. They are proposed creative extensions built on existing spatial painting and replay. The semester core remains guided lettering and free creation; these experiments reuse the same recorded strokes.
 
 ## 11. One recording, several uses
 

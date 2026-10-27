@@ -68,3 +68,9 @@ with a practice wall, nearby tools and a free creation wall. The real interior
 photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
 It references material and light; it does not depict the proposed VR layout.
 Original source metadata is in `assets/architecture/source-metadata.json`.
+
+Slide 9 is Free Space to Practice: an open playground for personal artwork.
+It follows the guided lesson and leads into slide 10, Beyond Traditional 3D Art,
+which introduces Temporal Layers and Time-to-Space as creative extensions.
+The playground animation illustrates player-led wall painting with no target
+or ghost overlay. The former evaluation-pilot slide has been removed.

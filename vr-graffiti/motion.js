@@ -103,14 +103,18 @@ window.GraffitiMotion = (() => {
     alpha(root,'.layer-hand',.65*(1-ramp(t,7.5,10)));alpha(root,'.layer-trail',1-ramp(t,7.5,10)*.8);
     const settle=ramp(t,6.5,10.5);root.querySelector('.layer-front').setAttribute('transform',`translate(${132-settle*75} ${settle*20})`);
   }
-  function measure(t) {
-    const {ctx}=reset('measure-motion');const scale=.54,ox=30,oy=9;
-    const target=samples.map(p=>({x:ox+p.x*scale,y:oy+p.y*scale})),actual=samples.map(p=>({x:ox+(p.x+10+8*Math.sin(p.u*Math.PI*3))*scale,y:oy+(p.y-7)*scale}));
-    line(ctx,target,'#d7dde6',12);line(ctx,actual,'#0071e3',5);
-    const p=ramp(t,.2,6),q=point(p),a={x:ox+q.x*scale,y:oy+q.y*scale},b={x:a.x+(10+8*Math.sin(p*Math.PI*3))*scale,y:a.y-7*scale};
-    line(ctx,[a,b],'#af52de',3);ctx.fillStyle='#af52de';[a,b].forEach(q=>{ctx.beginPath();ctx.arc(q.x,q.y,3,0,Math.PI*2);ctx.fill();});label(ctx,'Path deviation',193,81,17,'#af52de');
-    line(ctx,[{x:464,y:27},{x:464,y:174}],'#c8cfd9',3);const distance=54+8*Math.sin(p*Math.PI*2);sprayTool(ctx,464-distance,70,-.1);
-    line(ctx,[{x:464-distance+10,y:70},{x:464,y:70}],'#0071e3',1.5);label(ctx,'Can-to-wall distance',354,204,15,'#6e6e73');
+  function playground(root,t) {
+    const strokes=[...root.querySelectorAll('.playground-stroke')];
+    let active;
+    strokes.forEach(node=>{
+      const from=+node.dataset.from,to=+node.dataset.to,p=ramp(t,from,to);
+      node.style.strokeDasharray='1';node.style.strokeDashoffset=String(1-p);
+      if(t>=from&&t<=to)active={node,p};
+    });
+    const can=root.querySelector('.playground-tool');
+    if(active){const q=active.node.getPointAtLength(active.node.getTotalLength()*active.p);can.setAttribute('transform',`translate(${q.x+17} ${q.y+12}) rotate(-12) scale(.7)`);can.style.opacity='1';}
+    else can.style.opacity='0';
+    alpha(root,'.playground-wash',ramp(t,.1,.8));alpha(root,'.playground-finish',ramp(t,9.4,10.5));
   }
   function temporal(t) {
     const {ctx,w}=reset('layers-motion');
@@ -139,10 +143,10 @@ window.GraffitiMotion = (() => {
   function render(index,t) {
     const root=document.getElementById(`slide-${index+1}`);if(!root)return;
     if(index===0)hero(t);else if(index===1)problem(t);else if(index===3)GraffitiLettering.render(t);
-    else if(index===5)tools(root,t);else if(index===6)lesson(root,t);else if(index===7)layers(root,t);else if(index===8)measure(t);else if(index===9){temporal(t);depth(t);}else if(index===10){const p=root.querySelector('.data-pulse');p.setAttribute('cx',String(14+1030*ramp(t,.2,5.8)));p.style.opacity=t>6?'0':'1';}
+    else if(index===5)tools(root,t);else if(index===6)lesson(root,t);else if(index===7)layers(root,t);else if(index===8)playground(root,t);else if(index===9){temporal(t);depth(t);}else if(index===10){const p=root.querySelector('.data-pulse');p.setAttribute('cx',String(14+1030*ramp(t,.2,5.8)));p.style.opacity=t>6?'0':'1';}
   }
   function init() {
     const ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('width','0');s.setAttribute('height','0');s.style.position='absolute';s.setAttribute('aria-hidden','true');pathNode=document.createElementNS(ns,'path');pathNode.setAttribute('d',S_PATH);s.appendChild(pathNode);document.body.appendChild(s);pathLength=pathNode.getTotalLength();samples=Array.from({length:241},(_,i)=>({...point(i/240),u:i/240}));
   }
-  return {init,render,staticTimes:[7,8,0,17.5,0,13,7.7,5,6,12,7,0,0,0]};
+  return {init,render,staticTimes:[7,8,0,17.5,0,13,7.7,5,11,12,7,0,0,0]};
 })();
