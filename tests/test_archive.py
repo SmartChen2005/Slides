@@ -32,6 +32,22 @@ class ArchiveTests(unittest.TestCase):
         decks = discover(self.root)
         self.assertEqual([deck["date"] for deck in decks], ["2025-12-31", None])
 
+    def test_month_precision_and_explicit_chronology(self):
+        self.deck("alphabetically-last", {"date": "2026-10", "order": 1})
+        self.deck("alphabetically-first", {"date": "2026-10", "order": 2})
+        self.deck("earlier-month", {"date": "2026-09-30"})
+        decks = discover(self.root)
+        self.assertEqual([deck["path"] for deck in decks], ["./alphabetically-first/", "./alphabetically-last/", "./earlier-month/"])
+        self.assertEqual(decks[0]["date"], "2026-10")
+
+    def test_rejects_invalid_month_and_order(self):
+        folder = self.deck("talk")
+        for metadata in [{"date": "2026-13"}, {"date": "2026-00"}, {"order": True}, {"order": "later"}]:
+            with self.subTest(metadata=metadata):
+                (folder / "deck.json").write_text(json.dumps(metadata), encoding="utf-8")
+                with self.assertRaises(ValueError):
+                    discover(self.root)
+
     def test_rejects_ambiguous_and_impossible_dates(self):
         folder = self.deck("talk")
         for value in ["10/6/2026", "2026-02-30", "2026-1-06"]:

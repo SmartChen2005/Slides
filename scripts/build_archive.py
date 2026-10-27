@@ -67,9 +67,12 @@ def discover(root):
         title = metadata.get("title") or "".join(parser.title).split("|")[0].strip() or page.parent.name.replace("-", " ").title()
         recorded_date = metadata.get("date")
         if recorded_date is not None:
-            if not isinstance(recorded_date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", recorded_date):
-                raise ValueError(f"{metadata_path}: date must use YYYY-MM-DD")
-            date.fromisoformat(recorded_date)
+            if not isinstance(recorded_date, str) or not re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?", recorded_date):
+                raise ValueError(f"{metadata_path}: date must use YYYY-MM or YYYY-MM-DD")
+            date.fromisoformat(recorded_date + "-01" if len(recorded_date) == 7 else recorded_date)
+        order = metadata.get("order", 0)
+        if not isinstance(order, int) or isinstance(order, bool):
+            raise ValueError(f"{metadata_path}: order must be an integer")
         category = str(metadata.get("category", "UNCATEGORIZED")).upper()
         if category not in CATEGORIES:
             raise ValueError(f"{metadata_path}: category must be one of {sorted(CATEGORIES)}")
@@ -85,6 +88,7 @@ def discover(root):
             "title": str(title),
             "path": "./" + quote(page.parent.relative_to(root).as_posix(), safe="/") + "/",
             "date": recorded_date,
+            "order": order,
             "category": category,
             "slideCount": slide_count,
             "description": str(metadata.get("description", parser.description)),
@@ -95,7 +99,7 @@ def discover(root):
         decks.append(deck)
         if not recorded_date:
             print(f"Note: {relative.parent} has no recorded date; listed as Undated.")
-    return sorted(decks, key=lambda deck: (deck["date"] or "", deck["title"].lower()), reverse=True)
+    return sorted(decks, key=lambda deck: (deck["date"] or "", deck["order"], deck["title"].lower()), reverse=True)
 
 
 def build(root, output=None):

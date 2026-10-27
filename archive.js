@@ -26,8 +26,9 @@ function element(tag, className, text) {
 function dateLabel(date) {
   if (!date) return "DATE UNRECORDED";
   // Dates describe a calendar day, not an instant. UTC avoids timezone shifts.
-  return new Intl.DateTimeFormat("en-US", { month: "short", day: "2-digit", year: "numeric", timeZone: "UTC" })
-    .format(new Date(date + "T00:00:00Z")).toUpperCase();
+  const monthOnly = date.length === 7;
+  return new Intl.DateTimeFormat("en-US", { month: "short", ...(monthOnly ? {} : { day: "2-digit" }), year: "numeric", timeZone: "UTC" })
+    .format(new Date(date + (monthOnly ? "-01" : "") + "T00:00:00Z")).toUpperCase();
 }
 
 function makeDeck(deck) {

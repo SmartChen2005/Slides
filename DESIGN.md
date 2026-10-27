@@ -3,22 +3,22 @@ version: alpha
 name: "Smart Chen Slide Archive"
 description: "An editorial light table where presentations behave as stacks of slides."
 colors:
-  table: "#f2f3f2"
+  table: "#f5f5f7"
   sheet: "#ffffff"
-  ink: "#181818"
-  muted: "#646664"
-  line: "#d7d9d7"
-  accent: "#d92c21"
+  ink: "#1d1d1f"
+  muted: "#6e6e73"
+  line: "#d2d2d7"
+  accent: "#0071e3"
 typography:
   sans:
-    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
   notation:
-    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
 rounded:
-  DEFAULT: "0"
+  DEFAULT: "14px"
 spacing:
-  page-max: "1920px"
-  grid-gap: "36px"
+  page-max: "1280px"
+  grid-gap: "42px"
 components:
   stack: {}
   filter: {}
@@ -38,22 +38,22 @@ A digital slide sorter or light table, inspired by Tangible Bits: information ha
 - Content-site register; English interface, en-US calendar-date display. No country-specific market behavior is implied.
 - Usage: mouse and keyboard on desktop; simplified touch browsing on mobile.
 - Signature: sheets lift and fan, then move into the center and become the actual presentation stage.
-- Restraint: generous whitespace, quiet metadata, functional year labels, a single red accent inherited from Ensemble Mutual.
+- Restraint: generous whitespace, quiet metadata, functional year labels, a single system-blue accent for navigation and focus.
 - Anti-references: SaaS card grids, glossy 3D, fake paper textures, unique physical objects for every deck.
 - Runtime token ownership: `archive.css :root` is canonical for the homepage. This file mirrors its exact named palette and font values. Presentation-specific styling remains in each deck. `deck-transition.css` owns shared navigation motion.
 - Design dials: DESIGN_VARIANCE 6 / MOTION_INTENSITY 4 / VISUAL_DENSITY 3, following the user's minimal editorial brief.
 
 ## Colors
 
-One light theme: table background, white sheets, near-black ink, neutral muted text and hairlines. Red marks selected filters, focus, and the opening arrow. No dark-theme section flips or textures. Forced-colors mode retains visible sheet borders and selected state.
+One light theme: table background, white sheets, near-black ink, neutral muted text and hairlines. Blue marks navigation and focus. A raised white segment marks the active filter; the surrounding toolbar uses one restrained translucent material. No dark-theme section flips or textures. Forced-colors mode retains visible sheet borders and selected state.
 
 ## Typography
 
-One Helvetica/Arial system family inherits the existing presentation's Swiss typography without network requests. The archive heading is sized like an exhibition index rather than a full-width hero. Cover titles dominate, with type sized relative to the sheet's width. Metadata is small, spaced sans-serif with tabular numerals; slide counts use three digits (005 SLIDES). Normal prose stays sentence case. Dates use explicit UTC formatting to preserve the recorded calendar day.
+One native system family provides platform typography without network requests. The archive heading is sized like an exhibition index rather than a full-width hero. Cover titles dominate, with type sized relative to the sheet's width. Metadata is small, spaced sans-serif with tabular numerals; slide counts use three digits (005 SLIDES). Normal prose stays sentence case. Dates use explicit UTC formatting to preserve the recorded calendar day.
 
 ## Layout
 
-Page max 1920px, horizontal gutters from 22px to 80px. The original masthead, title, subtitle, filters, and year groups retain their arrangement. The year gutter is 82px on desktop; grid is two columns by default, three at 1240px, four at 1740px. At 900px year labels sit above the grid; at 600px decks collapse to one column. Sheets are presentation-native 16:9. Generous space beneath each stack reserves its internal preview fan without moving neighboring content.
+Page max 1280px, horizontal gutters from 22px to 64px. A quiet masthead frames a centered, sentence-case title and subtitle. The rounded material toolbar sits above the collection. Year labels sit above a generous two-column grid; at 600px decks collapse to one column. Sheets are presentation-native 16:9. Generous space beneath each stack reserves its internal preview fan without moving neighboring content.
 
 ## Elevation & Depth
 
@@ -61,13 +61,13 @@ Each deck has up to four underlying sheets, using ceil(log2(slideCount)) layers 
 
 ## Shapes
 
-Sharp rectangular sheets, square controls, thin borders. No pills, texture, or rounded card system. Decks share one composition regardless of category.
+Sharp rectangular sheets retain the presentation geometry. Rounded 14px filter controls sit inside a 21px translucent toolbar. The Apple-inspired controls frame the existing paper metaphor; slides never become rounded cards. No texture. Decks share one composition regardless of category.
 
 ## Components
 
 ### Foundational visual states
 
-Native anchors open decks; native buttons filter. Every action has visible focus and pointer feedback. Active filters have an underline and aria-pressed state. Empty categories explain the absence and offer View all presentations. Failed archive loading offers Reload archive. Live status announces filtering and opening.
+Native anchors open decks; native buttons filter. Every action has visible focus and pointer feedback. Active filters have a raised white surface and aria-pressed state. Empty categories explain the absence and offer View all presentations. Failed archive loading offers Reload archive. Live status announces filtering and opening.
 
 ### Buttons and actions
 
@@ -91,7 +91,7 @@ All material motion uses cubic-bezier(.22,1,.36,1), with no bounce or overshoot.
 
 ### Content and data visualization
 
-Only repository content is shown. No fabricated presentations, dates, thumbnails, or counts. Date fields belong beside the deck in deck.json, with ISO calendar dates. Undated is an honest missing-data state. Actual screenshots provide previews.
+Only repository content is shown. No fabricated presentations, dates, thumbnails, or counts. Date fields belong beside the deck in deck.json, with ISO calendar dates or YYYY-MM when only the month is known. Same-date order values record chronology without inventing a day; larger values appear first. Both October 2026 decks use month precision, with VR Graffiti later than Ensemble Mutual. Undated is an honest missing-data state. Actual screenshots provide previews.
 
 ## Do's and Don'ts
 
@@ -99,3 +99,7 @@ Only repository content is shown. No fabricated presentations, dates, thumbnails
 - Do document and explicitly record presentation dates rather than infer them from file edits.
 - Don't fabricate extra decks to fill the grid.
 - Don't add texture, glossy rendering, ambient motion, or hidden hover-only navigation.
+
+## October 2026 homepage refresh
+
+The user requested Apple design styling while preserving the slide stack expansion mechanism. The system palette, optical typography, toolbar material, spacing, and cover elevation changed; preview timing, perspective, lower-sheet transforms, opening animation, navigation, and history restoration remain the established implementation. Reduced transparency removes toolbar blur, increased contrast strengthens boundaries, and reduced motion preserves native navigation. Deck-specific visual systems and exports are unchanged.
