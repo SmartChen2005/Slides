@@ -12,5 +12,18 @@ window.SLIDE_ARCHIVE = [
       "./ensemble-mutual/thumbnails/slide-2.webp",
       "./ensemble-mutual/thumbnails/slide-3.webp"
     ]
+  },
+  {
+    "title": "VR Graffiti",
+    "path": "./vr-graffiti/",
+    "date": null,
+    "category": "RESEARCH",
+    "slideCount": 13,
+    "description": "An XR learning concept: guided lettering, recorded gestures, and art across time.",
+    "thumbnails": [
+      "./vr-graffiti/thumbnails/01.webp",
+      "./vr-graffiti/thumbnails/02.webp",
+      "./vr-graffiti/thumbnails/03.webp"
+    ]
   }
 ];

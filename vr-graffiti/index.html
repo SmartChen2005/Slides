@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="description" content="VR Graffiti: a 7:30 XR concept presentation about learning lettering through recorded gestures.">
+  <title>VR Graffiti | XR Concept</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../deck-transition.css">
+  <script src="slides.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#slide-1">Skip to presentation</a>
+  <div class="presentation">
+    <main class="stage" aria-label="VR Graffiti concept presentation" style="view-transition-name: open-deck">
+      <div class="slide-canvas" id="slides"></div>
+    </main>
+    <footer class="site-footer">
+      <div class="deck-position"><a href="../" aria-label="Back to slide archive">Archive</a><span id="slide-counter">01 / 11</span><span id="slide-time">0:20</span></div>
+      <div class="deck-controls">
+        <button id="notes-toggle" aria-expanded="false" aria-controls="notes">Notes <kbd>N</kbd></button>
+        <button id="replay" aria-label="Replay concept animation">Replay <kbd>R</kbd></button>
+        <button id="pause" aria-pressed="false">Pause</button>
+        <button id="fullscreen" aria-label="Enter fullscreen">Full screen</button>
+        <button id="previous" aria-label="Previous slide">Prev</button>
+        <button id="next" class="primary" aria-label="Next slide">Next</button>
+      </div>
+    </footer>
+    <div class="progress-track" aria-hidden="true"><div id="deck-progress"></div></div>
+  </div>
+  <aside id="notes" aria-label="Speaker notes" hidden>
+    <div class="notes-header"><strong>Presenter notes</strong><button id="notes-close" aria-label="Close speaker notes">Close</button></div>
+    <p id="notes-timing"></p><h2 id="notes-title"></h2><div id="notes-copy"></div>
+    <nav class="notes-links" aria-label="Backup slides"><a href="#slide-12">References</a><a href="#slide-13">Q&amp;A backup</a></nav>
+    <p class="notes-help">Arrow keys navigate. Space pauses motion. R replays. F opens fullscreen. Main talk: 7:30. Allow another 3–5 minutes for questions.</p>
+  </aside>
+  <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript>This presentation needs JavaScript for navigation and animations. Use the accompanying PDF for a static version.</noscript>
+</body>
+</html>
