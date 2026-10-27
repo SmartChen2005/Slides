@@ -12,14 +12,18 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
 
 (async () => {
   const css = fs.readFileSync(path.join(root, "styles.css"), "utf8");
-  const data = fs.readFileSync(path.join(root, "slides.js"), "utf8");
+  const content = fs.readFileSync(path.join(root, "content.js"), "utf8");
+  const embedAssets = source => source.replace(/(["'])assets\/([^"']+\.(?:jpe?g|png|webp))\1/g, (_, quote, filename) => JSON.stringify(`data:image/${/\.png$/i.test(filename) ? "png" : /\.webp$/i.test(filename) ? "webp" : "jpeg"};base64,${fs.readFileSync(path.join(root, "assets", filename)).toString("base64")}`));
+  const data = embedAssets(fs.readFileSync(path.join(root, "slides.js"), "utf8"));
+  const lettering = embedAssets(fs.readFileSync(path.join(root, "lettering.js"), "utf8"));
+  const motion = fs.readFileSync(path.join(root, "motion.js"), "utf8");
   const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
   let html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   html = html.replace('<link rel="stylesheet" href="styles.css">', `<style>${css}\n.standalone .deck-position a { display: none; }</style>`)
     .replace(/\s*<link rel="stylesheet" href="\.\.\/deck-transition.css">/, "")
-    .replace(/\s*<script src="(?:slides|app).js" defer><\/script>/g, "")
+    .replace(/\s*<script src="(?:content|lettering|slides|motion|app).js" defer><\/script>/g, "")
     .replace("<body>", '<body class="standalone">')
-    .replace("</body>", `<script>${data}</script>\n<script>${app}</script>\n</body>`);
+    .replace("</body>", `<script>${content}</script>\n<script>${lettering}</script>\n<script>${data}</script>\n<script>${motion}</script>\n<script>${app}</script>\n</body>`);
   const standalone = path.join(artifacts, "VR-Graffiti.html");
   fs.writeFileSync(standalone, html);
   const executablePath = process.env.BROWSER_EXECUTABLE || (process.platform === "win32" ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" : undefined);
@@ -29,17 +33,15 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const deck = await page.evaluate(() => window.GRAFFITI_DECK.map(({ title, seconds, notes, refs, backup }) => ({ title, seconds, notes, refs, backup })));
   const refs = await page.evaluate(() => sources);
   let time = 0;
-  const formatTime = seconds => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   let manuscript = "# VR Graffiti: presenter script\n\n11 main slides, 7:30 planned talk. Two backup slides support 3–5 minutes of Q&A.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. N opens these notes, R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
   deck.forEach((slide, index) => {
-    const timing = slide.backup ? "Backup" : `${formatTime(time)}–${formatTime(time + slide.seconds)}`;
-    manuscript += `## ${index + 1}. ${slide.title} (${timing})\n\n${slide.notes.join("\n\n")}\n\n`;
+    manuscript += `## ${index + 1}. ${slide.title}${slide.backup ? " (Backup)" : ""}\n\n${slide.notes.join("\n\n")}\n\n`;
     if (slide.refs.length) manuscript += slide.refs.map(key => `[${refs[key][1]}](${refs[key][0]})`).join(". ") + "\n\n";
     time += slide.seconds;
   });
   fs.writeFileSync(path.join(root, "speaker-notes.md"), manuscript);
   for (const [i, slide] of [0, 5, 8].entries()) {
-    await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(index === 5 ? 3.1 : 6); }, slide);
+    await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(GraffitiMotion.staticTimes[index]); deckAPI.settleTransitions(); }, slide);
     await page.locator(".stage").screenshot({ path: path.join(root, "thumbnails", `0${i + 1}.webp`), type: "webp", quality: 85, animations: "disabled" });
   }
   await page.evaluate(() => deckAPI.preparePrint());
@@ -51,7 +53,15 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.emulateMedia({ media: "screen" });
   await page.goto(pathToFileURL(standalone).href, { waitUntil: "networkidle" });
   if (errors.length || await page.locator(".slide").count() !== 13) throw new Error(`Standalone export failed: ${errors}`);
-  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(6); });
+  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(21.5); deckAPI.settleTransitions(); });
+  for (const key of ["handstyle", "bubble", "block", "wildstyle"]) {
+    await page.locator(`[data-reference="${key}"]`).click();
+    const valid = await page.locator("#reference-image").evaluate(node => node.src.startsWith("data:image/") && node.complete && node.naturalWidth > 0);
+    if (!valid) throw new Error(`Offline lettering reference failed: ${key}`);
+    await page.locator("#reference-close").click();
+  }
+  await page.screenshot({ path: path.join(artifacts, "qa", "standalone-lettering.png"), animations: "disabled" });
+  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(12); deckAPI.settleTransitions(); });
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone.png"), animations: "disabled" });
   console.log(JSON.stringify({ standalone, pdf: path.join(pdfRoot, "VR-Graffiti-Concept.pdf"), slides: deck.length, mainSeconds: time, mainScriptWords: deck.filter(s => !s.backup).map(s => s.notes.join(" ")).join(" ").split(/\s+/).length, standaloneErrors: errors }, null, 2));
   await browser.close();

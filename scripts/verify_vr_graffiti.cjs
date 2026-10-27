@@ -20,7 +20,7 @@ fs.mkdirSync(out, { recursive: true });
   assert.equal(state.totalCount, 13);
   const layout = [];
   for (let i = 0; i < 13; i++) {
-    await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(index === 5 ? 3.1 : 6); }, i);
+    await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(GraffitiMotion.staticTimes[index]); deckAPI.settleTransitions(); }, i);
     await page.waitForTimeout(70);
     const details = await page.evaluate(() => {
       const slide = document.querySelector(".slide.active");
@@ -72,19 +72,58 @@ fs.mkdirSync(out, { recursive: true });
   await page.locator("#pause").click();
   assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
   const snapshots = [];
-  for (const t of [.9, 2.8, 5.6, 7]) {
+  for (const t of [2.5, 7.7, 13.8, 18]) {
     await page.evaluate(time => deckAPI.seek(time), t);
     snapshots.push(await page.locator("#journey-phase").textContent());
     await page.screenshot({ path: path.join(out, `journey-${t}.png`) });
   }
   assert.equal(new Set(snapshots).size, 4);
+  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(0); deckAPI.settleTransitions(); });
+  assert.equal(await page.locator(".reference-button").count(), 4);
+  const stylesBefore = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
+  for (const time of [2.7, 6.7, 11.7, 14.6, 18.7, 21.5]) {
+    await page.evaluate(t => deckAPI.seek(t), time);
+    await page.screenshot({ path: path.join(out, `lettering-${time}.png`) });
+  }
+  const stylesAfter = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
+  stylesBefore.forEach((value, index) => assert.notEqual(value, stylesAfter[index]));
+  for (const key of ["handstyle", "bubble", "block", "wildstyle"]) {
+    await page.locator(`[data-reference="${key}"]`).click();
+    assert.equal(await page.locator("#lettering-reference").isVisible(), true);
+    assert.equal(await page.locator("#reference-image").evaluate(node => node.complete && node.naturalWidth > 0), true);
+    await page.locator("#reference-close").press("ArrowRight");
+    assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 3);
+    await page.locator("#reference-close").press("Escape");
+    assert.equal(await page.locator("#lettering-reference").isVisible(), false);
+    assert.equal(await page.locator(`[data-reference="${key}"]`).evaluate(node => node === document.activeElement), true);
+  }
   await page.evaluate(() => deckAPI.showSlide(8));
   await page.evaluate(() => deckAPI.seek(.8));
-  const flat = await page.locator(".depth-ribbon").innerHTML();
+  const flat = await page.locator("#depth-motion").evaluate(node => node.toDataURL());
   await page.screenshot({ path: path.join(out, "depth-flat.png") });
-  await page.evaluate(() => deckAPI.seek(6));
-  assert.notEqual(await page.locator(".depth-ribbon").innerHTML(), flat);
+  await page.evaluate(() => deckAPI.seek(12));
+  assert.notEqual(await page.locator("#depth-motion").evaluate(node => node.toDataURL()), flat);
   await page.screenshot({ path: path.join(out, "depth-spatial.png") });
+  await page.evaluate(() => { deckAPI.showSlide(4); deckAPI.seek(13); deckAPI.settleTransitions(); });
+  assert.deepEqual(await page.locator(".tool-gallery img").evaluateAll(nodes => nodes.map(node => node.complete && node.naturalWidth > 0)), [true, true, true]);
+  await page.locator("#animation-time").fill("2.5");
+  assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), 2.5);
+  assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
+  await page.locator("#animation-time").press("ArrowRight");
+  assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 4);
+  await page.evaluate(() => deckAPI.seek(12.95));
+  await page.locator("#pause").click();
+  await page.waitForTimeout(250);
+  assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), 13);
+  assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
+  // Interrupted slide transitions keep the presentation value and never lock input.
+  await page.evaluate(() => { deckAPI.showSlide(0); deckAPI.settleTransitions(); deckAPI.showSlide(1); });
+  await page.waitForTimeout(60);
+  const beforeReverse = await page.locator("#slide-1").evaluate(node => Number(node.style.opacity));
+  await page.evaluate(() => deckAPI.showSlide(0));
+  const afterReverse = await page.locator("#slide-1").evaluate(node => Number(node.style.opacity));
+  assert.ok(Math.abs(afterReverse - beforeReverse) < .3);
+  await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(12); deckAPI.settleTransitions(); });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: path.join(out, "mobile.png") });
   assert.equal(await page.locator("#next").isVisible(), true);
@@ -96,7 +135,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), stopped);
   assert.deepEqual(errors, []);
-  const report = { state, layout, errors, checked: ["13 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "time-to-depth geometry", "390px viewport", "reduced motion"] };
+  const report = { state, layout, errors, checked: ["13 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "four real lettering references and zoom dialogs", "four word construction animations across six frames", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
   fs.writeFileSync(path.join(out, "browser-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   await browser.close();
