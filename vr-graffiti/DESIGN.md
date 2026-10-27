@@ -4,8 +4,8 @@ This deck uses the apple-design skill as its design source. It does not inherit
 Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
 
-The audience is an English-speaking XR course. The main talk remains 11 slides
-and 7:30. References and discussion are backups. Notes retain the research,
+The audience is an English-speaking XR course. The main talk remains 12 slides
+and 7:50. References and discussion are backups. Notes retain the research,
 implementation and scope details that do not belong in the main visual field.
 
 ## Visual system
@@ -51,7 +51,7 @@ The offline HTML embeds the actual photo assets as data URLs.
 
 Research claims and solo project scope retain the supplied content decisions.
 No learning results, physical transfer or VR prototype are implied. Actual
-photography sources are recorded in `assets/sources.json`, on slide 5 and in
+photography sources are recorded in `assets/sources.json`, on slide 6 and in
 speaker notes. Photo crops preserve the product's labels and proportions.
 
 Slide 4 pairs four real-world lettering references with whole-word construction
@@ -62,3 +62,9 @@ artists' actual stroke order. Each photo links its original source and license.
 The reference viewer pauses playback, shows the full photo, closes with Escape,
 and restores focus. `lettering.js` owns this feature. Its original construction
 studies remain separate from the credited photographic reference assets.
+
+Slide 5 introduces the proposed learning environment: a concrete virtual studio
+with a practice wall, nearby tools and a free creation wall. The real interior
+photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
+It references material and light; it does not depict the proposed VR layout.
+Original source metadata is in `assets/architecture/source-metadata.json`.

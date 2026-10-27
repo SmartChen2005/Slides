@@ -1,0 +1,107 @@
+{
+  "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Langen_Foundation_3%2C_2021.jpg/1920px-Langen_Foundation_3%2C_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "thumbwidth": 1600,
+  "thumbheight": 2179,
+  "responsiveUrls": {
+    "2": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Langen_Foundation_3%2C_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "thumbattribs": {
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Langen_Foundation_3%2C_2021.jpg/1920px-Langen_Foundation_3%2C_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "decoding": "async",
+    "loading": "lazy",
+    "width": 1600,
+    "height": 2179,
+    "srcset": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Langen_Foundation_3%2C_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+  },
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Langen_Foundation_3%2C_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "descriptionurl": "https://commons.wikimedia.org/wiki/File:Langen_Foundation_3,_2021.jpg",
+  "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=106803883",
+  "extmetadata": {
+    "DateTime": {
+      "value": "2021-06-20 18:49:03",
+      "source": "mediawiki-metadata",
+      "hidden": ""
+    },
+    "ObjectName": {
+      "value": "Langen Foundation 3, 2021",
+      "source": "mediawiki-metadata"
+    },
+    "CommonsMetadataExtension": {
+      "value": 1.2,
+      "source": "extension",
+      "hidden": ""
+    },
+    "Categories": {
+      "value": "GFDL|Langen Foundation|License migration redundant|Linear perspective|Self-published work|Files with coordinates missing SDC location of creation (51° N, 6° E)",
+      "source": "commons-categories",
+      "hidden": ""
+    },
+    "Assessments": {
+      "value": "quality",
+      "source": "commons-categories",
+      "hidden": ""
+    },
+    "GPSLatitude": {
+      "value": "51.152508",
+      "source": "commons-desc-page"
+    },
+    "GPSLongitude": {
+      "value": "6.643933",
+      "source": "commons-desc-page"
+    },
+    "GPSMapDatum": {
+      "value": "WGS-84",
+      "source": "commons-desc-page",
+      "hidden": ""
+    },
+    "ImageDescription": {
+      "value": "Langen Foundation, building by Tadao Ando, Neuss, Germany",
+      "source": "commons-desc-page"
+    },
+    "DateTimeOriginal": {
+      "value": "2021-06-19",
+      "source": "commons-desc-page"
+    },
+    "Credit": {
+      "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+      "source": "commons-desc-page"
+    },
+    "Artist": {
+      "value": "<a href=\"//commons.wikimedia.org/wiki/User:Till.niermann\" title=\"User:Till.niermann\">Till Niermann</a>",
+      "source": "commons-desc-page"
+    },
+    "LicenseShortName": {
+      "value": "CC BY 3.0",
+      "source": "commons-desc-page",
+      "hidden": ""
+    },
+    "UsageTerms": {
+      "value": "Creative Commons Attribution 3.0",
+      "source": "commons-desc-page"
+    },
+    "AttributionRequired": {
+      "value": "true",
+      "source": "commons-desc-page",
+      "hidden": ""
+    },
+    "LicenseUrl": {
+      "value": "https://creativecommons.org/licenses/by/3.0",
+      "source": "commons-desc-page"
+    },
+    "Copyrighted": {
+      "value": "True",
+      "source": "commons-desc-page",
+      "hidden": ""
+    },
+    "Restrictions": {
+      "value": "",
+      "source": "commons-desc-page",
+      "hidden": ""
+    },
+    "License": {
+      "value": "cc-by-3.0",
+      "source": "commons-templates",
+      "hidden": ""
+    }
+  }
+}

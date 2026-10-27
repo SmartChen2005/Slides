@@ -68,3 +68,13 @@ svg,canvas{display:block}svg{width:100%;height:auto;overflow:visible}svg text{fo
 #reference-credit { margin-top:17px; font-size:16px; line-height:1.5; }
 .reference-dialog-help { color:#6e6e73; font-size:14px; margin-top:8px; }
 @media print { .reference-dialog { display:none !important; } .reference-enlarge { display:none; } }
+
+/* Architectural atmosphere reference, followed by the proposed learning zones. */
+.space-slide h2{font-size:60px}
+.space-body{display:grid;grid-template-columns:720px 1fr;gap:50px;margin-top:29px;align-items:center}
+.space-reference{position:relative;height:443px;overflow:hidden;border-radius:16px;background:#e9edef}
+.space-reference img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 57%}
+.space-reference figcaption{position:absolute;bottom:0;left:0;right:0;padding:30px 24px 18px;color:white;font-size:15px;line-height:1.4;background:linear-gradient(transparent,rgba(0,0,0,.65));text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.space-zones{display:grid;gap:35px}
+.space-zones h3{font-size:25px;font-weight:600;letter-spacing:-.025em;margin-bottom:9px}
+.space-zones p{font-size:21px;line-height:1.4;color:var(--muted);max-width:280px}

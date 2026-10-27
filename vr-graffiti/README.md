@@ -1,7 +1,7 @@
 # VR Graffiti
 
 English concept presentation for the XR skill-learning assignment. The main
-talk has 11 slides paced to 7:30, followed by reference and Q&A backups.
+talk has 12 slides paced to 7:50, followed by reference and Q&A backups.
 
 Open `index.html` in a browser or open this deck from the slide archive. No
 install or server is required. All diagrams and animations are local.
@@ -20,7 +20,7 @@ and Play continues from the paused frame.
 The final main slide's Next button opens References, then Discussion. Notes
 include the speaker script and source links. `speaker-notes.md` is the separate
 rehearsal manuscript. Reduced motion starts with paused explanatory frames.
-The browser's print command shows all 13 slides as static pages.
+The browser's print command shows all 14 slides as static pages.
 
 The provided brief supplies the concept and proposed solo scope. Course
 expectations govern coverage. Research sources inform design choices and do
@@ -47,3 +47,9 @@ root. It creates the submission PDF at `output/pdf/VR-Graffiti-Concept.pdf`
 and the offline single-file deck at `artifacts/vr-graffiti/VR-Graffiti.html`.
 Then run `python scripts/build_archive.py` to refresh the archive thumbnails.
 `scripts/verify_vr_graffiti.cjs` exercises the browser presentation controls.
+
+Slide 5 introduces the proposed learning environment: a concrete virtual studio
+with a practice wall, nearby tools and a free creation wall. The real interior
+photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
+It references material and light; it does not depict the proposed VR layout.
+Original source metadata is in `assets/architecture/source-metadata.json`.
