@@ -85,6 +85,8 @@ No forms or dialogs or preview popups. Preview sheets are real children of the s
 
 No icon library; the typographic northeast arrow supplements the explicit Open deck label.
 
+Every page uses the same solid white square browser-tab icon, embedded as an SVG data URL so deck exports retain it and previous favicon URLs cannot keep the old red icon in use. The legacy `ensemble-mutual/favicon.svg` also serves the white square.
+
 ### Motion
 
 All material motion uses cubic-bezier(.22,1,.36,1), with no bounce or overshoot. Native transforms animate independent sheets; requestAnimationFrame schedules perspective only on pointer input. On opening, surrounding decks dim, the selected cover lifts, and lower layers gather for 160ms (100ms touch). A 620ms cover animation (380ms touch) translates into the center first, then expands to the actual presentation stage before navigation. Cross-document View Transitions connect the cover to the live slide with a short 240ms content handoff; the page itself does not fade. No continuous loops or scroll hijacking. Reduced motion uses immediate native navigation; toggling it during opening cancels the remaining animation. Back restores sheet visibility and interaction state.
