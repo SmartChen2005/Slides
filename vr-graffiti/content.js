@@ -69,7 +69,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 30,
     "name": "Learning the Tools",
     "notes": [
-      "Spray can, marker and roller behave differently. The spray lesson develops distance, speed and coverage. A marker develops controlled lines, sketching and precise outlines. A roller develops broad strokes, large fills and surface coverage. The three moving demonstrations are illustrative virtual tools."
+      "Spray can, marker and roller behave differently. The spray lesson develops distance, speed and coverage. A marker develops controlled lines, sketching and precise outlines. A roller develops broad strokes, large fills and surface coverage. The three moving demonstrations are illustrative virtual tools. Spray Can is the MVP priority. Marker and Roller are optional extensions and can be omitted if time is limited."
     ],
     "refs": []
   },
@@ -155,7 +155,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 40,
     "name": "Ownership and roadmap",
     "notes": [
-      "I’m developing this project solo, drawing on experience with Unity XR, interactive systems, visual design and media production. I own the design, code, creative direction, instrumentation and evaluation planning. The roadmap has four gates: a working spray wall with basic surface placement, basic tools and the S target, recorded guidance with fading, and an independent attempt with logging and polish. Dates will follow the course deadline. The protected deliverable is one complete lesson. Spatial painting, a participant pilot and temporal art interactions follow only if that core is stable. I’d welcome feedback on the guidance and the scope."
+      "I’m developing this project solo, drawing on experience with Unity XR, interactive systems, visual design and media production. I own the design, code, creative direction, instrumentation and evaluation planning. The roadmap has four gates: a working spray wall with basic surface placement, the spray can and the S target, recorded guidance with fading, and an independent attempt with logging and polish. Dates will follow the course deadline. The protected deliverable is one complete spray-can lesson. Marker and roller are optional, time permitting. Spatial painting, a participant pilot and temporal art interactions follow only if that core is stable. I’d welcome feedback on the guidance and the scope."
     ],
     "refs": []
   },
@@ -188,14 +188,14 @@ window.GRAFFITI_CONTENT = [
     ],
     "refs": [],
     "backup": true,
-    "html": "<h2>Discussion</h2><p class=\"lead\">Questions for the next iteration</p><div class=\"qa-grid\"><div><h3>Why VR instead of a video?</h3><p>Show tool motion at the wall.<br>Practice in the same space.</p></div><div><h3>Will this transfer to real paint?</h3><p>Unknown: controllers lack material feedback.<br>Physical transfer needs a separate test.</p></div><div><h3>Why keep three tools?</h3><p>Shared paint and recording systems.<br>Spray first; basic contact tools.</p></div><div><h3>What if the plan is too large?</h3><p>Protect the spray lesson and logging.<br>Defer the pilot and temporal art.</p></div><div><h3>How will remix be assessed?</h3><p>Reflection or artist feedback.<br>Path error measures copying.</p></div><div><h3>What is the first thing to validate?</h3><p>Can beginners follow the cues<br>while seeing their own mark?</p></div></div><p class=\"cite\">Q&A backup. Physical transfer and comparative learning benefits remain untested.</p>"
+    "html": "<h2>Discussion</h2><p class=\"lead\">Questions for the next iteration</p><div class=\"qa-grid\"><div><h3>Why VR instead of a video?</h3><p>Show tool motion at the wall.<br>Practice in the same space.</p></div><div><h3>Will this transfer to real paint?</h3><p>Unknown: controllers lack material feedback.<br>Physical transfer needs a separate test.</p></div><div><h3>Are all three tools required?</h3><p>Spray can is the MVP priority.<br>Marker and roller are optional.</p></div><div><h3>What if the plan is too large?</h3><p>Protect the spray lesson and logging.<br>Defer the pilot and temporal art.</p></div><div><h3>How will remix be assessed?</h3><p>Reflection or artist feedback.<br>Path error measures copying.</p></div><div><h3>What is the first thing to validate?</h3><p>Can beginners follow the cues<br>while seeing their own mark?</p></div></div><p class=\"cite\">Q&A backup. Physical transfer and comparative learning benefits remain untested.</p>"
   },
   {
     "title": "One studio, three ways to paint",
     "seconds": 0,
     "name": "Studio and tools",
     "notes": [
-      "The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool."
+      "The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool. Spray can is the MVP priority. Marker and roller remain optional extensions, time permitting."
     ],
     "refs": [],
     "backup": true

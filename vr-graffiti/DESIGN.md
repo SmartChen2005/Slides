@@ -2,6 +2,11 @@
 
 ## Learning experience sequence
 
+Spray Can is the protected MVP tool, marked with an asterisk on Learning the
+Tools. Marker and Roller are optional extensions, time permitting. The note
+sits above the shared progression row. Roadmap and discussion scope agree
+with this priority; the original tool animations and backup remain available.
+
 Slides 7–10 add Tools, Strokes, Lettering and Create directly after the theory
 slide. `learning.js` owns these layouts, native letter-selection buttons and
 deterministic Canvas illustrations. The shared progress row stays at the same
