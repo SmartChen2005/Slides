@@ -6,7 +6,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 20,
     "name": "The concept",
     "notes": [
-      "I’m proposing VR Graffiti, a virtual studio where beginners learn the motion behind lettering. It records how a mark is made, uses that motion for guided practice, and later turns recorded gestures into art across space and time. The cover is an original AI-generated concept rendering of a headset and spray can; it is not a photograph of a built prototype."
+      "I’m proposing VR Graffiti, a virtual studio where beginners learn the motion behind lettering. It records how a mark is made, uses that motion for guided practice, and later turns recorded gestures into art across space and time. The cover shows the wall’s viewpoint: a spray nozzle faces the viewer as the can moves, droplets expand toward the screen, and deposited paint stays fixed on the wall plane. This is an original explanatory animation."
     ],
     "refs": []
   },

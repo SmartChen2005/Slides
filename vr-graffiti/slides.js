@@ -30,8 +30,8 @@ const footer = text => `<p class="cite">${text}</p>`;
 Object.assign(sources,Object.fromEntries(GraffitiLettering.refs.map(r=>[r.sourceKey,[r.page,r.work+" (photo: "+r.creator+")"]])));
 const layouts = [
   {
-    title:"VR Graffiti", theme:"dark cover-slide", duration:0,
-    html:`<figure class="cover-visual"><img src="assets/cover/vr-graffiti-still-life.png" alt="Concept rendering of a VR headset and graffiti spray can against a black background with blue spray paint"></figure><h1 class="hero-title"><span>VR</span> <span>Graffiti</span></h1>`
+    title:"VR Graffiti", theme:"dark cover-slide", duration:8,
+    html:`<figure class="cover-visual">${canvas("hero-motion",1280,720,"From the wall's viewpoint, a moving spray can points its nozzle at the viewer and deposits blue paint on the screen")}</figure><h1 class="hero-title"><span>VR</span> <span>Graffiti</span></h1>`
   },
   {
     title:"Why Learn Graffiti in VR?", theme:"why-slide", duration:0,

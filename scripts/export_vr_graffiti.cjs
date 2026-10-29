@@ -17,14 +17,15 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const data = embedAssets(fs.readFileSync(path.join(root, "slides.js"), "utf8"));
   const lettering = embedAssets(fs.readFileSync(path.join(root, "lettering.js"), "utf8"));
   const learning = embedAssets(fs.readFileSync(path.join(root, "learning.js"), "utf8"));
+  const cover = fs.readFileSync(path.join(root, "cover.js"), "utf8");
   const motion = fs.readFileSync(path.join(root, "motion.js"), "utf8");
   const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
   let html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   html = html.replace('<link rel="stylesheet" href="styles.css">', `<style>${css}\n.standalone .deck-position a { display: none; }</style>`)
     .replace(/\s*<link rel="stylesheet" href="\.\.\/deck-transition.css">/, "")
-    .replace(/\s*<script src="(?:content|lettering|learning|slides|motion|app).js" defer><\/script>/g, "")
+    .replace(/\s*<script src="(?:content|lettering|learning|slides|cover|motion|app).js" defer><\/script>/g, "")
     .replace("<body>", '<body class="standalone">')
-    .replace("</body>", `<script>${content}</script>\n<script>${lettering}</script>\n<script>${learning}</script>\n<script>${data}</script>\n<script>${motion}</script>\n<script>${app}</script>\n</body>`);
+    .replace("</body>", `<script>${content}</script>\n<script>${lettering}</script>\n<script>${learning}</script>\n<script>${data}</script>\n<script>${cover}</script>\n<script>${motion}</script>\n<script>${app}</script>\n</body>`);
   const standalone = path.join(artifacts, "VR-Graffiti.html");
   fs.writeFileSync(standalone, html);
   const executablePath = process.env.BROWSER_EXECUTABLE || (process.platform === "win32" ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" : undefined);
@@ -70,7 +71,9 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.emulateMedia({ media: "screen" });
   await page.goto(pathToFileURL(standalone).href, { waitUntil: "networkidle" });
   if (errors.length || await page.locator(".slide").count() !== deck.length) throw new Error(`Standalone export failed: ${errors}`);
-  if(!await page.locator('.cover-visual img').evaluate(node=>node.src.startsWith('data:image/')&&node.complete&&node.naturalWidth>0))throw new Error('Offline cover image failed');
+  await page.evaluate(()=>{deckAPI.showSlide(0);deckAPI.seek(5.65);deckAPI.settleTransitions();});
+  if(await page.locator('#hero-motion').count()!==1)throw new Error('Offline cover canvas failed');
+  await page.screenshot({path:path.join(artifacts,'qa','standalone-wall-cover.png')});
   await page.evaluate(() => { deckAPI.showSlide(2); deckAPI.settleTransitions(); });
   const photos = await page.locator('.barriers-gallery img').evaluateAll(nodes => nodes.map(node => node.src.startsWith('data:image/') && node.complete && node.naturalWidth > 0));
   if (photos.length !== 3 || photos.some(valid => !valid)) throw new Error('Offline practice photo failed');

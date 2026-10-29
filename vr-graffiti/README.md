@@ -45,6 +45,8 @@ The closing One More Thing page presents the proposed artwork-memory research
 direction and shows Julie Mehretu’s Stadia II (2004). The full artwork keeps its
 original proportions; sources and rights are recorded in assets/artworks/.
 
-The static cover pairs large VR Graffiti typography with an original AI-generated
-headset and spray-can still life. Its source prompt is in assets/cover/sources.json.
-The previous S-ribbon animation is removed.
+The cover uses cover.js to animate a spray can pointing toward the viewer, from
+the wall’s perspective. Its nozzle faces the screen while the can moves laterally
+and changes distance. Droplets enlarge toward the wall and paint stays fixed on
+the screen. The eight-second sequence plays once and holds; Replay and scrubbing
+remain available. The S ribbon and still-life cover are removed.
