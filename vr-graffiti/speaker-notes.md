@@ -1,6 +1,6 @@
 # VR Graffiti: presenter script
 
-11 main slides, 6:10 planned talk. One tools reference backup is retained for reuse.
+11 slides, 6:10 planned talk. The presentation ends with Technical Implementation Plan.
 
 Open index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.
 
@@ -48,15 +48,9 @@ The supplied alphabet chart stays intact. Learners select individual letters to 
 
 ## 10. Creative Expression
 
-Players get a space for free creative exploration. These reference photographs show concrete, brick and metal wall materials. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and CC0 licenses are recorded in assets/materials/sources.json.
+Players get a space for free creative exploration. These reference photographs show concrete, brick and shipping-container surfaces. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and public-domain licenses are recorded in assets/materials/sources.json.
 
 ## 11. Technical Implementation Plan
 
 Hardware and software: Meta Quest 3S, Unity, C#, and XR Interaction Toolkit. The core implementation tracks hand position, angle, speed, and distance from the wall. Spray behavior responds to movement. Recorded expert movements support replay and guided practice. This is the proposed implementation plan.
-
-## 12. Three tools, different control (Backup)
-
-The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool. Spray can is the MVP priority. Marker and roller remain optional extensions, time permitting.
-
-[Montana Cans product photography](https://www.montana-cans.com/Montana-BLACK-400ml/272073). [MTN / Spray Planet product photography](https://www.sprayplanet.com/products/mtn-street-paint-markers-15mm-orange). [Purdy product photography](https://www.purdy.co.uk/products/rollers/mini-roller-system/)
 

@@ -1,6 +1,6 @@
 "use strict";
 const deck=window.GRAFFITI_DECK;
-const mainCount=deck.filter(s=>!s.backup).length;
+const mainCount=deck.length;
 const slidesRoot=document.getElementById('slides');
 slidesRoot.innerHTML=deck.map((s,i)=>`<section class="slide ${s.theme||''}" id="slide-${i+1}" tabindex="-1" aria-label="${s.title}" ${i?'hidden inert aria-hidden="true"':''}>${s.html}</section>`).join('');
 const slides=[...slidesRoot.children],stage=document.querySelector('.stage');
@@ -63,12 +63,12 @@ function showSlide(index,{updateHash=true,moveFocus=false}={}){
   });
   currentSlide=index;if(previous<0||motionPreference.matches)settleTransitions();
   previousButton.disabled=index===0;nextButton.disabled=index===deck.length-1;
-  nextButton.textContent=deck[index+1]?.backup?'Tools':'Next';
-  nextButton.setAttribute('aria-label',deck[index+1]?.backup?'Open tools reference backup':'Next slide');
-  document.getElementById('slide-counter').textContent=deck[index].backup?`Backup ${index-mainCount+1}/${deck.length-mainCount}`:`${String(index+1).padStart(2,'0')} / ${mainCount}`;
-  document.getElementById('slide-time').textContent=deck[index].backup?'Backup':formatTime(deck[index].seconds);
+  nextButton.textContent='Next';
+  nextButton.setAttribute('aria-label','Next slide');
+  document.getElementById('slide-counter').textContent=`${String(index+1).padStart(2,'0')} / ${mainCount}`;
+  document.getElementById('slide-time').textContent=formatTime(deck[index].seconds);
   document.title=deck[index].name+' | VR Graffiti';
-  document.getElementById('announcement').textContent=`${deck[index].backup?'Backup':`Slide ${index+1} of ${mainCount}`}. ${deck[index].title}`;
+  document.getElementById('announcement').textContent=`Slide ${index+1} of ${mainCount}. ${deck[index].title}`;
   document.querySelector('.skip-link').href=`#slide-${index+1}`;
   if(updateHash&&location.hash!==`#slide-${index+1}`)history.pushState(null,'',`#slide-${index+1}`);
   resetAnimation();if(moveFocus)slides[index].focus({preventScroll:true});

@@ -22,14 +22,14 @@
     "display": "Original photographic texture asset. Cropped in CSS to fit the static material gallery."
   },
   {
-    "file": "metal.jpg",
-    "material": "Metal",
-    "title": "Grey galvanized corrugated striped slightly dusty steel metal sheet seamless surface texture.jpg",
-    "creator": "Sisters.seamless",
-    "page": "https://commons.wikimedia.org/wiki/File:Grey_galvanized_corrugated_striped_slightly_dusty_steel_metal_sheet_seamless_surface_texture.jpg",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/7/75/Grey_galvanized_corrugated_striped_slightly_dusty_steel_metal_sheet_seamless_surface_texture.jpg",
-    "license": "CC0 1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "display": "Original photographic texture asset. Cropped in CSS to fit the static material gallery."
+    "file": "container.jpg",
+    "material": "Container",
+    "title": "Teu.jpg",
+    "creator": "BezumniyChasovshik; rotated by Finavon",
+    "page": "https://commons.wikimedia.org/wiki/File:Teu.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Teu.jpg",
+    "license": "Public domain (PD-self)",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Teu.jpg#Licensing",
+    "display": "Original photograph of a 20-foot ISO shipping container. Cropped in CSS to fit the static material gallery."
   }
 ]

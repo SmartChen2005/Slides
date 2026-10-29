@@ -96,7 +96,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 30,
     "name": "Creative Expression",
     "notes": [
-      "Players get a space for free creative exploration. These reference photographs show concrete, brick and metal wall materials. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and CC0 licenses are recorded in assets/materials/sources.json."
+      "Players get a space for free creative exploration. These reference photographs show concrete, brick and shipping-container surfaces. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and public-domain licenses are recorded in assets/materials/sources.json."
     ],
     "refs": []
   },
@@ -108,15 +108,5 @@ window.GRAFFITI_CONTENT = [
       "Hardware and software: Meta Quest 3S, Unity, C#, and XR Interaction Toolkit. The core implementation tracks hand position, angle, speed, and distance from the wall. Spray behavior responds to movement. Recorded expert movements support replay and guided practice. This is the proposed implementation plan."
     ],
     "refs": []
-  },
-  {
-    "title": "One studio, three ways to paint",
-    "seconds": 0,
-    "name": "Studio and tools",
-    "notes": [
-      "The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool. Spray can is the MVP priority. Marker and roller remain optional extensions, time permitting."
-    ],
-    "refs": [],
-    "backup": true
   }
 ];

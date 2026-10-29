@@ -203,10 +203,10 @@ window.GraffitiMotion = (() => {
   function render(index,t) {
     const root=document.getElementById(`slide-${index+1}`);if(!root)return;
     if(index>=6&&index<10){GraffitiLearning.render(index-6,t);return;}
-    if(index===0)hero(t);else if(index===11)tools(root,t);
+    if(index===0)hero(t);
   }
   function init() {
     const ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('width','0');s.setAttribute('height','0');s.style.cssText='position:fixed;width:0;height:0;overflow:hidden;pointer-events:none';s.setAttribute('aria-hidden','true');pathNode=document.createElementNS(ns,'path');pathNode.setAttribute('d',S_PATH);s.appendChild(pathNode);document.body.appendChild(s);pathLength=pathNode.getTotalLength();samples=Array.from({length:241},(_,i)=>({...point(i/240),u:i/240}));
   }
-  return {init,render,staticTimes:[7,0,0,0,0,0,5.5,18,0,0,0,13]};
+  return {init,render,staticTimes:[7,0,0,0,0,0,5.5,18,0,0,0]};
 })();

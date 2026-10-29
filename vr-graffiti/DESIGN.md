@@ -5,7 +5,7 @@
 Spray Can is the protected MVP tool, marked with an asterisk on Learning the
 Tools. Marker and Roller are optional extensions, time permitting. The note
 sits above the shared progression row. Roadmap and discussion scope agree
-with this priority; the original tool animations and backup remain available.
+with this priority; the learning-tool animations remain available.
 
 Slides 7–10 add Tools, Strokes, Lettering and Create directly after the theory
 slide. `learning.js` owns these layouts, native letter-selection buttons and
@@ -21,11 +21,10 @@ grid cells enlarged from the original. No artist stroke order is inferred.
 The lettering detail area includes a native external link to the presenter’s
 Bombing Science style resource, opening in a new tab beside the enlarged image.
 Creative Expression is a static three-photo gallery of concrete, brick and
-metal wall textures. It has no drawing controls, material selectors or animation.
+a shipping-container surface. It has no drawing controls, material selectors or animation.
 The existing title, supporting sentence and 04 Create progression remain.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
-The original three-tools backup is now slide 12. The main deck has 11 slides,
-with 6:10 allocated in presenter metadata, followed by one tools reference backup.
+The deck has 11 slides, with 6:10 allocated in presenter metadata and no backups.
 
 Slide-bottom reference and citation lines are omitted from the rendered deck,
 including print and offline exports. Source metadata, presenter notes and the
@@ -38,7 +37,7 @@ Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
 
 The audience is an English-speaking XR course. The main talk now has 11 slides
-and 6:10. A tools reference remains as the only backup. Notes retain the research,
+and 6:10. There are no backup pages. Source notes retain the research,
 implementation and scope details that do not belong in the main visual field.
 
 ## Visual system
@@ -87,7 +86,7 @@ The offline HTML embeds the actual photo assets as data URLs.
 
 Research claims and solo project scope retain the supplied content decisions.
 No learning results, physical transfer or VR prototype are implied. Actual
-photography sources are recorded in `assets/sources.json`, on the tools backup and in
+photography sources are recorded in `assets/sources.json`, and in
 speaker notes. Photo crops preserve the product's labels and proportions.
 
 Slide 3 shows the supplied problem and opportunity with three real photographs:
@@ -108,12 +107,12 @@ shows Observe, Trace, Reproduce, Remix above three educational theory columns.
 Both pages are static. Slide 3's photographs use CSS grayscale for monochrome
 display in the browser, PDF and offline export; original assets stay intact.
 
-The original three-tools slide remains intact as backup slide 12. Its 13-second
-animation and product photo assets are retained; it adds no planned main-talk time.
+The original three-tools backup is removed from the deck and all exports.
+Its unused product photo assets remain available in the source folder.
 The hidden SVG used to sample the S path has explicit zero-size clipped inline
 styles so global SVG sizing cannot expose its filled path below the presentation.
 
 The main presentation ends at Technical Implementation Plan (slide 11). The old
 Bubble S lesson, guidance layers, free-space study, temporal art, semester plan,
 References and Discussion pages have been removed from the deck and exports.
-The explicitly retained Three tools page is the only resource backup (slide 12).
+There are no resource backup pages.
