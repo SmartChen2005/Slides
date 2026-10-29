@@ -20,12 +20,9 @@ the cases. All results remain visible at the end. The alphabet image remains int
 grid cells enlarged from the original. No artist stroke order is inferred.
 The lettering detail area includes a native external link to the presenter’s
 Bombing Science style resource, opening in a new tab beside the enlarged image.
-Creative Expression presents a customizable studio with concrete, brick and
-metal surfaces, open painting space and small stroke, fill and lettering studies
-in progress. Native material and color controls, pointer painting, Add stroke
-and Clear wall support free experimentation. Changing material preserves marks.
-Add stroke provides a keyboard-accessible alternative to drawing by dragging.
-All paint is clipped to the wall and uses the existing paused/replay timeline.
+Creative Expression is a static three-photo gallery of concrete, brick and
+metal wall textures. It has no drawing controls, material selectors or animation.
+The existing title, supporting sentence and 04 Create progression remain.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
 The original three-tools backup is now slide 12. The main deck has 11 slides,
 with 6:10 allocated in presenter metadata, followed by one tools reference backup.

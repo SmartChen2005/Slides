@@ -48,7 +48,7 @@ The supplied alphabet chart stays intact. Learners select individual letters to 
 
 ## 10. Creative Expression
 
-The player gets a space for free creative exploration. They can choose a concrete, brick or metal wall, freely paint and experiment, and combine tools, strokes and lettering in their own work. The sandbox illustration shows separate studies in progress and leaves open space for new marks. Material choices change the wall while keeping the artwork. The color controls, painting gesture, Add stroke and Clear wall actions let the audience explore this concept. Customize the wall. Experiment with materials. Create your own style.
+Players get a space for free creative exploration. These reference photographs show concrete, brick and metal wall materials. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and CC0 licenses are recorded in assets/materials/sources.json.
 
 ## 11. Technical Implementation Plan
 

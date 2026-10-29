@@ -27,10 +27,9 @@ and oblique spray conditions. The supplied alphabet remains intact: select a
 letter by clicking or using arrow keys while a letter button is focused. Its
 Bombing Science link opens further lettering styles in a new tab.
 
-Creative Expression is a free-exploration sandbox. Select Concrete, Brick or
-Metal, choose a color, then drag on the wall or use Add stroke. Clear wall
-removes example studies and personal marks. Changing material preserves paint.
-Interacting pauses the demonstration at its current frame.
+Creative Expression shows three static wall-material photographs: concrete,
+brick and metal. It has no interactive sandbox. The photographs and their CC0
+source records are stored in assets/materials/.
 
 styles.css owns visual tokens. content.js holds presenter notes. slides.js
 and learning.js compose the current slides. motion.js and learning.js render
