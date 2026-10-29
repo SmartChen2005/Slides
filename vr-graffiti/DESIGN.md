@@ -1,5 +1,11 @@
 # VR Graffiti design direction
 
+Slide-bottom reference and citation lines are omitted from the rendered deck,
+including print and offline exports. Source metadata, presenter notes and the
+dedicated References backup retain provenance. Slide 5's two image viewports
+are 226px tall to show more of the supplied images, with tighter text spacing
+and a lower opportunity statement to preserve clear separation.
+
 This deck uses the apple-design skill as its design source. It does not inherit
 Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
