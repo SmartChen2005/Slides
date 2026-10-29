@@ -78,8 +78,8 @@ so rapid navigation can reverse a transition without jumping or disabling input.
 Hidden browser tabs suspend work. Reduced motion starts with explanatory static
 frames. Replay/Play is an explicit choice to run the demonstration.
 
-The floating toolbar and non-modal notes pane use restrained translucent
-materials. Reduced transparency and higher contrast have solid fallbacks.
+The floating toolbar uses restrained translucent materials. The notes button,
+panel and N shortcut are removed from the presentation UI. Reduced transparency and higher contrast have solid fallbacks.
 Print exports all slides with deterministic frames, original text and links.
 The offline HTML embeds the actual photo assets as data URLs.
 

@@ -11,7 +11,7 @@ server is required. All illustration assets and animations are local.
 
 - Arrows / Page Up / Page Down: navigate.
 - Home / End: first / final main slide (Technical Implementation Plan).
-- N: presenter notes. F: fullscreen.
+- F: fullscreen.
 - R: replay. Space: pause/play when a control is not focused.
 - The final main slide's Tools button opens the retained resource backup.
 

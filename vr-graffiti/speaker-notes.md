@@ -2,7 +2,7 @@
 
 11 main slides, 6:10 planned talk. One tools reference backup is retained for reuse.
 
-Open index.html or the self-contained HTML in a browser. Arrow keys navigate. N opens these notes, R replays, Space pauses and F opens fullscreen. End opens the last main slide.
+Open index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.
 
 ## 1. VR Graffiti
 

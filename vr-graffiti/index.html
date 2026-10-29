@@ -28,18 +28,11 @@
       <div class="deck-controls">
         <button id="replay" aria-label="Replay concept animation">Replay</button>
         <button id="pause" aria-pressed="false">Pause</button>
-        <button id="notes-toggle" aria-expanded="false" aria-controls="notes">Notes</button>
         <button id="fullscreen" class="icon-button" aria-label="Enter fullscreen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg></button>
       </div>
     </footer>
     <div class="progress-track" aria-hidden="true"><div id="deck-progress"></div></div>
   </div>
-  <aside id="notes" aria-label="Speaker notes" hidden>
-    <div class="notes-header"><strong>Presenter notes</strong><button id="notes-close" aria-label="Close speaker notes">Close</button></div>
-    <h2 id="notes-title"></h2><div id="notes-copy"></div>
-    <nav class="notes-links" aria-label="Backup slides"><a href="#slide-12">Tools reference</a></nav>
-    <p class="notes-help">Arrow keys navigate. Drag the timeline to inspect a motion. Space pauses, R replays and F opens fullscreen. Tools loops; other animations play once and hold. Main talk: 6:10, followed by the retained tools reference.</p>
-  </aside>
   <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
   <dialog id="lettering-reference" class="reference-dialog" aria-labelledby="reference-title">
     <div class="reference-dialog-header"><h2 id="reference-title">Lettering reference</h2><button type="button" id="reference-close" autofocus>Close</button></div>
