@@ -79,25 +79,15 @@ fs.mkdirSync(out, { recursive: true });
     await page.screenshot({ path: path.join(out, `journey-${t}.png`) });
   }
   assert.equal(new Set(snapshots).size, 4);
-  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(0); deckAPI.settleTransitions(); });
-  assert.equal(await page.locator(".reference-button").count(), 3);
-  const stylesBefore = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
-  for (const time of [2.7, 6.7, 9.8, 11.4, 14.3, 17.5]) {
-    await page.evaluate(t => deckAPI.seek(t), time);
-    await page.screenshot({ path: path.join(out, `lettering-${time}.png`) });
-  }
-  const stylesAfter = await page.locator(".lettering-construction").evaluateAll(nodes => nodes.map(node => node.innerHTML));
-  stylesBefore.forEach((value, index) => assert.notEqual(value, stylesAfter[index]));
-  for (const key of ["handstyle", "bubble", "wildstyle"]) {
-    await page.locator(`[data-reference="${key}"]`).click();
-    assert.equal(await page.locator("#lettering-reference").isVisible(), true);
-    assert.equal(await page.locator("#reference-image").evaluate(node => node.complete && node.naturalWidth > 0), true);
-    await page.locator("#reference-close").press("ArrowRight");
-    assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 3);
-    await page.locator("#reference-close").press("Escape");
-    assert.equal(await page.locator("#lettering-reference").isVisible(), false);
-    assert.equal(await page.locator(`[data-reference="${key}"]`).evaluate(node => node === document.activeElement), true);
-  }
+  assert.equal(await page.locator('#slide-1').innerText(), 'VR Graffiti');
+  assert.equal(await page.locator('#hero-motion').count(), 1);
+  assert.equal(await page.locator('#slide-2 h2').textContent(), 'Why Learn Graffiti in VR?');
+  assert.deepEqual(await page.locator('.why-skills h3').allTextContents(), ['Movement', 'Distance & Speed', 'Lettering']);
+  assert.deepEqual(await page.locator('.barriers-gallery img').evaluateAll(nodes => nodes.map(node => node.complete && node.naturalWidth > 0)), [true, true, true]);
+  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.settleTransitions(); });
+  assert.equal(await page.locator('#slide-4').innerText(), 'Graffiti combines artistic expression with embodied motor skills, but beginners rarely have access to structured, repeatable practice with feedback.');
+  assert.equal(await page.locator('#pause').isDisabled(), true);
+  assert.equal(await page.locator('#replay').isDisabled(), true);
   await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(0); deckAPI.settleTransitions(); });
   const playgroundFrames = [];
   const playgroundPhases = [];
@@ -142,6 +132,11 @@ fs.mkdirSync(out, { recursive: true });
   await page.screenshot({ path: path.join(out, "mobile.png") });
   assert.equal(await page.locator("#next").isVisible(), true);
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  for (const index of [0, 1, 2, 3]) {
+    await page.evaluate(i => { deckAPI.showSlide(i); deckAPI.seek(GraffitiMotion.staticTimes[i]); deckAPI.settleTransitions(); }, index);
+    await page.screenshot({ path: path.join(out, `mobile-slide-${index + 1}.png`) });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  }
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload({ waitUntil: "networkidle" });
   assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
@@ -149,7 +144,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), stopped);
   assert.deepEqual(errors, []);
-  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "three lettering styles and photo dialogs", "three word construction animations across six frames", "surface creation, placement and spatial painting animation", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport", "reduced motion"] };
+  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "title-only cover with S animation", "physical skill overview", "three practice barrier photos", "single-sentence learning gap", "surface creation, placement and spatial painting animation", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport including all four opening slides", "reduced motion"] };
   fs.writeFileSync(path.join(out, "browser-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   await browser.close();

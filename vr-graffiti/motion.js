@@ -42,22 +42,6 @@ window.GraffitiMotion = (() => {
     tube(ctx,pts,25);
     if(progress<1&&pts.length) {const p=pts.at(-1);ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();}
   }
-  function sprayTool(ctx,x,y,rotation=0,ghost=false) {
-    ctx.save();ctx.translate(x,y);ctx.rotate(rotation);
-    if(ghost)ctx.globalAlpha=.6;
-    const metal=ctx.createLinearGradient(-10,0,10,0);metal.addColorStop(0,'#a7adb7');metal.addColorStop(.4,'#fafbfd');metal.addColorStop(1,'#a3abb8');
-    ctx.fillStyle=metal;ctx.beginPath();ctx.roundRect(-10,8,21,40,6);ctx.fill();ctx.fillStyle='#353a43';ctx.fillRect(-6,2,13,7);ctx.fillRect(-1,-2,8,6);ctx.fillStyle='#0071e3';ctx.beginPath();ctx.roundRect(-7,20,15,18,3);ctx.fill();ctx.restore();
-  }
-  function problem(t) {
-    const {ctx,w,h}=reset('problem-motion'),p=ramp(t,.3,5.8);
-    const pts=samples.map(q=>({x:60+(q.x-60)*1.3,y:20+(q.y-20)*1.05}));
-    line(ctx,pts,'#edf0f5',32);line(ctx,pts.filter((q,i)=>samples[i].u<=p),'#0071e3',14);
-    const q=point(p),px=60+(q.x-60)*1.3,py=20+(q.y-20)*1.05;
-    const offset=28+16*Math.sin(p*Math.PI);
-    line(ctx,[{x:px,y:py},{x:px+offset,y:py+20}],'#cbd5e4',1.5);sprayTool(ctx,px+offset,py+20,-.18);
-    label(ctx,'The mark',58,350,16,'#6e6e73');label(ctx,'The motion',350,350,16,'#0071e3');
-    const reveal=ramp(t,5.5,7.4);ctx.globalAlpha=reveal;label(ctx,'Distance',395,116,18,'#0071e3');label(ctx,'Pace',415,187,18,'#0071e3');label(ctx,'Angle',389,257,18,'#0071e3');ctx.globalAlpha=1;
-  }
   function grain(seed) {const n=Math.sin(seed*12.9898+78.233)*43758.5453;return n-Math.floor(n);}
   function tools(root,t) {
     const spray=ramp(t,0,4),marker=ramp(t,4,8),roller=ramp(t,8,12.5);
@@ -218,11 +202,11 @@ window.GraffitiMotion = (() => {
   }
   function render(index,t) {
     const root=document.getElementById(`slide-${index+1}`);if(!root)return;
-    if(index===0)hero(t);else if(index===1)problem(t);else if(index===3)GraffitiLettering.render(t);
+    if(index===0)hero(t);
     else if(index===5)tools(root,t);else if(index===6)lesson(root,t);else if(index===7)layers(root,t);else if(index===8)playground(root,t);else if(index===9){temporal(t);depth(t);}else if(index===10){const p=root.querySelector('.data-pulse');p.setAttribute('cx',String(14+1030*ramp(t,.2,5.8)));p.style.opacity=t>6?'0':'1';}
   }
   function init() {
     const ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('width','0');s.setAttribute('height','0');s.style.position='absolute';s.setAttribute('aria-hidden','true');pathNode=document.createElementNS(ns,'path');pathNode.setAttribute('d',S_PATH);s.appendChild(pathNode);document.body.appendChild(s);pathLength=pathNode.getTotalLength();samples=Array.from({length:241},(_,i)=>({...point(i/240),u:i/240}));
   }
-  return {init,render,staticTimes:[7,8,0,17.5,0,13,7.7,5,16,12,7,0,0,0]};
+  return {init,render,staticTimes:[7,0,0,0,0,13,7.7,5,16,12,7,0,0,0]};
 })();

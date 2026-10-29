@@ -11,41 +11,37 @@ window.GRAFFITI_CONTENT = [
     "refs": []
   },
   {
-    "title": "The hidden movement",
+    "title": "Why Learn Graffiti in VR?",
     "seconds": 40,
-    "name": "Problem and evidence",
+    "name": "Physical skill",
     "notes": [
-      "The target users are beginners interested in graffiti and lettering, especially people without a suitable practice space. Physical practice uses consumable materials and requires appropriate ventilation. But the teaching problem is also movement: the finished S does not reveal tool distance, angle, pace or stroke order. Han and colleagues reviewed eighteen studies in physical education and found support for observational motor learning. That gives us a reason to test demonstration here, while leaving the graffiti-specific learning benefit as an open question."
+      "Why learn graffiti in VR? Graffiti is a physical skill, not just a visual art. Learning graffiti requires coordination between movement, distance and speed, and lettering. Movement means controlling hand trajectories and smooth strokes. Distance and speed shape spray width, opacity and consistency. Lettering brings in letter structure, proportions and styles. These demands motivate a virtual environment where beginners can practice the gesture as well as the mark."
     ],
     "refs": [
-      "han",
       "krylon"
     ]
   },
   {
-    "title": "Existing tools and the learning gap",
+    "title": "The problem and the opportunity",
     "seconds": 35,
-    "name": "Existing solutions",
+    "name": "Practice barriers and VR opportunity",
     "notes": [
-      "There are strong existing tools. Kingspray’s official PC listing already describes spray simulation, replay, reference projection and interactive tutorials. Open Brush already supports painting in three-dimensional space. So neither replay nor spatial painting is the novelty claim. This project focuses on connecting expert motion, guided imitation, feedback and an independent attempt within one lettering lesson. The creative extension then reuses the same recording. We would evaluate that combination rather than assume it is better."
+      "The problem: Beginners face barriers to practicing consistently, including limited access to appropriate spaces, material costs, and safety considerations. The opportunity: VR can provide an accessible, repeatable environment for learning and experimenting with graffiti techniques. The photographs illustrate a wall, consumable spray paint and protective equipment."
     ],
     "refs": [
-      "king",
-      "brush"
+      "practiceWall",
+      "practiceCans",
+      "practiceMask"
     ]
   },
   {
-    "title": "Learn different lettering styles",
+    "title": "Structured, repeatable practice with feedback",
     "seconds": 35,
-    "name": "Learning objectives",
+    "name": "The learning gap",
     "notes": [
-      "The curriculum explores different graffiti lettering styles. Handstyle develops signature rhythm. Bubble lettering uses inflated, rounded contours. Wildstyle combines letter bodies, overlaps and extensions. The photographs show how these styles appear on actual walls, while the animations break down their construction. Bubble S remains the semester lesson; Handstyle is a possible next lesson, and Wildstyle is a future direction."
+      "Graffiti combines artistic expression with embodied motor skills, but beginners rarely have access to structured, repeatable practice with feedback."
     ],
-    "refs": [
-      "handstyleRef",
-      "bubbleRef",
-      "wildstyleRef"
-    ]
+    "refs": []
   },
   {
     "title": "A quiet space to practice",

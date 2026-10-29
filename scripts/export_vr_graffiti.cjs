@@ -40,11 +40,11 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
     time += slide.seconds;
   });
   fs.writeFileSync(path.join(root, "speaker-notes.md"), manuscript);
-  for (const [i, slide] of [0, 6, 9].entries()) {
+  for (const [i, slide] of [0, 1, 2].entries()) {
     await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(GraffitiMotion.staticTimes[index]); deckAPI.settleTransitions(); }, slide);
     await page.locator(".stage").screenshot({ path: path.join(root, "thumbnails", `0${i + 1}.webp`), type: "webp", quality: 85, animations: "disabled" });
   }
-  await page.evaluate(() => deckAPI.preparePrint());
+  await page.evaluate(() => { deckAPI.preparePrint(); document.title = 'VR Graffiti'; });
   await page.emulateMedia({ media: "print" });
   // Preserve the browser-rendered canvas pixels in PDF, including clipped 3D materials.
   await page.evaluate(async () => {
@@ -69,14 +69,12 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.emulateMedia({ media: "screen" });
   await page.goto(pathToFileURL(standalone).href, { waitUntil: "networkidle" });
   if (errors.length || await page.locator(".slide").count() !== deck.length) throw new Error(`Standalone export failed: ${errors}`);
-  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.seek(17.5); deckAPI.settleTransitions(); });
-  for (const key of ["handstyle", "bubble", "wildstyle"]) {
-    await page.locator(`[data-reference="${key}"]`).click();
-    const valid = await page.locator("#reference-image").evaluate(node => node.src.startsWith("data:image/") && node.complete && node.naturalWidth > 0);
-    if (!valid) throw new Error(`Offline lettering reference failed: ${key}`);
-    await page.locator("#reference-close").click();
-  }
-  await page.screenshot({ path: path.join(artifacts, "qa", "standalone-lettering.png"), animations: "disabled" });
+  await page.evaluate(() => { deckAPI.showSlide(2); deckAPI.settleTransitions(); });
+  const photos = await page.locator('.barriers-gallery img').evaluateAll(nodes => nodes.map(node => node.src.startsWith('data:image/') && node.complete && node.naturalWidth > 0));
+  if (photos.length !== 3 || photos.some(valid => !valid)) throw new Error('Offline practice photo failed');
+  await page.screenshot({ path: path.join(artifacts, "qa", "standalone-barriers.png"), animations: "disabled" });
+  await page.evaluate(() => { deckAPI.showSlide(3); deckAPI.settleTransitions(); });
+  await page.screenshot({ path: path.join(artifacts, "qa", "standalone-statement.png"), animations: "disabled" });
   await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.seek(16); deckAPI.settleTransitions(); });
   await page.screenshot({ path: path.join(artifacts, "qa", "standalone-playground.png"), animations: "disabled" });
   await page.evaluate(() => { deckAPI.showSlide(9); deckAPI.seek(12); deckAPI.settleTransitions(); });

@@ -39,7 +39,7 @@ window.GraffitiLettering = (() => {
   const cache=[];let root,dialog,lastTrigger;
   const clamp=x=>Math.max(0,Math.min(1,x));
   const ramp=(t,a,b)=>{const x=clamp((t-a)/(b-a));return x*x*(3-2*x);};
-  function init(){root=document.getElementById('slide-4');root.querySelectorAll('.style-draw').forEach(node=>cache.push({node,from:+node.dataset.from,to:+node.dataset.to,length:node.getTotalLength(),svg:node.closest('svg')}));
+  function init(){root=document.querySelector('.lettering-slide');if(!root)return;root.querySelectorAll('.style-draw').forEach(node=>cache.push({node,from:+node.dataset.from,to:+node.dataset.to,length:node.getTotalLength(),svg:node.closest('svg')}));
     dialog=document.getElementById('lettering-reference');
     root.querySelectorAll('[data-reference]').forEach(button=>button.addEventListener('click',()=>{
       const r=refs.find(r=>r.key===button.dataset.reference);lastTrigger=button;

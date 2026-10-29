@@ -30,16 +30,21 @@ The semester deadline and presentation date remain unspecified.
 
 The deck has its own Apple-inspired visual and motion system, using the
 apple-design skill. It retains the archive route and 1280 × 720 dimensions.
+The cover contains only the title and colored S animation. Slide 2 asks
+Why Learn Graffiti in VR? and explains the coordination of movement, distance
+and speed, and lettering with a large statement and three text columns.
 `styles.css` owns the visual tokens. `content.js` holds the speaker script,
 `slides.js` composes the slides, `motion.js` renders deterministic interaction
 visualizations, and `app.js` owns playback and interruptible spring navigation.
 Real tool photography is credited in `assets/sources.json` and the slides.
 
-Slide 4 introduces different lettering styles through a photo and an animated
-word construction study. Select a reference to inspect its full photograph;
-the lesson pauses at the current frame. Photo credits and license links appear
-below each reference, with metadata in `assets/lettering/sources.json`.
-`lettering.js` owns these teaching studies and the accessible reference viewer.
+Slide 3 pairs practice barriers with actual photographs of a wall, spray cans
+and a respirator, followed by the VR opportunity. Sources and licenses are
+linked on the slide and recorded in `assets/practice/sources.json`.
+Slide 4 contains one sentence about the need for structured, repeatable
+practice with feedback. The former tool comparison and lettering gallery
+have been replaced as part of the opening-page rebuild. `lettering.js` and
+its assets remain available for later curriculum pages.
 
 To regenerate local deliverables with the bundled Playwright package available
 on `NODE_PATH`, run `node scripts/export_vr_graffiti.cjs` from the repository

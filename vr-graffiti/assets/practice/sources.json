@@ -1,0 +1,32 @@
+[
+  {
+    "file": "wall.jpg",
+    "title": "Graffiti Mauerpark Berlin",
+    "creator": "Singlespeedfahrer",
+    "page": "https://commons.wikimedia.org/wiki/File:Graffiti_Mauerpark_Berlin.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Graffiti_Mauerpark_Berlin.jpg/1280px-Graffiti_Mauerpark_Berlin.jpg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "display": "Commons 1280px derivative, displayed uncropped with the original artwork intact. Illustrates a wall, without making an access claim about this location."
+  },
+  {
+    "file": "spray-cans.jpg",
+    "title": "Spray cans in front of graffiti, International Graffiti Festival 2017",
+    "creator": "Chris Barbalis",
+    "page": "https://commons.wikimedia.org/wiki/File:Spray_cans_in_front_of_graffiti_(Unsplash).jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Spray_cans_in_front_of_graffiti_%28Unsplash%29.jpg/1280px-Spray_cans_in_front_of_graffiti_%28Unsplash%29.jpg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "display": "Commons 1280px derivative. Slight crop in CSS to match the photo row."
+  },
+  {
+    "file": "respirator.jpg",
+    "title": "HEPA half-face respirator",
+    "creator": "Haragayato",
+    "page": "https://commons.wikimedia.org/wiki/File:HEPA_half-face_respirator.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/73/HEPA_half-face_respirator.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "display": "Unmodified original, displayed uncropped. The photograph illustrates protective equipment and does not specify appropriate filters for spray painting."
+  }
+]

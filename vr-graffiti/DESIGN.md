@@ -18,9 +18,12 @@ paint, not navigation. Type uses the platform system family with optical sizing,
 size-specific tracking, and a strong size/weight/leading hierarchy. No Apple
 fonts, logos or other proprietary brand assets are bundled.
 
-Most slides use one centered headline and a dominant visual. The problem uses
-an asymmetric headline and motion study. Tools use actual product photography.
-Comparisons stay an editable table. The learning scene uses one quiet wall,
+Most slides use one centered headline and a dominant visual. The opening keeps
+only the title and the existing colored S animation. Slide 2, Why Learn Graffiti
+in VR?, uses a large two-line statement, with physical skill in teaching blue,
+above three unboxed columns for Movement, Distance & Speed, and Lettering.
+Its supplied copy remains static and fully visible. Tools use actual product photography.
+The learning scene uses one quiet wall,
 with its teaching sequence beside it. Dense implementation and reference pages
 have clear groups but do not repeat the previous deck's divider-heavy styling.
 
@@ -54,14 +57,15 @@ No learning results, physical transfer or VR prototype are implied. Actual
 photography sources are recorded in `assets/sources.json`, on slide 6 and in
 speaker notes. Photo crops preserve the product's labels and proportions.
 
-Slide 4 introduces different lettering styles with photographs and whole-word construction
-studies: Handstyle/YANK, Bubble/SPLEEN and a FLOW Wildstyle study.
-The animations teach signature rhythm, inflated contours,
-and letter skeletons with overlaps. They do not reconstruct the photographed
-artists' actual stroke order. Each photo links its original source and license.
-The reference viewer pauses playback, shows the full photo, closes with Escape,
-and restores focus. `lettering.js` owns this feature. Its original construction
-studies remain separate from the credited photographic reference assets.
+Slide 3 shows the supplied problem and opportunity with three real photographs:
+a graffiti wall, spray cans and a respirator. The wall artwork and respirator
+remain uncropped; only the cans photo uses a slight display crop. Sources and
+licenses are linked on the slide and recorded in `assets/practice/sources.json`.
+The images illustrate the barriers without claiming a particular wall is
+unavailable or prescribing protective equipment. Slide 4 is a single centered
+sentence in large type, emphasizing structured, repeatable practice with feedback
+in teaching blue. These static slides replace the former comparison and lettering
+gallery. The lettering module and its assets are retained for future use.
 
 Slide 5 introduces the proposed learning environment: a concrete virtual studio
 with a practice wall, nearby tools and a creative playground. The real interior

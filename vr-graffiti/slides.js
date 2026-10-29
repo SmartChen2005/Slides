@@ -14,7 +14,10 @@ const sources = {
   sprayPhoto:["https://www.montana-cans.com/Montana-BLACK-400ml/272073","Montana Cans product photography"],
   markerPhoto:["https://www.sprayplanet.com/products/mtn-street-paint-markers-15mm-orange","MTN / Spray Planet product photography"],
   spacePhoto:["https://commons.wikimedia.org/wiki/File:Langen_Foundation_3,_2021.jpg","Langen Foundation, photo: Till Niermann"],
-  rollerPhoto:["https://www.purdy.co.uk/products/rollers/mini-roller-system/","Purdy product photography"]
+  rollerPhoto:["https://www.purdy.co.uk/products/rollers/mini-roller-system/","Purdy product photography"],
+  practiceWall:["https://commons.wikimedia.org/wiki/File:Graffiti_Mauerpark_Berlin.jpg","Wall: Singlespeedfahrer"],
+  practiceCans:["https://commons.wikimedia.org/wiki/File:Spray_cans_in_front_of_graffiti_(Unsplash).jpg","Cans: Chris Barbalis"],
+  practiceMask:["https://commons.wikimedia.org/wiki/File:HEPA_half-face_respirator.jpg","Mask: Haragayato"]
 };
 const cite = (...keys) => keys.map(key=>sourceLink(...sources[key])).join(". ");
 const svg = (body,label,viewBox="0 0 800 426") => `<svg viewBox="${viewBox}" role="img" aria-label="${label}">${body}</svg>`;
@@ -27,19 +30,19 @@ Object.assign(sources,Object.fromEntries(GraffitiLettering.refs.map(r=>[r.source
 const layouts = [
   {
     title:"VR Graffiti", theme:"dark", duration:7,
-    html:`<h1 class="hero-title">VR Graffiti</h1><p class="hero-subtitle">Learning the motion behind the mark.</p><figure class="hero-scene">${canvas("hero-motion",1080,360,"A recorded graffiti gesture draws into a sculptural ribbon of color")}</figure><p class="hero-bottom">Learn the gesture. Create beyond the wall.</p><p class="hero-meta">Smart Chen · Solo XR concept · Interaction visualization</p>`
+    html:`<h1 class="hero-title">VR Graffiti</h1><figure class="hero-scene">${canvas("hero-motion",1080,360,"A recorded graffiti gesture draws into a sculptural ribbon of color")}</figure>`
   },
   {
-    title:"A finished letter hides the movement", duration:8,
-    html:`<div class="problem-copy"><h2>A finished letter<br>hides the<br><span class="accent">movement.</span></h2><p class="lead">For graffiti and lettering beginners.</p></div><figure class="problem-scene">${canvas("problem-motion",550,370,"An S reveals its tool path, speed and distance from the wall")}</figure><div class="problem-detail"><div><h3>Practice space</h3><p>Permitted walls.<br>Paint and ventilation.</p></div><div><h3>Technique</h3><p>Distance, angle, speed<br>and stroke order.</p></div><div><span class="research-number">18</span><p class="evidence-text">studies reviewed:<br>observational motor learning.<br>Graffiti benefit untested.</p></div></div>${footer(cite("han","krylon")+". Beginner needs are design assumptions to validate.")}`
+    title:"Why Learn Graffiti in VR?", theme:"why-slide", duration:0,
+    html:`<h2 class="why-title">Why Learn Graffiti in VR?</h2><p class="why-statement">Graffiti is a <strong class="accent">physical skill,</strong><br>not just a visual art.</p><p class="why-intro">Learning graffiti requires coordination between:</p><ul class="why-skills"><li><h3>Movement</h3><p>controlling hand trajectories and smooth strokes.</p></li><li><h3>Distance &amp; Speed</h3><p>adjusting spray width, opacity, and consistency.</p></li><li><h3>Lettering</h3><p>understanding letter structure, proportions, and styles.</p></li></ul>`
   },
   {
-    title:"The proposed learning sequence", duration:0,
-    html:`<h2 class="comparison-title">Learn through the gesture</h2><table class="comparison"><thead><tr><th>Existing approach</th><th>Available today</th><th>Proposed focus</th></tr></thead><tbody><tr><td>Kingspray</td><td>VR spray, replay,<br>projection and tutorials*</td><td>Fading motion cues.<br>Unguided assessment.</td></tr><tr><td>Open Brush</td><td>Expressive 3D painting</td><td>Recorded gestures for<br>learning and temporal art</td></tr><tr><td>Video + practice</td><td>Demonstrations.<br>Real material feedback.</td><td>Tracked motion and feedback<br>at the virtual wall</td></tr></tbody></table><p class="takeaway">One connected lesson. Outcomes to test.</p>${footer(cite("king","brush")+". *PC feature description. Capabilities may differ across platforms.")}`
+    title:"The problem and the opportunity", theme:"barriers-slide", duration:0,
+    html:`<h2 class="centered">The problem</h2><p class="barriers-intro">Beginners face barriers to practicing consistently, including:</p><div class="barriers-gallery"><figure><img class="barrier-photo wall-photo" src="assets/practice/wall.jpg" width="1280" height="868" alt="A concrete wall covered in colorful graffiti in Berlin's Mauerpark"><figcaption>Limited access to<br>appropriate spaces</figcaption></figure><figure><img class="barrier-photo" src="assets/practice/spray-cans.jpg" width="1280" height="847" alt="Multiple spray paint cans arranged in front of a graffiti wall"><figcaption>Material costs</figcaption></figure><figure><img class="barrier-photo mask-photo" src="assets/practice/respirator.jpg" width="1485" height="1125" alt="A reusable half-face respirator with two filter cartridges"><figcaption>Safety considerations</figcaption></figure></div><div class="practice-opportunity"><h3>The opportunity</h3><p>VR can provide an accessible, repeatable environment<br>for learning and experimenting with graffiti techniques.</p></div>${footer(cite("practiceWall","practiceCans")+" ("+sourceLink("https://creativecommons.org/publicdomain/zero/1.0/","CC0")+"). "+cite("practiceMask")+" ("+sourceLink("https://creativecommons.org/licenses/by-sa/3.0/","CC BY-SA 3.0")+"). Photos resized; cans cropped for display.")}`
   },
   {
-    title:"Learn different lettering styles", theme:"lettering-slide", duration:17.5,
-    html:`<h2 class="centered">Learn different lettering styles</h2><p class="lead centered">From signature rhythm to interlocking letters.</p><div class="style-gallery">${GraffitiLettering.build()}</div>${footer("Select a photo for the original. Studies illustrate construction, not the artist’s stroke order.")}`
+    title:"Structured, repeatable practice with feedback", theme:"thesis-slide", duration:0,
+    html:`<p class="thesis-copy">Graffiti combines artistic expression with embodied motor skills, but beginners rarely have access to <strong class="accent">structured, repeatable practice with feedback.</strong></p>`
   },
   {
     title:"A quiet space to practice", theme:"space-slide", duration:0,
