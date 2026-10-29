@@ -26,7 +26,7 @@ Bombing Science article are cropped with native SVG and blended onto the walls.
 The container shows only one planar face; no corner, door face or surrounding scene. It has no drawing controls, material selectors or animation.
 The existing title, supporting sentence and 04 Create progression remain.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
-The deck has 11 slides, with 6:10 allocated in presenter metadata and no backups.
+The deck has 12 slides, with 6:55 allocated in presenter metadata and no backups.
 
 Slide-bottom reference and citation lines are omitted from the rendered deck,
 including print and offline exports. Source metadata, presenter notes and the
@@ -38,8 +38,8 @@ This deck uses the apple-design skill as its design source. It does not inherit
 Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
 
-The audience is an English-speaking XR course. The main talk now has 11 slides
-and 6:10. There are no backup pages. Source notes retain the research,
+The audience is an English-speaking XR course. The main talk now has 12 slides
+and 6:55. There are no backup pages. Source notes retain the research,
 implementation and scope details that do not belong in the main visual field.
 
 ## Visual system
@@ -114,7 +114,17 @@ Its unused product photo assets remain available in the source folder.
 The hidden SVG used to sample the S path has explicit zero-size clipped inline
 styles so global SVG sizing cannot expose its filled path below the presentation.
 
-The main presentation ends at Technical Implementation Plan (slide 11). The old
+Technical Implementation Plan is slide 11, followed by Every Artwork Remembers. The old
 Bubble S lesson, guidance layers, free-space study, temporal art, semester plan,
 References and Discussion pages have been removed from the deck and exports.
 There are no resource backup pages.
+
+## Closing research direction
+
+Slide 12 uses the supplied One More Thing... kicker and Every Artwork Remembers
+title. A left text column preserves the proposed capture, transformation, replay
+and remix concept. On the right, Julie Mehretu’s Stadia II (2004) is shown whole,
+with its aspect ratio preserved and a short identifying caption. The research
+question anchors the bottom, with embodied knowledge emphasized in teaching
+blue. This slide is static and ends the main deck; it is not a backup. Artwork
+provenance is recorded in assets/artworks/sources.json and the source notes.

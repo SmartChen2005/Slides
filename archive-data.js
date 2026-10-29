@@ -6,7 +6,7 @@ window.SLIDE_ARCHIVE = [
     "date": "2026-10",
     "order": 2,
     "category": "RESEARCH",
-    "slideCount": 11,
+    "slideCount": 12,
     "description": "A beginner-oriented VR graffiti learning concept: tools, physical control, lettering and creative exploration.",
     "thumbnails": [
       "./vr-graffiti/thumbnails/01.webp",

@@ -56,7 +56,12 @@ const layouts = [
   {
     title:"Technical Implementation Plan",theme:"technical-plan",duration:0,
     html:`<h2 class="centered">Technical Implementation Plan</h2><div class="technical-columns"><div class="technical-platform"><h3>Hardware &amp; Software</h3><p class="technical-device">Meta Quest 3S</p><p class="technical-stack">Unity<br>C#<br>XR Interaction Toolkit</p></div><div class="technical-core"><h3>Core Implementation</h3><div><h4>Track movement</h4><p>Track hand position, angle, speed,<br>and distance from the wall.</p></div><div><h4>Simulate spray</h4><p>Simulate realistic spray behavior<br>based on movement.</p></div><div><h4>Record &amp; replay</h4><p>Record and replay expert movements<br>for guided practice.</p></div></div></div>`
+  },
+  {
+    title:"Every Artwork Remembers",theme:"memory-slide",duration:0,
+    html:`<p class="memory-kicker">One More Thing...</p><h2>Every Artwork Remembers</h2><div class="memory-copy"><p class="memory-prompt">What if an artwork could remember how it was created?</p><p>VR Graffiti captures more than the final painting. It records the artist's <strong>movements, gestures, timing, pauses, and revisions.</strong></p><p>These creative traces are transformed into an explorable <strong class="accent">3D abstract artwork,</strong> inspired by the layered, dynamic compositions of <strong>Julie Mehretu.</strong></p><p>Others can enter the artwork, replay the creative process, and remix it with their own movements.</p></div><figure class="memory-artwork"><img src="assets/artworks/julie-mehretu-stadia-ii.jpg" alt="Julie Mehretu's Stadia II, 2004: layered architectural lines, gestural marks and colorful geometric shapes"><figcaption>Julie Mehretu · <em>Stadia II</em>, 2004</figcaption></figure><div class="memory-research"><p class="memory-research-label">Research Question</p><p>Can an artwork become a medium for <strong>transmitting embodied knowledge?</strong></p></div>`
   }
+
 ];
 layouts.splice(6,0,...GraffitiLearning.layouts);
 window.GRAFFITI_DECK = window.GRAFFITI_CONTENT.map((content,index)=>({...content,...layouts[index],html:layouts[index].html.replace(/<p class="(?:cite|photo-references)">[\s\S]*?<\/p>/g,"" )}));

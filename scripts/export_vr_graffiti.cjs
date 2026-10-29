@@ -34,7 +34,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const deck = await page.evaluate(() => window.GRAFFITI_DECK.map(({ title, seconds, notes, refs, backup }) => ({ title, seconds, notes, refs, backup })));
   const refs = await page.evaluate(() => sources);
   let time = 0;
-  let manuscript = "# VR Graffiti: presenter script\n\n11 slides, 6:10 planned talk. The presentation ends with Technical Implementation Plan.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
+  let manuscript = "# VR Graffiti: presenter script\n\n12 slides, 6:55 planned talk. The presentation closes with Every Artwork Remembers after the technical plan.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
   deck.forEach((slide, index) => {
     manuscript += `## ${index + 1}. ${slide.title}${slide.backup ? " (Backup)" : ""}\n\n${slide.notes.join("\n\n")}\n\n`;
     if (slide.refs.length) manuscript += slide.refs.map(key => `[${refs[key][1]}](${refs[key][0]})`).join(". ") + "\n\n";
@@ -88,6 +88,9 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const tagsOffline=await page.locator('.wall-tag image').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href').startsWith('data:image/')));
   if(tagsOffline.length!==3||tagsOffline.some(valid=>!valid))throw new Error('Offline tag artwork failed');
   await page.screenshot({path:path.join(artifacts,'qa','standalone-material-photos.png')});
+  await page.evaluate(()=>{deckAPI.showSlide(11);deckAPI.settleTransitions();});
+  if(!await page.locator('.memory-artwork img').evaluate(node=>node.src.startsWith('data:image/')&&node.complete&&node.naturalWidth>0))throw new Error('Offline Mehretu artwork failed');
+  await page.screenshot({path:path.join(artifacts,'qa','standalone-memory.png')});
   console.log(JSON.stringify({ standalone, pdf: path.join(pdfRoot, "VR-Graffiti-Concept.pdf"), slides: deck.length, mainSeconds: time, mainScriptWords: deck.filter(s => !s.backup).map(s => s.notes.join(" ")).join(" ").split(/\s+/).length, standaloneErrors: errors }, null, 2));
   await browser.close();
 })().catch(error => { console.error(error); process.exit(1); });

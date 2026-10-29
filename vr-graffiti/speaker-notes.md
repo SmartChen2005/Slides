@@ -1,6 +1,6 @@
 # VR Graffiti: presenter script
 
-11 slides, 6:10 planned talk. The presentation ends with Technical Implementation Plan.
+12 slides, 6:55 planned talk. The presentation closes with Every Artwork Remembers after the technical plan.
 
 Open index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.
 
@@ -53,4 +53,10 @@ Players get a space for free creative exploration. These visual studies show con
 ## 11. Technical Implementation Plan
 
 Hardware and software: Meta Quest 3S, Unity, C#, and XR Interaction Toolkit. The core implementation tracks hand position, angle, speed, and distance from the wall. Spray behavior responds to movement. Recorded expert movements support replay and guided practice. This is the proposed implementation plan.
+
+## 12. Every Artwork Remembers
+
+One More Thing. What if an artwork could remember how it was created? VR Graffiti captures more than the final painting. It records the artist’s movements, gestures, timing, pauses, and revisions. These creative traces are transformed into an explorable 3D abstract artwork, inspired by the layered, dynamic compositions of Julie Mehretu. Others can enter the artwork, replay the creative process, and remix it with their own movements. Research question: Can an artwork become a medium for transmitting embodied knowledge? This is a proposed research direction, not a demonstrated implementation.
+
+Artwork reference: Julie Mehretu, Stadia II, 2004, ink and acrylic on canvas. Carnegie Museum of Art, Pittsburgh. Artwork © Julie Mehretu. Image sourced from White Cube: https://www.whitecube.com/artworks/julie-mehretu-stadia-ii-31313 . Museum record: https://collection.carnegieart.org/objects/3229aff9-ee40-4ef0-9789-106221a25892 . Full source metadata is recorded in assets/artworks/sources.json.
 
