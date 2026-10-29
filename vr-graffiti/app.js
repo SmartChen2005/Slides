@@ -13,6 +13,7 @@ let currentSlide=-1,paused=motionPreference.matches,elapsed=0,lastFrame=0,raf=0,
 const transitions=deck.map(()=>({opacity:0,velocity:0,y:9,yVelocity:0,target:0,yTarget:9}));
 const formatTime=seconds=>`${Math.floor(seconds/60)}:${String(Math.floor(seconds)%60).padStart(2,'0')}`;
 window.GraffitiMotion.init();
+window.GraffitiLearning.init();
 window.GraffitiLettering.init();
 function fitCanvas(){stage.style.setProperty('--deck-scale',stage.getBoundingClientRect().width/1280);}
 new ResizeObserver(fitCanvas).observe(stage);fitCanvas();
@@ -54,7 +55,7 @@ function tick(now){
   raf=0;const dt=Math.min((now-(lastFrame||now))/1000,.05);lastFrame=now;
   const moving=!motionPreference.matches&&updateSprings(dt);
   if(!paused&&duration()){
-    elapsed=Math.min(duration(),elapsed+dt);if(elapsed>=duration())paused=true;renderCurrent();
+    elapsed+=dt;if(deck[currentSlide].loop){elapsed%=duration();}else{elapsed=Math.min(duration(),elapsed);if(elapsed>=duration())paused=true;}renderCurrent();
   }
   if(moving||(!paused&&duration()))ensureFrame();
 }

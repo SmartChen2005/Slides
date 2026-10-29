@@ -6,7 +6,7 @@ window.SLIDE_ARCHIVE = [
     "date": "2026-10",
     "order": 2,
     "category": "RESEARCH",
-    "slideCount": 15,
+    "slideCount": 19,
     "description": "An XR learning concept: guided lettering, recorded gestures, and art across time.",
     "thumbnails": [
       "./vr-graffiti/thumbnails/01.webp",

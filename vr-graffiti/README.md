@@ -1,7 +1,7 @@
 # VR Graffiti
 
 English concept presentation for the XR skill-learning assignment. The main
-talk has 12 slides paced to 7:50, followed by reference and Q&A backups.
+talk has 16 slides paced to 10:05, followed by reference and Q&A backups.
 
 Open `index.html` in a browser or open this deck from the slide archive. No
 install or server is required. All diagrams and animations are local.
@@ -14,13 +14,13 @@ install or server is required. All diagrams and animations are local.
 - F: fullscreen
 - Drag the animation timeline to inspect an intermediate frame
 
-Animations play once and hold their final state. Replay restarts the motion,
+Animations play once and hold their final state, except the looping Tools lesson. Replay restarts the motion,
 and Play continues from the paused frame.
 
 The final main slide's Next button opens References, then Discussion. Notes
 include the speaker script and source links. `speaker-notes.md` is the separate
 rehearsal manuscript. Reduced motion starts with paused explanatory frames.
-The browser's print command shows all 15 slides as static pages.
+The browser's print command shows all 19 slides as static pages.
 
 The provided brief supplies the concept and proposed solo scope. Course
 expectations govern coverage. Research sources inform design choices and do
@@ -73,4 +73,11 @@ extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
 The former evaluation-pilot slide has been removed.
 
 The original Three tools. Different control. page is retained as the final backup
-(slide 15), including the original product photos, control labels and animations.
+(slide 19), including the original product photos, control labels and animations.
+
+Slides 7–10 introduce Tools, Strokes, Lettering and Create. All four share a
+fixed progression row. Tools loops; the other motion studies play once and hold.
+The alphabet chart is the supplied original. Click a grid cell, or use arrow keys
+while a letter is focused, to select and enlarge its detail. Reduced motion
+starts on explanatory stills. learning.js owns the new layouts and illustrations.
+The revised Technical Implementation Plan follows at slide 11.

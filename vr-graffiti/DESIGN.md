@@ -1,5 +1,21 @@
 # VR Graffiti design direction
 
+## Learning experience sequence
+
+Slides 7–10 add Tools, Strokes, Lettering and Create directly after the theory
+slide. `learning.js` owns these layouts, native letter-selection buttons and
+deterministic Canvas illustrations. The shared progress row stays at the same
+position and marks the current stage with `aria-current="step"` and blue type.
+Tools alone loops, as requested, with a fading seam. Pause, Replay, scrubbing,
+background-tab suspension and reduced-motion static frames use the existing
+presentation controller. The stroke lesson fades the ghost hand and guide path
+over three practice levels. The alphabet image remains intact, with selected
+grid cells enlarged from the original. No artist stroke order is inferred.
+Create develops an original FLOW composition from outline to colored artwork.
+Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
+The original three-tools backup is now slide 19. The main deck has 16 slides,
+with 10:05 allocated in presenter metadata, followed by three backup slides.
+
 Slide-bottom reference and citation lines are omitted from the rendered deck,
 including print and offline exports. Source metadata, presenter notes and the
 dedicated References backup retain provenance. Slide 5's two image viewports
@@ -10,8 +26,8 @@ This deck uses the apple-design skill as its design source. It does not inherit
 Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
 
-The audience is an English-speaking XR course. The main talk remains 12 slides
-and 7:50. References and discussion are backups. Notes retain the research,
+The audience is an English-speaking XR course. The main talk now has 16 slides
+and 10:05. References, discussion and tools are backups. Notes retain the research,
 implementation and scope details that do not belong in the main visual field.
 
 ## Visual system
@@ -60,7 +76,7 @@ The offline HTML embeds the actual photo assets as data URLs.
 
 Research claims and solo project scope retain the supplied content decisions.
 No learning results, physical transfer or VR prototype are implied. Actual
-photography sources are recorded in `assets/sources.json`, on slide 6 and in
+photography sources are recorded in `assets/sources.json`, on the tools backup and in
 speaker notes. Photo crops preserve the product's labels and proportions.
 
 Slide 3 shows the supplied problem and opportunity with three real photographs:
@@ -94,7 +110,7 @@ Editable walls belong to the core playground; spatial strokes are a creative
 extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
 The former evaluation-pilot slide has been removed.
 
-The original three-tools slide remains intact as backup slide 15. Its 13-second
+The original three-tools slide remains intact as backup slide 19. Its 13-second
 animation and product photo assets are retained; it adds no planned main-talk time.
 The hidden SVG used to sample the S path has explicit zero-size clipped inline
 styles so global SVG sizing cannot expose its filled path below the presentation.

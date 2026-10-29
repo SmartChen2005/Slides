@@ -65,6 +65,51 @@ window.GRAFFITI_CONTENT = [
     "refs": []
   },
   {
+    "title": "Learning the Tools",
+    "seconds": 30,
+    "name": "Learning the Tools",
+    "notes": [
+      "Spray can, marker and roller behave differently. The spray lesson develops distance, speed and coverage. A marker develops controlled lines, sketching and precise outlines. A roller develops broad strokes, large fills and surface coverage. The three moving demonstrations are illustrative virtual tools."
+    ],
+    "refs": []
+  },
+  {
+    "title": "Practicing Stroke Techniques",
+    "seconds": 40,
+    "name": "Practicing Stroke Techniques",
+    "notes": [
+      "The ghost hand first demonstrates the ideal movement. The learner follows the visible trajectory while controlling spray distance and speed. Full guidance includes both the expert hand and the path. Partial guidance reduces the assistance. Independent practice removes it. Straight lines and curves, outlines and fills, and stroke width and consistency provide the basic practice vocabulary."
+    ],
+    "refs": []
+  },
+  {
+    "title": "Learning Lettering Styles",
+    "seconds": 35,
+    "name": "Learning Lettering Styles",
+    "notes": [
+      "The supplied alphabet chart stays intact. Learners select individual letters to inspect their structure and proportions. The enlarged view is a detail from the same original image. The learning sequence is Observe, Trace, Reproduce, progressing toward words and tags. The chart does not establish an artist’s actual stroke order. Future lessons can demonstrate order and direction using recorded expert movement."
+    ],
+    "refs": []
+  },
+  {
+    "title": "Creative Expression",
+    "seconds": 30,
+    "name": "Creative Expression",
+    "notes": [
+      "Learners combine tools, strokes and lettering in an original tag. The original FLOW composition develops from an outline into fills, contours and personal stylistic details. This stage applies constructionism: understanding develops through creating a personally meaningful artifact. The composition illustrates the intended creative freedom."
+    ],
+    "refs": []
+  },
+  {
+    "title": "Technical Implementation Plan",
+    "seconds": 50,
+    "name": "Technical implementation",
+    "notes": [
+      "Hardware and software: Meta Quest 3S, Unity, C#, and XR Interaction Toolkit. The core implementation tracks hand position, angle, speed, and distance from the wall. Spray behavior responds to movement. Recorded expert movements support replay and guided practice. This is the proposed implementation plan."
+    ],
+    "refs": []
+  },
+  {
     "title": "A first lesson: Bubble S",
     "seconds": 55,
     "name": "Learning journey",
@@ -104,17 +149,6 @@ window.GRAFFITI_CONTENT = [
       "The playground leads into a further creative direction: using the history of making as part of the artwork. Temporal Layers lets earlier gestures remain visible as translucent layers in a composition. Time-to-Space maps elapsed stroke time to depth, so different moments of a gesture occupy different positions away from the wall. These ideas add time and process to the painted form. They are proposed creative extensions built on existing spatial painting and replay. The semester core remains guided lettering and free creation; these experiments reuse the same recorded strokes."
     ],
     "refs": []
-  },
-  {
-    "title": "A shared stroke system",
-    "seconds": 50,
-    "name": "Implementation and feasibility",
-    "notes": [
-      "The technical plan uses Meta Quest controllers, Unity and C#, OpenXR, and the XR Interaction Toolkit. A placement mode creates, moves and rotates simple wall surfaces. Each surface has an ID and a transform. Painting maps ray hits to its local UV coordinates and stores strokes relative to that surface, so the paint moves with the wall. A shared recorder supports ghost replay, lesson state and local metrics. The main risks are rendering cost and replay alignment. We would profile early, cap paint history and calibrate the learning wall. Free-space strokes would use spatial curves as a creative extension. If scope slips, protect the spray lesson and basic wall placement."
-    ],
-    "refs": [
-      "unity"
-    ]
   },
   {
     "title": "A semester-sized commitment",
