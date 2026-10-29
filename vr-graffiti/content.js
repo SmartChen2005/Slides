@@ -96,7 +96,7 @@ window.GRAFFITI_CONTENT = [
     "seconds": 30,
     "name": "Creative Expression",
     "notes": [
-      "Learners combine tools, strokes and lettering in an original tag. The original FLOW composition develops from an outline into fills, contours and personal stylistic details. This stage applies constructionism: understanding develops through creating a personally meaningful artifact. The composition illustrates the intended creative freedom."
+      "The player gets a space for free creative exploration. They can choose a concrete, brick or metal wall, freely paint and experiment, and combine tools, strokes and lettering in their own work. The sandbox illustration shows separate studies in progress and leaves open space for new marks. Material choices change the wall while keeping the artwork. The color controls, painting gesture, Add stroke and Clear wall actions let the audience explore this concept. Customize the wall. Experiment with materials. Create your own style."
     ],
     "refs": []
   },

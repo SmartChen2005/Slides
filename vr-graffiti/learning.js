@@ -13,7 +13,8 @@ window.GraffitiLearning = (() => {
     {title:'Learning the Tools',theme:'learning-slide learning-tools',duration:8,loop:true,html:heading('Learning the Tools','Different tools, different techniques.')+`<div class="learning-tool-grid">${[['Spray Can','Practice spray distance, movement speed, and coverage.','spray'],['Marker','Practice controlled lines, sketching, and precise outlines.','marker'],['Roller','Practice broad strokes, large fills, and surface coverage.','roller']].map(([name,copy,id])=>`<figure>${canvas('learn-'+id,344,264,`${name} moves across a surface and leaves its characteristic paint trail`)}<figcaption><h3>${name}${id==='spray'?'<sup>*</sup>':''}</h3><p>${copy}</p></figcaption></figure>`).join('')}</div>`+`<p id="learning-mvp" class="learning-mvp"><strong>* Spray Can is the MVP priority.</strong> Marker and Roller are optional, time permitting.</p>`+progress(0)},
     {title:'Practicing Stroke Techniques',theme:'learning-slide learning-strokes',duration:18,html:heading('Practicing Stroke Techniques','Consistent lines require precise control of distance, speed, and angle.')+`<figure class="stroke-training">${canvas('learn-guidance',740,350,'Five animated spray comparisons: Ideal makes a smooth consistent line. Too close leaves excess paint and drips. Too far produces faint fuzzy edges. Too slow creates paint buildup. Wrong angle makes spray distribution uneven.')}<figcaption>Same stroke. Different physical control.</figcaption></figure><div class="stroke-objectives"><h3>Precise control</h3><div><h4>Distance</h4><p>Coverage &amp; edge quality</p></div><div><h4>Speed</h4><p>Paint buildup</p></div><div><h4>Angle</h4><p>Even distribution</p></div></div>`+progress(1)},
     {title:'Learning Lettering Styles',theme:'learning-slide learning-lettering',duration:0,html:heading('Learning Lettering Styles','One letter at a time.')+`<figure class="alphabet-reference"><img src="${alphabet}" width="540" height="692" alt="Original supplied graffiti alphabet chart, showing A through Z and a sample tag">${letterButtons()}</figure><div class="letter-detail"><p class="letter-prompt">Select a letter to explore</p><h3 id="selected-letter" aria-live="polite">Letter A</h3><div class="letter-enlargement"><svg viewBox="0 20 166 142" role="img" aria-label="Enlarged detail of letter A from the original alphabet"><image href="${alphabet}" width="540" height="692"/></svg></div><a class="letter-resource" href="https://www.bombingscience.com/graffiti-letters-61-graffiti-artists-share-their-styles/" target="_blank" rel="noopener noreferrer" aria-label="Explore lettering styles on Bombing Science (opens in a new tab)"><span class="resource-source">Bombing Science</span><strong>Explore lettering styles <span aria-hidden="true">↗</span></strong></a><p class="letter-sequence">Observe <span>→</span> Trace <span>→</span> Reproduce</p><p class="letter-objectives">Structure &amp; proportions<br>Stroke order &amp; direction<br>Individual letters, then words and tags</p></div>`+progress(2)},
-    {title:'Creative Expression',theme:'learning-slide learning-create',duration:12,html:heading('Creative Expression','From imitation to personal style.')+`<figure class="creation-art">${canvas('learn-create',1100,360,'An original FLOW tag transforms from a simple outline into a colorful composition with fills, contours and expressive details')}</figure><p class="creation-note">Combine tools, strokes and letters. Create your own tag.</p>`+progress(3)}
+    {title:'Creative Expression',theme:'learning-slide learning-create',duration:12,html:heading('Creative Expression','A space for experimentation and personal style.')+`<figure class="creation-art sandbox-scene">${canvas('learn-create',1100,360,'A customizable graffiti studio with an open painting wall, concrete, brick and metal options, and expressive strokes and lettering in progress')}<div class="sandbox-controls" role="group" aria-label="Creative sandbox controls"><p>Wall material</p><div class="sandbox-materials">${[['concrete','Concrete'],['brick','Brick'],['metal','Metal']].map(([id,label],i)=>`<button type="button" data-material="${id}" aria-pressed="${i===0}"><span class="material-swatch swatch-${id}" aria-hidden="true"></span>${label}</button>`).join('')}</div><div class="sandbox-colors" role="group" aria-label="Paint color">${[['#0071e3','Blue'],['#af52de','Violet'],['#f66ea0','Pink'],['#f5a65a','Orange']].map(([color,label],i)=>`<button type="button" data-paint-color="${color}" aria-label="${label} paint" aria-pressed="${i===0}" style="--paint-color:${color}"></button>`).join('')}</div><div class="sandbox-actions"><button type="button" id="sandbox-add">Add stroke</button><button type="button" id="sandbox-clear">Clear wall</button></div></div><figcaption class="sandbox-hint">Drag on the wall to paint</figcaption></figure><p class="creation-note">Customize the wall. Experiment with materials. Create your own style.</p>`+progress(3)}
+
   ];
   const surfaces=new Map();
   function surface(id){if(!surfaces.has(id)){const node=document.getElementById(id);surfaces.set(id,{ctx:node.getContext('2d'),w:node.width/2,h:node.height/2});}const s=surfaces.get(id);s.ctx.setTransform(2,0,0,2,0,0);s.ctx.clearRect(0,0,s.w,s.h);s.ctx.lineCap='round';s.ctx.lineJoin='round';return s;}
@@ -83,22 +84,79 @@ window.GraffitiLearning = (() => {
     }
   }
 
-  const letterPaths=[
-    'M0 28L170 0L153 62L75 74L65 112L139 104L127 159L52 167L30 250L-25 238Z',
-    'M212 13L271 8L237 190L344 173L333 236L166 257Z',
-    'M406 22Q524-22 548 82L524 198Q505 261 397 244Q351 224 367 149L384 57ZM433 80L413 179Q425 196 462 177L486 75Q461 57 433 80Z',
-    'M597 24L652 14L641 157L713 33L762 25L754 153L820-1L882 12L762 251L697 235L704 134L644 247L579 238Z'
-  ];
-  function create(t){
-    const {ctx}=surface('learn-create'),fill=ease((t-2.1)/4.8),details=ease((t-6.5)/3.4),finish=ease((t-9)/2.5);
-    ctx.save();ctx.translate(124,68);ctx.rotate(-.035);
-    const gradient=ctx.createLinearGradient(0,0,880,260);gradient.addColorStop(0,'#2997ff');gradient.addColorStop(.45,'#af52de');gradient.addColorStop(.75,'#f66ea0');gradient.addColorStop(1,'#f5a65a');
-    for(const d of letterPaths){const p=new Path2D(d);ctx.strokeStyle='#d2d2d7';ctx.lineWidth=3;ctx.stroke(p);ctx.save();ctx.clip(p);ctx.fillStyle=gradient;ctx.fillRect(-40,270*(1-fill),940,290*fill);ctx.restore();ctx.globalAlpha=details;ctx.strokeStyle='#29294b';ctx.lineWidth=8;ctx.stroke(p);ctx.globalAlpha=1;}
-    ctx.globalAlpha=details;line(ctx,[{x:-18,y:265},{x:330,y:281},{x:860,y:252}],'#0071e3',7);ctx.strokeStyle='rgba(255,255,255,.8)';ctx.lineWidth=4;[[28,61,109,47],[223,49,206,147],[420,52,469,45],[609,49,604,128]].forEach(([a,b,c,d])=>{ctx.beginPath();ctx.moveTo(a,b);ctx.lineTo(c,d);ctx.stroke();});
-    ctx.globalAlpha=finish;[[22,277,7],[879,249,13],[862,278,5],[-48,164,8],[-30,187,4]].forEach(([x,y,r])=>{ctx.fillStyle=gradient;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();});ctx.restore();
+  const sandbox={material:'concrete',color:'#0071e3',marks:[],empty:false,time:0,drawing:null};
+  const materialTextures=new Map();
+  function wallTexture(material){
+    if(materialTextures.has(material))return materialTextures.get(material);
+    const tile=document.createElement('canvas');tile.width=790;tile.height=274;const c=tile.getContext('2d');
+    if(material==='brick'){
+      c.fillStyle='#d4c6b8';c.fillRect(0,0,790,274);
+      for(let row=0;row<8;row++)for(let col=-1;col<8;col++){
+        const x=col*120+(row%2)*60,y=row*38;c.fillStyle=['#b67f69','#ad7864','#c18b74'][(row*7+col+8)%3];c.fillRect(x+2,y+2,116,34);
+        c.fillStyle='rgba(255,255,255,.09)';c.fillRect(x+4,y+4,112,2);
+      }
+    }else if(material==='metal'){
+      c.fillStyle='#c7d0d7';c.fillRect(0,0,790,274);
+      for(let x=0;x<790;x+=27){const g=c.createLinearGradient(x,0,x+27,0);g.addColorStop(0,'#afbdc8');g.addColorStop(.3,'#d6dfe5');g.addColorStop(.72,'#c5d0d9');g.addColorStop(1,'#9eafbd');c.fillStyle=g;c.fillRect(x,0,27,274);}
+      c.fillStyle='#718491';for(let x=20;x<790;x+=108)for(const y of [16,258]){c.beginPath();c.arc(x,y,2.3,0,7);c.fill();}
+    }else{
+      c.fillStyle='#dcdedb';c.fillRect(0,0,790,274);
+      for(let i=0;i<1800;i++){const x=(i*127.31)%790,y=(i*47.73)%274;c.fillStyle=i%3?'rgba(90,98,89,.05)':'rgba(255,255,255,.17)';c.fillRect(x,y,1+i%2,1);}
+      c.strokeStyle='#c4c8c3';c.lineWidth=1;for(const x of [155,395,635]){c.beginPath();c.moveTo(x,0);c.lineTo(x,274);c.stroke();}
+      c.fillStyle='#aeb5ac';for(const x of [38,275,515,752])for(const y of [35,238]){c.beginPath();c.arc(x,y,2.1,0,7);c.fill();}
+    }
+    materialTextures.set(material,tile);return tile;
   }
+  function create(t){
+    sandbox.time=t;const {ctx}=surface('learn-create');
+    ctx.fillStyle='#f5f5f7';ctx.beginPath();ctx.roundRect(0,0,1100,360,22);ctx.fill();
+    // A restrained studio perspective leaves the wall as the main painting surface.
+    ctx.fillStyle='#e8e9e6';ctx.beginPath();ctx.moveTo(230,306);ctx.lineTo(1080,306);ctx.lineTo(1100,360);ctx.lineTo(210,360);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='#d9dcd7';ctx.lineWidth=1;for(let x=270;x<1080;x+=170){ctx.beginPath();ctx.moveTo(x,306);ctx.lineTo(655+(x-655)*1.35,360);ctx.stroke();}ctx.beginPath();ctx.moveTo(220,336);ctx.lineTo(1092,336);ctx.stroke();
+    ctx.fillStyle='#b9bdb7';ctx.beginPath();ctx.moveTo(230,53);ctx.lineTo(270,28);ctx.lineTo(270,302);ctx.lineTo(230,318);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#aeb5ae';ctx.beginPath();ctx.moveTo(1060,28);ctx.lineTo(1080,45);ctx.lineTo(1080,317);ctx.lineTo(1060,302);ctx.closePath();ctx.fill();
+    ctx.save();ctx.shadowColor='rgba(29,29,31,.12)';ctx.shadowBlur=12;ctx.shadowOffsetY=5;ctx.drawImage(wallTexture(sandbox.material),270,28);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.rect(270,28,790,274);ctx.clip();
+    if(!sandbox.empty){
+      const wave=ease(t/4.4),ring=ease((t-2.5)/5),letter=ease((t-5)/5.2);
+      const points=Array.from({length:Math.floor(180*wave)+1},(_,i)=>{const u=i/180;return{x:330+220*u,y:119+28*Math.sin(u*Math.PI*2)};});
+      line(ctx,points,'rgba(0,113,227,.13)',22);line(ctx,points,'#0071e3',11);
+      // A loose filled form, an outline study and a small letter share the open wall.
+      ctx.fillStyle=`rgba(175,82,222,${.7*ease((t-1.7)/4)})`;ctx.beginPath();ctx.moveTo(348,204);ctx.bezierCurveTo(400,158,444,217,485,179);ctx.lineTo(501,213);ctx.bezierCurveTo(448,247,398,198,353,239);ctx.closePath();ctx.fill();
+      ctx.fillStyle=`rgba(245,166,90,${.24*ring})`;ctx.beginPath();ctx.ellipse(705,139,63,67,-.3,0,Math.PI*2);ctx.fill();
+      const loop=Array.from({length:Math.floor(200*ring)+1},(_,i)=>{const a=i/200*Math.PI*2-.7;return{x:705+62*Math.cos(a)+13*Math.sin(a*2),y:139+66*Math.sin(a)};});line(ctx,loop,'#ef8731',8);
+      const stem=[{x:866,y:211},{x:892,y:81},{x:937,y:88},{x:958,y:116},{x:945,y:144},{x:881,y:149},{x:953,y:214}];
+      const count=Math.floor(letter*(stem.length-1)),part=letter*(stem.length-1)-count;const path=stem.slice(0,count+1);if(count<stem.length-1)path.push({x:stem[count].x+(stem[count+1].x-stem[count].x)*part,y:stem[count].y+(stem[count+1].y-stem[count].y)*part});line(ctx,path,'#353543',5);
+      ctx.globalAlpha=ease((t-8)/3);line(ctx,[{x:605,y:234},{x:746,y:216},{x:811,y:237}],'#f66ea0',9);ctx.globalAlpha=1;
+      if(t<4.5&&points.length){const q=points.at(-1);can(ctx,q.x+11,q.y+12,-.2);}else if(t<8&&loop.length){const q=loop.at(-1);can(ctx,q.x+12,q.y+15,-.2);}else{can(ctx,1007,230,-.25);}
+    }
+    for(const mark of sandbox.marks)line(ctx,mark.points,mark.color,mark.width);
+    ctx.restore();
+  }
+  function freezeSandbox(){if(window.deckAPI)deckAPI.seek(sandbox.time);}
+  function initSandbox(){
+    const node=document.getElementById('learn-create');
+    document.querySelectorAll('[data-material]').forEach(button=>button.addEventListener('click',()=>{
+      freezeSandbox();sandbox.material=button.dataset.material;document.querySelectorAll('[data-material]').forEach(n=>n.setAttribute('aria-pressed',String(n===button)));create(sandbox.time);
+    }));
+    document.querySelectorAll('[data-paint-color]').forEach(button=>button.addEventListener('click',()=>{
+      freezeSandbox();sandbox.color=button.dataset.paintColor;document.querySelectorAll('[data-paint-color]').forEach(n=>n.setAttribute('aria-pressed',String(n===button)));
+    }));
+    document.getElementById('sandbox-clear').addEventListener('click',()=>{freezeSandbox();sandbox.marks=[];sandbox.empty=true;create(sandbox.time);});
+    document.getElementById('sandbox-add').addEventListener('click',()=>{
+      freezeSandbox();const n=sandbox.marks.length,points=Array.from({length:80},(_,i)=>{const u=i/79;return{x:325+460*u,y:240-((n*39)%120)+17*Math.sin(u*Math.PI*2+n)};});sandbox.marks.push({color:sandbox.color,width:8,points});create(sandbox.time);
+    });
+    const point=event=>{const r=node.getBoundingClientRect();return{x:(event.clientX-r.left)*1100/r.width,y:(event.clientY-r.top)*360/r.height};};
+    const inside=p=>p.x>=270&&p.x<=1060&&p.y>=28&&p.y<=302;
+    node.addEventListener('pointerdown',event=>{
+      if(event.button!==0)return;const p=point(event);if(!inside(p))return;event.preventDefault();freezeSandbox();node.setPointerCapture(event.pointerId);sandbox.drawing={color:sandbox.color,width:8,points:[p,{x:p.x+.01,y:p.y}]};sandbox.marks.push(sandbox.drawing);create(sandbox.time);
+    });
+    node.addEventListener('pointermove',event=>{if(!sandbox.drawing)return;const p=point(event);if(inside(p)){sandbox.drawing.points.push(p);create(sandbox.time);}});
+    const finish=()=>{sandbox.drawing=null;};node.addEventListener('pointerup',finish);node.addEventListener('pointercancel',finish);node.addEventListener('lostpointercapture',finish);
+  }
+
   function selectLetter(index){const col=index%4,row=Math.floor(index/4),letter=String.fromCharCode(65+index),x=Math.max(0,15+128*col-16),y=Math.max(0,60+86*row-20);document.querySelectorAll('[data-letter]').forEach(n=>n.setAttribute('aria-pressed',String(+n.dataset.letter===index)));document.getElementById('selected-letter').textContent='Letter '+letter;const svg=document.querySelector('.letter-enlargement svg');svg.setAttribute('viewBox',`${x} ${y} 160 130`);svg.setAttribute('aria-label',`Enlarged detail of letter ${letter} from the original alphabet`);}
-  function init(){document.querySelectorAll('[data-letter]').forEach(button=>{button.addEventListener('click',()=>selectLetter(+button.dataset.letter));button.addEventListener('keydown',event=>{const moves={ArrowLeft:-1,ArrowRight:1,ArrowUp:-4,ArrowDown:4};if(!(event.key in moves))return;event.preventDefault();event.stopPropagation();const index=Math.max(0,Math.min(25,+button.dataset.letter+moves[event.key]));selectLetter(index);document.querySelector(`[data-letter="${index}"]`).focus();});});selectLetter(0);}
+  function init(){document.querySelectorAll('[data-letter]').forEach(button=>{button.addEventListener('click',()=>selectLetter(+button.dataset.letter));button.addEventListener('keydown',event=>{const moves={ArrowLeft:-1,ArrowRight:1,ArrowUp:-4,ArrowDown:4};if(!(event.key in moves))return;event.preventDefault();event.stopPropagation();const index=Math.max(0,Math.min(25,+button.dataset.letter+moves[event.key]));selectLetter(index);document.querySelector(`[data-letter="${index}"]`).focus();});});selectLetter(0);initSandbox();}
   function render(index,t){if(index===0)tools(t);else if(index===1)guidance(t);else if(index===3)create(t);}
   return{layouts,init,render};
 })();

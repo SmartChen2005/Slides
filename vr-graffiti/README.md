@@ -87,3 +87,8 @@ Ideal, Too close, Too far, Too slow and Wrong angle. Can distance and tilt,
 progressive paint deposition, growing drips, faint overspray and a lingering
 slow pass illustrate why a consistent line requires physical control.
 The final comparison is the reduced-motion and print frame.
+
+Creative Expression is a free-exploration sandbox. Select Concrete, Brick or
+Metal, choose a color, then drag on the wall or use Add stroke. Clear wall
+removes the example studies and personal marks. Material changes keep the
+paint. Interacting pauses the demonstration at its current frame.

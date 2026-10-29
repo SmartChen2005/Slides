@@ -93,6 +93,34 @@ fs.mkdirSync(out, { recursive: true });
   const outline=await page.locator('#learn-create').evaluate(node=>node.toDataURL());
   await page.evaluate(()=>deckAPI.seek(12));
   assert.notEqual(await page.locator('#learn-create').evaluate(node=>node.toDataURL()),outline);
+  assert.equal(await page.locator('#slide-10>.lead').textContent(),'A space for experimentation and personal style.');
+  assert.equal(await page.locator('.creation-note').textContent(),'Customize the wall. Experiment with materials. Create your own style.');
+  const materials=[];
+  for(const material of ['concrete','brick','metal']){
+    await page.locator(`[data-material="${material}"]`).click();
+    assert.equal(await page.locator(`[data-material="${material}"]`).getAttribute('aria-pressed'),'true');
+    materials.push(await page.locator('#learn-create').evaluate(node=>node.toDataURL()));
+    await page.screenshot({path:path.join(out,`sandbox-${material}.png`)});
+  }
+  assert.equal(new Set(materials).size,3);
+  await page.locator('[data-paint-color="#f66ea0"]').click();
+  await page.locator('#sandbox-add').press('Enter');
+  assert.notEqual(await page.locator('#learn-create').evaluate(node=>node.toDataURL()),materials[2]);
+  await page.locator('#sandbox-clear').click();
+  const emptyWall=await page.locator('#learn-create').evaluate(node=>node.toDataURL());
+  const wallBounds=await page.locator('#learn-create').boundingBox();
+  await page.mouse.move(wallBounds.x+wallBounds.width*500/1100,wallBounds.y+wallBounds.height*230/360);
+  await page.mouse.down();
+  await page.mouse.move(wallBounds.x+wallBounds.width*800/1100,wallBounds.y+wallBounds.height*255/360,{steps:12});
+  await page.mouse.up();
+  assert.notEqual(await page.locator('#learn-create').evaluate(node=>node.toDataURL()),emptyWall);
+  const pinkBefore=await page.locator('#learn-create').evaluate(node=>Array.from(node.getContext('2d').getImageData(650*2,242*2,1,1).data));
+  await page.locator('[data-material="brick"]').click();
+  const pinkAfter=await page.locator('#learn-create').evaluate(node=>Array.from(node.getContext('2d').getImageData(650*2,242*2,1,1).data));
+  assert.deepEqual(pinkAfter,pinkBefore,'Changing wall material should preserve user paint');
+  assert.deepEqual(pinkAfter,[246,110,160,255]);
+  assert.equal(await page.evaluate(()=>deckAPI.getState().currentSlide),9);
+  await page.screenshot({path:path.join(out,'sandbox-user-paint.png')});
   // Keyboard, history and control behavior are verified in the rendered deck.
   await page.keyboard.press("Home");
   assert.equal(await page.locator("#previous").isDisabled(), true);
