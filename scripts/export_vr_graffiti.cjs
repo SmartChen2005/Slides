@@ -70,6 +70,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.emulateMedia({ media: "screen" });
   await page.goto(pathToFileURL(standalone).href, { waitUntil: "networkidle" });
   if (errors.length || await page.locator(".slide").count() !== deck.length) throw new Error(`Standalone export failed: ${errors}`);
+  if(!await page.locator('.cover-visual img').evaluate(node=>node.src.startsWith('data:image/')&&node.complete&&node.naturalWidth>0))throw new Error('Offline cover image failed');
   await page.evaluate(() => { deckAPI.showSlide(2); deckAPI.settleTransitions(); });
   const photos = await page.locator('.barriers-gallery img').evaluateAll(nodes => nodes.map(node => node.src.startsWith('data:image/') && node.complete && node.naturalWidth > 0));
   if (photos.length !== 3 || photos.some(valid => !valid)) throw new Error('Offline practice photo failed');

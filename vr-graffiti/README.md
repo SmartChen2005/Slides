@@ -44,3 +44,7 @@ Then run python scripts/build_archive.py to refresh archive metadata.
 The closing One More Thing page presents the proposed artwork-memory research
 direction and shows Julie Mehretu’s Stadia II (2004). The full artwork keeps its
 original proportions; sources and rights are recorded in assets/artworks/.
+
+The static cover pairs large VR Graffiti typography with an original AI-generated
+headset and spray-can still life. Its source prompt is in assets/cover/sources.json.
+The previous S-ribbon animation is removed.

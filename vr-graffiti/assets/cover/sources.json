@@ -1,0 +1,10 @@
+[
+  {
+    "file": "vr-graffiti-still-life.png",
+    "origin": "Original AI-generated concept image",
+    "generator": "Built-in image_gen.imagegen",
+    "prompt": "Use case: product-mockup. Asset type: wide 16:9 presentation cover background for a VR graffiti learning concept. Create a high-end photorealistic studio still-life on a uniform near-black (#050507) background. Two unbranded physical objects occupy the RIGHT HALF only: a white standalone VR headset with a clean sculpted shell, dark lenses and simple fabric head strap, seen at a strong three-quarter angle, beside one upright matte-black graffiti spray paint can with exposed small nozzle and a subtle electric-blue painted band, no printed label. Rest them naturally on a black studio plinth or barely visible black ground; headset large and can clearly recognizable, compact sculptural composition occupying x=58%-94%, y=25%-82%. Soft dramatic key light reveals white plastic, brushed metal rim and fine paint dust. Behind the objects, on a barely visible upright black wall, one broad irregular cobalt-blue aerosol swipe with some violet overspray and authentic granular paint edges; it is an abstract paint mark, not a letter or ribbon. Visually calm premium editorial product photography with tactile realistic materials and strong silhouette. LEFT 48% must remain completely empty black for live presentation typography. Keep ample black breathing room above and around the objects. No text, no letters, no S, no logo, no watermark, no UI, no people, no hands, no controllers, no neon tubes, no floating ribbon, no excessive particles, no lens flare. The background must fade seamlessly to #050507 at every outer edge. Landscape 16:9 composition.",
+    "display": "Static cover background paired with live HTML typography. The headset is a generic illustrative object, not a product photograph or evidence of an implemented prototype. Original generated raster preserved.",
+    "sourceFile": "exec-06f22982-4c2c-4522-9d7e-e8f822ebb8a9.png"
+  }
+]

@@ -33,15 +33,6 @@ window.GraffitiMotion = (() => {
     const perspective=780/(780-zr);
     return {x:cx+xr*perspective,y:cy+(y-z*.15)*perspective,z:zr};
   }
-  function hero(t) {
-    const {ctx,w,h}=reset('hero-motion');
-    const progress=ramp(t,0,4.2),depth=ramp(t,3.5,6.4)*110;
-    const pts=samples.filter(p=>p.u<=progress).map(p=>project(p,depth,.25+ramp(t,3.5,6.4)*.28,1.05,w/2-20,h/2+12,true));
-    // The shadow stays attached to the floor instead of pulsing or floating.
-    const shadow=ctx.createRadialGradient(w/2,328,5,w/2,328,175);shadow.addColorStop(0,'rgba(76,91,153,.19)');shadow.addColorStop(1,'rgba(76,91,153,0)');ctx.save();ctx.translate(0,266);ctx.scale(1,.2);ctx.fillStyle=shadow;ctx.fillRect(220,0,650,600);ctx.restore();
-    tube(ctx,pts,25);
-    if(progress<1&&pts.length) {const p=pts.at(-1);ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();}
-  }
   function grain(seed) {const n=Math.sin(seed*12.9898+78.233)*43758.5453;return n-Math.floor(n);}
   function tools(root,t) {
     const spray=ramp(t,0,4),marker=ramp(t,4,8),roller=ramp(t,8,12.5);
@@ -203,10 +194,9 @@ window.GraffitiMotion = (() => {
   function render(index,t) {
     const root=document.getElementById(`slide-${index+1}`);if(!root)return;
     if(index>=6&&index<10){GraffitiLearning.render(index-6,t);return;}
-    if(index===0)hero(t);
   }
   function init() {
     const ns='http://www.w3.org/2000/svg',s=document.createElementNS(ns,'svg');s.setAttribute('width','0');s.setAttribute('height','0');s.style.cssText='position:fixed;width:0;height:0;overflow:hidden;pointer-events:none';s.setAttribute('aria-hidden','true');pathNode=document.createElementNS(ns,'path');pathNode.setAttribute('d',S_PATH);s.appendChild(pathNode);document.body.appendChild(s);pathLength=pathNode.getTotalLength();samples=Array.from({length:241},(_,i)=>({...point(i/240),u:i/240}));
   }
-  return {init,render,staticTimes:[7,0,0,0,0,0,5.5,18,0,0,0,0]};
+  return {init,render,staticTimes:[0,0,0,0,0,0,5.5,18,0,0,0,0]};
 })();

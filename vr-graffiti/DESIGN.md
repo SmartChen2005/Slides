@@ -53,7 +53,9 @@ size-specific tracking, and a strong size/weight/leading hierarchy. No Apple
 fonts, logos or other proprietary brand assets are bundled.
 
 Most slides use one centered headline and a dominant visual. The opening keeps
-only the title and the existing colored S animation. Slide 2, Why Learn Graffiti
+only the title and an original studio still-life concept image of a VR headset
+and graffiti spray can. The isolated S ribbon is removed. The cover is static,
+with large left-aligned type and a right-side object composition on black. Slide 2, Why Learn Graffiti
 in VR?, uses a large two-line statement, with physical skill in teaching blue,
 above three unboxed columns for Movement, Distance & Speed, and Lettering.
 Its supplied copy remains static and fully visible. Tools use actual product photography.
