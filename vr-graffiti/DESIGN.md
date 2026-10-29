@@ -121,10 +121,11 @@ There are no resource backup pages.
 
 ## Closing research direction
 
-Slide 12 uses the supplied One More Thing... kicker and Every Artwork Remembers
-title. A left text column preserves the proposed capture, transformation, replay
-and remix concept. On the right, Julie Mehretu’s Stadia II (2004) is shown whole,
-with its aspect ratio preserved and a short identifying caption. The research
-question anchors the bottom, with embodied knowledge emphasized in teaching
-blue. This slide is static and ends the main deck; it is not a backup. Artwork
-provenance is recorded in assets/artworks/sources.json and the source notes.
+Slide 12 uses the supplied One More Thing — kicker and Every Artwork Remembers
+title. The concise closing copy asks whether the system could preserve the
+creative process and describes movements, pauses and revisions as an explorable
+3D abstract artwork: a spatial memory of its creation. The earlier research
+question and extra paragraphs are removed. On the right, Julie Mehretu’s
+Stadia II (2004) stays whole with its aspect ratio preserved and a short caption.
+This static slide ends the main deck. Artwork provenance is recorded in
+assets/artworks/sources.json and the source notes.
