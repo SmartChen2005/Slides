@@ -13,6 +13,8 @@ Ideal, Too close, Too far, Too slow and Wrong angle. Growing drips, diffuse
 overspray, a slow pass with local buildup and an oblique footprint distinguish
 the cases. All results remain visible at the end. The alphabet image remains intact, with selected
 grid cells enlarged from the original. No artist stroke order is inferred.
+The lettering detail area includes a native external link to the presenter’s
+Bombing Science style resource, opening in a new tab beside the enlarged image.
 Create develops an original FLOW composition from outline to colored artwork.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
 The original three-tools backup is now slide 19. The main deck has 16 slides,
