@@ -17,9 +17,11 @@ fs.mkdirSync(out, { recursive: true });
   const state = await page.evaluate(() => window.deckAPI.getState());
   assert.equal(state.totalTime, 470);
   assert.equal(state.mainCount, 12);
-  assert.equal(state.totalCount, 14);
+  assert.equal(state.totalCount, 15);
+  const helperBounds = await page.locator('body > svg[aria-hidden="true"]').evaluate(node => { const r = node.getBoundingClientRect(); return [r.width, r.height, getComputedStyle(node).overflow]; });
+  assert.deepEqual(helperBounds, [0, 0, 'hidden']);
   const layout = [];
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 15; i++) {
     await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(GraffitiMotion.staticTimes[index]); deckAPI.settleTransitions(); }, i);
     await page.waitForTimeout(70);
     const details = await page.evaluate(() => {
@@ -38,7 +40,7 @@ fs.mkdirSync(out, { recursive: true });
     assert.equal(details.collisions.length, 0, `Slide ${i + 1} citation collision: ${details.collisions}`);
     await page.screenshot({ path: path.join(out, `slide-${String(i + 1).padStart(2, "0")}.png`), animations: "disabled" });
   }
-  assert.equal(await page.locator(".space-reference img").evaluate(node => node.complete && node.naturalWidth > 0), true);
+  assert.deepEqual(await page.locator(".solution-image").evaluateAll(nodes => nodes.map(node => node.complete && node.naturalWidth > 0)), [true, true]);
   // Keyboard, history and control behavior are verified in the rendered deck.
   await page.keyboard.press("Home");
   assert.equal(await page.locator("#previous").isDisabled(), true);
@@ -53,6 +55,7 @@ fs.mkdirSync(out, { recursive: true });
   assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 11);
   await page.locator("#next").click();
   assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 12);
+  await page.locator("#next").click();
   await page.locator("#next").click();
   assert.equal(await page.locator("#next").isDisabled(), true);
   await page.keyboard.press("n");
@@ -108,17 +111,19 @@ fs.mkdirSync(out, { recursive: true });
   await page.evaluate(() => deckAPI.seek(12));
   assert.notEqual(await page.locator("#depth-motion").evaluate(node => node.toDataURL()), flat);
   await page.screenshot({ path: path.join(out, "depth-spatial.png") });
-  await page.evaluate(() => { deckAPI.showSlide(5); deckAPI.seek(13); deckAPI.settleTransitions(); });
-  assert.deepEqual(await page.locator(".tool-gallery img").evaluateAll(nodes => nodes.map(node => node.complete && node.naturalWidth > 0)), [true, true, true]);
+  await page.evaluate(() => { deckAPI.showSlide(6); deckAPI.seek(18.5); deckAPI.settleTransitions(); });
+  assert.equal(await page.locator('#slide-6 h2').textContent(), 'From Simulation to Skill Learning');
+  assert.deepEqual(await page.locator('.theory-grid h3').allTextContents(), ['Observational Learning', 'Scaffolding', 'Constructionism']);
+  assert.deepEqual(await page.locator('.barriers-gallery img').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).filter)), ['grayscale(1)', 'grayscale(1)', 'grayscale(1)']);
   await page.locator("#animation-time").fill("2.5");
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), 2.5);
   assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
   await page.locator("#animation-time").press("ArrowRight");
-  assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 5);
-  await page.evaluate(() => deckAPI.seek(12.95));
+  assert.equal(await page.evaluate(() => deckAPI.getState().currentSlide), 6);
+  await page.evaluate(() => deckAPI.seek(18.45));
   await page.locator("#pause").click();
   await page.waitForTimeout(250);
-  assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), 13);
+  assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), 18.5);
   assert.equal(await page.evaluate(() => deckAPI.getState().paused), true);
   // Interrupted slide transitions keep the presentation value and never lock input.
   await page.evaluate(() => { deckAPI.showSlide(0); deckAPI.settleTransitions(); deckAPI.showSlide(1); });
@@ -132,7 +137,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.screenshot({ path: path.join(out, "mobile.png") });
   assert.equal(await page.locator("#next").isVisible(), true);
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-  for (const index of [0, 1, 2, 3]) {
+  for (const index of [0, 1, 2, 3, 4, 5]) {
     await page.evaluate(i => { deckAPI.showSlide(i); deckAPI.seek(GraffitiMotion.staticTimes[i]); deckAPI.settleTransitions(); }, index);
     await page.screenshot({ path: path.join(out, `mobile-slide-${index + 1}.png`) });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
@@ -144,7 +149,7 @@ fs.mkdirSync(out, { recursive: true });
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => deckAPI.getState().elapsed), stopped);
   assert.deepEqual(errors, []);
-  const report = { state, layout, errors, checked: ["14 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "title-only cover with S animation", "physical skill overview", "three practice barrier photos", "single-sentence learning gap", "surface creation, placement and spatial painting animation", "time-to-depth geometry", "three real product photos", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport including all four opening slides", "reduced motion"] };
+  const report = { state, layout, errors, checked: ["15 slide layouts", "arrows and Home/End", "hash history", "notes focus and Escape", "play/pause/replay", "four learning phases", "title-only cover with S animation", "physical skill overview", "three practice barrier photos", "single-sentence learning gap", "surface creation, placement and spatial painting animation", "time-to-depth geometry", "two supplied solution images", "timeline scrubbing and keyboard input", "one-shot animation holds", "spring interruption", "390px viewport including all six opening slides", "reduced motion"] };
   fs.writeFileSync(path.join(out, "browser-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
   await browser.close();

@@ -67,7 +67,15 @@ sentence in large type, emphasizing structured, repeatable practice with feedbac
 in teaching blue. These static slides replace the former comparison and lettering
 gallery. The lettering module and its assets are retained for future use.
 
-Slide 5 introduces the proposed learning environment: a concrete virtual studio
+Slides 5 and 6 now continue the rebuilt opening. Existing Solutions & The Gap
+uses the two supplied images and a flat two-column comparison, with the project
+opportunity below. Feature sources link the official product pages; gap claims
+are explicitly attributed to project analysis. From Simulation to Skill Learning
+shows Observe, Trace, Reproduce, Remix above three educational theory columns.
+Both pages are static. Slide 3's photographs use CSS grayscale for monochrome
+display in the browser, PDF and offline export; original assets stay intact.
+
+The former slide 5 introduced the proposed learning environment: a concrete virtual studio
 with a practice wall, nearby tools and a creative playground. The real interior
 photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
 It references material and light; it does not depict the proposed VR layout.
@@ -79,3 +87,8 @@ shows surface creation, arrangement and a gesture leaving a wall for open space.
 Editable walls belong to the core playground; spatial strokes are a creative
 extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
 The former evaluation-pilot slide has been removed.
+
+The original three-tools slide remains intact as backup slide 15. Its 13-second
+animation and product photo assets are retained; it adds no planned main-talk time.
+The hidden SVG used to sample the S path has explicit zero-size clipped inline
+styles so global SVG sizing cannot expose its filled path below the presentation.

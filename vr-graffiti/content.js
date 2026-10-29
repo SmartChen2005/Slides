@@ -44,22 +44,23 @@ window.GRAFFITI_CONTENT = [
     "refs": []
   },
   {
-    "title": "A quiet space to practice",
+    "title": "Existing Solutions & The Gap",
     "seconds": 20,
-    "name": "Learning environment",
+    "name": "Existing solutions and the gap",
     "notes": [
-      "Players begin in a quiet virtual concrete studio. The reference is Tadao Ando’s Langen Foundation: exposed concrete, natural light and a restrained interior. A guided practice wall and nearby tools provide a starting point. The creative playground lets players build their own arrangement of painting surfaces. The photograph references the material and light of the space."
+      "Kingspray Graffiti VR offers realistic spray physics, multiple caps, multiplayer painting, and reference projection. Its official description presents tutorials that take users through application features. Our project analysis identifies a gap in graffiti techniques and artistic fundamentals for complete beginners. Vermillion VR provides realistic oil painting, guided tutorials, reference tracing, and color mixing. It focuses on traditional painting rather than graffiti-specific techniques and lettering. Our opportunity is a beginner-oriented VR learning environment with structured instruction, progressive skill development, and measurable feedback."
     ],
     "refs": [
-      "spacePhoto"
+      "king",
+      "vermillion"
     ]
   },
   {
-    "title": "One studio, three ways to paint",
+    "title": "From Simulation to Skill Learning",
     "seconds": 35,
-    "name": "Studio and tools",
+    "name": "Learning theory",
     "notes": [
-      "The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool."
+      "Observe, Trace, Reproduce, Remix. Our learning experience draws on three educational theories. Observational Learning: Observe and imitate an expert's hand movements through an animated virtual hand. Scaffolding: Gradually remove visual guides and assistance as learners gain proficiency. Constructionism: Develop understanding by creating personalized graffiti and experimenting with different styles. From imitation to independent creation."
     ],
     "refs": []
   },
@@ -154,5 +155,15 @@ window.GRAFFITI_CONTENT = [
     "refs": [],
     "backup": true,
     "html": "<h2>Discussion</h2><p class=\"lead\">Questions for the next iteration</p><div class=\"qa-grid\"><div><h3>Why VR instead of a video?</h3><p>Show tool motion at the wall.<br>Practice in the same space.</p></div><div><h3>Will this transfer to real paint?</h3><p>Unknown: controllers lack material feedback.<br>Physical transfer needs a separate test.</p></div><div><h3>Why keep three tools?</h3><p>Shared paint and recording systems.<br>Spray first; basic contact tools.</p></div><div><h3>What if the plan is too large?</h3><p>Protect the spray lesson and logging.<br>Defer the pilot and temporal art.</p></div><div><h3>How will remix be assessed?</h3><p>Reflection or artist feedback.<br>Path error measures copying.</p></div><div><h3>What is the first thing to validate?</h3><p>Can beginners follow the cues<br>while seeing their own mark?</p></div></div><p class=\"cite\">Q&A backup. Physical transfer and comparative learning benefits remain untested.</p>"
+  },
+  {
+    "title": "One studio, three ways to paint",
+    "seconds": 0,
+    "name": "Studio and tools",
+    "notes": [
+      "The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool."
+    ],
+    "refs": [],
+    "backup": true
   }
 ];

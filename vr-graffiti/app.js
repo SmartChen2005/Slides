@@ -72,8 +72,8 @@ function showSlide(index,{updateHash=true,moveFocus=false}={}){
   previousButton.disabled=index===0;nextButton.disabled=index===deck.length-1;
   nextButton.textContent=index===mainCount-1?'References':index===mainCount?'Q&A':'Next';
   nextButton.setAttribute('aria-label',index===mainCount-1?'Open reference backup slide':index===mainCount?'Open Q&A backup slide':'Next slide');
-  document.getElementById('slide-counter').textContent=deck[index].backup?`Backup ${index-mainCount+1}/2`:`${String(index+1).padStart(2,'0')} / ${mainCount}`;
-  document.getElementById('slide-time').textContent=deck[index].backup?'Q&A':formatTime(deck[index].seconds);
+  document.getElementById('slide-counter').textContent=deck[index].backup?`Backup ${index-mainCount+1}/${deck.length-mainCount}`:`${String(index+1).padStart(2,'0')} / ${mainCount}`;
+  document.getElementById('slide-time').textContent=deck[index].backup?'Backup':formatTime(deck[index].seconds);
   document.title=deck[index].name+' | VR Graffiti';
   document.getElementById('announcement').textContent=`${deck[index].backup?'Backup':`Slide ${index+1} of ${mainCount}`}. ${deck[index].title}`;
   document.querySelector('.skip-link').href=`#slide-${index+1}`;

@@ -33,7 +33,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const deck = await page.evaluate(() => window.GRAFFITI_DECK.map(({ title, seconds, notes, refs, backup }) => ({ title, seconds, notes, refs, backup })));
   const refs = await page.evaluate(() => sources);
   let time = 0;
-  let manuscript = "# VR Graffiti: presenter script\n\n12 main slides, 7:50 planned talk. Two backup slides support 3–5 minutes of Q&A.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. N opens these notes, R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
+  let manuscript = "# VR Graffiti: presenter script\n\n12 main slides, 7:50 planned talk. Three backup slides support 3–5 minutes of Q&A.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. N opens these notes, R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
   deck.forEach((slide, index) => {
     manuscript += `## ${index + 1}. ${slide.title}${slide.backup ? " (Backup)" : ""}\n\n${slide.notes.join("\n\n")}\n\n`;
     if (slide.refs.length) manuscript += slide.refs.map(key => `[${refs[key][1]}](${refs[key][0]})`).join(". ") + "\n\n";

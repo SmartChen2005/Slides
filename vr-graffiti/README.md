@@ -20,7 +20,7 @@ and Play continues from the paused frame.
 The final main slide's Next button opens References, then Discussion. Notes
 include the speaker script and source links. `speaker-notes.md` is the separate
 rehearsal manuscript. Reduced motion starts with paused explanatory frames.
-The browser's print command shows all 14 slides as static pages.
+The browser's print command shows all 15 slides as static pages.
 
 The provided brief supplies the concept and proposed solo scope. Course
 expectations govern coverage. Research sources inform design choices and do
@@ -53,7 +53,13 @@ and the offline single-file deck at `artifacts/vr-graffiti/VR-Graffiti.html`.
 Then run `python scripts/build_archive.py` to refresh the archive thumbnails.
 `scripts/verify_vr_graffiti.cjs` exercises the browser presentation controls.
 
-Slide 5 introduces the proposed learning environment: a concrete virtual studio
+Slide 3's three photographs now display in monochrome. Slide 5 compares
+Kingspray Graffiti VR and Vermillion VR using the supplied images, then states
+the learning opportunity. Slide 6 presents Observe, Trace, Reproduce, Remix
+and the three theories: Observational Learning, Scaffolding, Constructionism.
+Image provenance is recorded in `assets/solutions/sources.json`.
+
+The former slide 5 introduced the proposed learning environment: a concrete virtual studio
 with a practice wall, nearby tools and a creative playground. The real interior
 photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
 It references material and light; it does not depict the proposed VR layout.
@@ -65,3 +71,6 @@ shows surface creation, arrangement and a gesture leaving a wall for open space.
 Editable walls belong to the core playground; spatial strokes are a creative
 extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
 The former evaluation-pilot slide has been removed.
+
+The original Three tools. Different control. page is retained as the final backup
+(slide 15), including the original product photos, control labels and animations.

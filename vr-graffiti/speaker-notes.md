@@ -1,6 +1,6 @@
 # VR Graffiti: presenter script
 
-12 main slides, 7:50 planned talk. Two backup slides support 3–5 minutes of Q&A.
+12 main slides, 7:50 planned talk. Three backup slides support 3–5 minutes of Q&A.
 
 Open index.html or the self-contained HTML in a browser. Arrow keys navigate. N opens these notes, R replays, Space pauses and F opens fullscreen. End opens the last main slide.
 
@@ -24,17 +24,15 @@ The problem: Beginners face barriers to practicing consistently, including limit
 
 Graffiti combines artistic expression with embodied motor skills, but beginners rarely have access to structured, repeatable practice with feedback.
 
-## 5. A quiet space to practice
+## 5. Existing Solutions & The Gap
 
-Players begin in a quiet virtual concrete studio. The reference is Tadao Ando’s Langen Foundation: exposed concrete, natural light and a restrained interior. A guided practice wall and nearby tools provide a starting point. The creative playground lets players build their own arrangement of painting surfaces. The photograph references the material and light of the space.
+Kingspray Graffiti VR offers realistic spray physics, multiple caps, multiplayer painting, and reference projection. Its official description presents tutorials that take users through application features. Our project analysis identifies a gap in graffiti techniques and artistic fundamentals for complete beginners. Vermillion VR provides realistic oil painting, guided tutorials, reference tracing, and color mixing. It focuses on traditional painting rather than graffiti-specific techniques and lettering. Our opportunity is a beginner-oriented VR learning environment with structured instruction, progressive skill development, and measurable feedback.
 
-[Langen Foundation, photo: Till Niermann](https://commons.wikimedia.org/wiki/File:Langen_Foundation_3,_2021.jpg)
+[Kingspray, official PC description](https://store.steampowered.com/app/471660/Kingspray_Graffiti_VR/). [Vermillion, official website](https://vermillion-vr.com/)
 
-## 6. Three tools, different control
+## 6. From Simulation to Skill Learning
 
-The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool.
-
-[Montana Cans product photography](https://www.montana-cans.com/Montana-BLACK-400ml/272073). [MTN / Spray Planet product photography](https://www.sprayplanet.com/products/mtn-street-paint-markers-15mm-orange). [Purdy product photography](https://www.purdy.co.uk/products/rollers/mini-roller-system/)
+Observe, Trace, Reproduce, Remix. Our learning experience draws on three educational theories. Observational Learning: Observe and imitate an expert's hand movements through an animated virtual hand. Scaffolding: Gradually remove visual guides and assistance as learners gain proficiency. Constructionism: Develop understanding by creating personalized graffiti and experimenting with different styles. From imitation to independent creation.
 
 ## 7. A first lesson: Bubble S
 
@@ -73,4 +71,10 @@ Use the linked original papers and official product pages for questions about ev
 ## 14. Discussion (Backup)
 
 The most useful feedback concerns whether beginners can read the layered cues, which metric captures the intended skill, and whether the solo scope is credible. If asked about novelty, acknowledge existing spray simulation, replay and 3D painting. The contribution is the proposed learning sequence and how its recordings support a later creative interaction. If asked about the pilot, prioritize a stable lesson and verified logging before recruitment. For future implementation, resample the ink centerline at 100 equal arc-length positions in wall coordinates and compute mean nearest-target distance. Log tool distance at a fixed interval while the trigger is active. Report each metric separately, including pre/post change and individual patterns, with no underpowered superiority claim.
+
+## 15. Three tools, different control (Backup)
+
+The studio keeps the tool station beside the learning wall and a free creation wall. Spray is the main tool: the trigger controls paint, and distance changes its footprint. The marker uses tip contact and orientation for a crisp mark. The roller uses a broad contact region for fills. All three share the same paint infrastructure. These are approximations: Quest controllers do not reproduce real tip pressure, friction, aerosol resistance or the weight of each tool.
+
+[Montana Cans product photography](https://www.montana-cans.com/Montana-BLACK-400ml/272073). [MTN / Spray Planet product photography](https://www.sprayplanet.com/products/mtn-street-paint-markers-15mm-orange). [Purdy product photography](https://www.purdy.co.uk/products/rollers/mini-roller-system/)
 
