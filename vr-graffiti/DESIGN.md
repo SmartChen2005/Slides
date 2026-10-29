@@ -1,4 +1,4 @@
-# VR Graffiti design direction
+# TAG! design direction
 
 ## Learning experience sequence
 
@@ -53,7 +53,8 @@ size-specific tracking, and a strong size/weight/leading hierarchy. No Apple
 fonts, logos or other proprietary brand assets are bundled.
 
 Most slides use one centered headline and a dominant visual. The opening keeps
-only the title and an original Canvas spray animation in cover.js. The viewer
+the TAG! title, the subtitle Learn the Art of Graffiti in VR, and an original
+Canvas spray animation in cover.js. The viewer
 is the wall: the can’s front-facing nozzle sprays toward the camera while the
 can sweeps laterally and changes distance. Expanding airborne particles travel
 toward the screen; deposited pigment stays fixed in front of the moving tool.

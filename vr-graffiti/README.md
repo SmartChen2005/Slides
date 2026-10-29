@@ -1,4 +1,6 @@
-# VR Graffiti
+# TAG!
+
+Learn the Art of Graffiti in VR.
 
 English XR concept presentation with 12 main slides (6:55 in presenter metadata).
 The presentation closes with Every Artwork Remembers after Technical Implementation Plan. There are no backup pages.

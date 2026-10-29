@@ -35,7 +35,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   const deck = await page.evaluate(() => window.GRAFFITI_DECK.map(({ title, seconds, notes, refs, backup }) => ({ title, seconds, notes, refs, backup })));
   const refs = await page.evaluate(() => sources);
   let time = 0;
-  let manuscript = "# VR Graffiti: presenter script\n\n12 slides, 6:55 planned talk. The presentation closes with Every Artwork Remembers after the technical plan.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
+  let manuscript = "# TAG!: presenter script\n\n12 slides, 6:55 planned talk. The presentation closes with Every Artwork Remembers after the technical plan.\n\nOpen index.html or the self-contained HTML in a browser. Arrow keys navigate. R replays, Space pauses and F opens fullscreen. End opens the last main slide.\n\n";
   deck.forEach((slide, index) => {
     manuscript += `## ${index + 1}. ${slide.title}${slide.backup ? " (Backup)" : ""}\n\n${slide.notes.join("\n\n")}\n\n`;
     if (slide.refs.length) manuscript += slide.refs.map(key => `[${refs[key][1]}](${refs[key][0]})`).join(". ") + "\n\n";
@@ -46,7 +46,7 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
     await page.evaluate(index => { deckAPI.showSlide(index); deckAPI.seek(GraffitiMotion.staticTimes[index]); deckAPI.settleTransitions(); }, slide);
     await page.locator(".stage").screenshot({ path: path.join(root, "thumbnails", `0${i + 1}.webp`), type: "webp", quality: 85, animations: "disabled" });
   }
-  await page.evaluate(() => { deckAPI.preparePrint(); document.title = 'VR Graffiti'; });
+  await page.evaluate(() => { deckAPI.preparePrint(); document.title = 'TAG!'; });
   await page.emulateMedia({ media: "print" });
   // Preserve the browser-rendered canvas pixels in PDF, including clipped 3D materials.
   await page.evaluate(async () => {

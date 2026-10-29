@@ -67,7 +67,7 @@ function showSlide(index,{updateHash=true,moveFocus=false}={}){
   nextButton.setAttribute('aria-label','Next slide');
   document.getElementById('slide-counter').textContent=`${String(index+1).padStart(2,'0')} / ${mainCount}`;
   document.getElementById('slide-time').textContent=formatTime(deck[index].seconds);
-  document.title=deck[index].name+' | VR Graffiti';
+  document.title=index===0?'TAG! | Learn the Art of Graffiti in VR':deck[index].name+' | TAG!';
   document.getElementById('announcement').textContent=`Slide ${index+1} of ${mainCount}. ${deck[index].title}`;
   document.querySelector('.skip-link').href=`#slide-${index+1}`;
   if(updateHash&&location.hash!==`#slide-${index+1}`)history.pushState(null,'',`#slide-${index+1}`);
