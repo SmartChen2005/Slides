@@ -81,3 +81,9 @@ The alphabet chart is the supplied original. Click a grid cell, or use arrow key
 while a letter is focused, to select and enlarge its detail. Reduced motion
 starts on explanatory stills. learning.js owns the new layouts and illustrations.
 The revised Technical Implementation Plan follows at slide 11.
+
+Practicing Stroke Techniques compares five spray conditions in real time:
+Ideal, Too close, Too far, Too slow and Wrong angle. Can distance and tilt,
+progressive paint deposition, growing drips, faint overspray and a lingering
+slow pass illustrate why a consistent line requires physical control.
+The final comparison is the reduced-motion and print frame.

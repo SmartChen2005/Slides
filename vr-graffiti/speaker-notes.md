@@ -40,7 +40,7 @@ Spray can, marker and roller behave differently. The spray lesson develops dista
 
 ## 8. Practicing Stroke Techniques
 
-The ghost hand first demonstrates the ideal movement. The learner follows the visible trajectory while controlling spray distance and speed. Full guidance includes both the expert hand and the path. Partial guidance reduces the assistance. Independent practice removes it. Straight lines and curves, outlines and fills, and stroke width and consistency provide the basic practice vocabulary.
+Consistent lines require precise control of distance, speed, and angle. The five moving spray cans compare the same stroke under different physical conditions. Ideal control creates a smooth, consistent line. Holding the can too close deposits excess paint and causes dripping. Holding it too far away leaves a faint mark with fuzzy edges. Moving too slowly creates local paint buildup. Tilting the can produces uneven spray distribution. The slow example visibly lingers while the paint grows denser. These are explanatory concept illustrations rather than a calibrated spray simulation.
 
 ## 9. Learning Lettering Styles
 

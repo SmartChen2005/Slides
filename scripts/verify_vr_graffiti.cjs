@@ -71,6 +71,16 @@ fs.mkdirSync(out, { recursive: true });
     await page.screenshot({path:path.join(out,`learning-guidance-${time}.png`)});
   }
   assert.equal(new Set(guidanceFrames).size,3);
+  assert.equal(await page.locator('#slide-8>.lead').textContent(),'Consistent lines require precise control of distance, speed, and angle.');
+  await page.evaluate(()=>deckAPI.seek(18));
+  const sprayContrast=await page.locator('#learn-guidance').evaluate(node=>{
+    const ctx=node.getContext('2d');const light=(x,y)=>{const p=ctx.getImageData(x*2,y*2,1,1).data;return (p[0]+p[1]+p[2])/3;};
+    return {ideal:light(382,38),close:light(382,100),far:light(382,162),slow:light(382,224),angleTop:light(382,269),angleBottom:light(382,297)};
+  });
+  assert.ok(sprayContrast.close<sprayContrast.ideal-20,'Close spray should be visibly darker');
+  assert.ok(sprayContrast.far>sprayContrast.ideal+40,'Distant spray should be visibly faint');
+  assert.ok(sprayContrast.slow<sprayContrast.ideal-15,'Slow movement should build up paint');
+  assert.ok(sprayContrast.angleBottom<sprayContrast.angleTop-20,'Oblique spray should have uneven coverage');
   await page.evaluate(() => { deckAPI.showSlide(8); deckAPI.settleTransitions(); });
   assert.equal(await page.locator('.alphabet-reference>img').evaluate(node=>node.complete&&node.naturalWidth===540),true);
   await page.locator('[data-letter="12"]').click();

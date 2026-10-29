@@ -11,7 +11,7 @@ window.GraffitiLearning = (() => {
   const letterButtons=()=>Array.from({length:26},(_,i)=>{const col=i%4,row=Math.floor(i/4);return `<button type="button" class="alphabet-letter" data-letter="${i}" aria-label="Select letter ${String.fromCharCode(65+i)}" aria-pressed="${i===0}" style="left:${(15+128*col)/540*100}%;top:${(60+86*row)/692*100}%;width:${128/540*100}%;height:${86/692*100}%"><span class="sr-only">${String.fromCharCode(65+i)}</span></button>`;}).join('');
   const layouts=[
     {title:'Learning the Tools',theme:'learning-slide learning-tools',duration:8,loop:true,html:heading('Learning the Tools','Different tools, different techniques.')+`<div class="learning-tool-grid">${[['Spray Can','Practice spray distance, movement speed, and coverage.','spray'],['Marker','Practice controlled lines, sketching, and precise outlines.','marker'],['Roller','Practice broad strokes, large fills, and surface coverage.','roller']].map(([name,copy,id])=>`<figure>${canvas('learn-'+id,344,264,`${name} moves across a surface and leaves its characteristic paint trail`)}<figcaption><h3>${name}</h3><p>${copy}</p></figcaption></figure>`).join('')}</div>`+progress(0)},
-    {title:'Practicing Stroke Techniques',theme:'learning-slide learning-strokes',duration:18,html:heading('Practicing Stroke Techniques','Building control through guided movement.')+`<figure class="stroke-training">${canvas('learn-guidance',740,350,'A translucent ghost hand demonstrates a curved stroke, the learner follows, and assistance fades over three practice levels')}<figcaption><span class="ghost-key">Ghost hand</span><span class="learner-key">Your stroke</span></figcaption></figure><div class="stroke-objectives"><h3>Build control</h3><p>Lines &amp; curves</p><p>Outlines &amp; fills</p><p>Width &amp; consistency</p><p>Distance &amp; speed</p></div><div class="guidance-levels">${['Full Guidance','Partial Guidance','Independent Practice'].map((label,i)=>`<span data-guidance="${i}">${label}</span>`).join('<b aria-hidden="true">→</b>')}</div>`+progress(1)},
+    {title:'Practicing Stroke Techniques',theme:'learning-slide learning-strokes',duration:18,html:heading('Practicing Stroke Techniques','Consistent lines require precise control of distance, speed, and angle.')+`<figure class="stroke-training">${canvas('learn-guidance',740,350,'Five animated spray comparisons: Ideal makes a smooth consistent line. Too close leaves excess paint and drips. Too far produces faint fuzzy edges. Too slow creates paint buildup. Wrong angle makes spray distribution uneven.')}<figcaption>Same stroke. Different physical control.</figcaption></figure><div class="stroke-objectives"><h3>Precise control</h3><div><h4>Distance</h4><p>Coverage &amp; edge quality</p></div><div><h4>Speed</h4><p>Paint buildup</p></div><div><h4>Angle</h4><p>Even distribution</p></div></div>`+progress(1)},
     {title:'Learning Lettering Styles',theme:'learning-slide learning-lettering',duration:0,html:heading('Learning Lettering Styles','One letter at a time.')+`<figure class="alphabet-reference"><img src="${alphabet}" width="540" height="692" alt="Original supplied graffiti alphabet chart, showing A through Z and a sample tag">${letterButtons()}</figure><div class="letter-detail"><p class="letter-prompt">Select a letter to explore</p><h3 id="selected-letter" aria-live="polite">Letter A</h3><div class="letter-enlargement"><svg viewBox="0 20 166 142" role="img" aria-label="Enlarged detail of letter A from the original alphabet"><image href="${alphabet}" width="540" height="692"/></svg></div><p class="letter-sequence">Observe <span>→</span> Trace <span>→</span> Reproduce</p><p class="letter-objectives">Structure &amp; proportions<br>Stroke order &amp; direction<br>Individual letters, then words and tags</p></div>`+progress(2)},
     {title:'Creative Expression',theme:'learning-slide learning-create',duration:12,html:heading('Creative Expression','From imitation to personal style.')+`<figure class="creation-art">${canvas('learn-create',1100,360,'An original FLOW tag transforms from a simple outline into a colorful composition with fills, contours and expressive details')}</figure><p class="creation-note">Combine tools, strokes and letters. Create your own tag.</p>`+progress(3)}
   ];
@@ -19,7 +19,6 @@ window.GraffitiLearning = (() => {
   function surface(id){if(!surfaces.has(id)){const node=document.getElementById(id);surfaces.set(id,{ctx:node.getContext('2d'),w:node.width/2,h:node.height/2});}const s=surfaces.get(id);s.ctx.setTransform(2,0,0,2,0,0);s.ctx.clearRect(0,0,s.w,s.h);s.ctx.lineCap='round';s.ctx.lineJoin='round';return s;}
   function line(ctx,points,color,width){if(points.length<2)return;ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);points.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
   function can(ctx,x,y,angle=0){ctx.save();ctx.translate(x,y);ctx.rotate(angle);const g=ctx.createLinearGradient(-13,0,13,0);g.addColorStop(0,'#b8bec8');g.addColorStop(.45,'#f5f5f7');g.addColorStop(1,'#929ba9');ctx.fillStyle=g;ctx.beginPath();ctx.roundRect(-14,12,28,63,7);ctx.fill();ctx.fillStyle='#1d1d1f';ctx.fillRect(-9,5,18,9);ctx.fillRect(-3,0,12,7);ctx.fillStyle='#0071e3';ctx.fillRect(-11,30,22,25);ctx.restore();}
-  function hand(ctx,x,y,opacity){ctx.save();ctx.translate(x,y);ctx.globalAlpha*=opacity;ctx.strokeStyle='#2997ff';ctx.fillStyle='#d9ecff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-26,68);ctx.lineTo(-34,39);ctx.quadraticCurveTo(-39,20,-30,16);ctx.quadraticCurveTo(-24,12,-18,29);ctx.lineTo(-16,4);ctx.quadraticCurveTo(-15,-6,-8,-3);ctx.lineTo(-4,20);ctx.lineTo(5,-1);ctx.quadraticCurveTo(11,-8,15,0);ctx.lineTo(14,24);ctx.lineTo(25,9);ctx.quadraticCurveTo(34,4,33,14);ctx.lineTo(26,47);ctx.quadraticCurveTo(23,61,12,69);ctx.closePath();ctx.fill();ctx.stroke();can(ctx,1,-12,-.13);ctx.restore();}
   function tools(t){
     const p=ease(Math.min(t,5.4)/5.4),fade=ease(t/.45)*(1-ease((t-7.1)/.9));
     for(const id of ['spray','marker','roller']){
@@ -34,17 +33,56 @@ window.GraffitiLearning = (() => {
       }ctx.globalAlpha=1;
     }
   }
-  function strokePoint(u){return{x:85+545*u,y:163+68*Math.sin(u*Math.PI*2)-25*u};}
   function guidance(t){
-    const {ctx}=surface('learn-guidance'),phase=Math.min(2,Math.floor(t/6)),local=t-phase*6;
-    const progress=ease((local-.4)/4.7),learner=ease((local-1.45)/4.2),support=1-.64*ease((t-4.7)/2.5)-.36*ease((t-10.7)/2.5);
+    const {ctx}=surface('learn-guidance');
     ctx.fillStyle='#f5f5f7';ctx.beginPath();ctx.roundRect(0,0,740,350,24);ctx.fill();
-    const points=Array.from({length:181},(_,i)=>strokePoint(i/180));
-    if(support){ctx.globalAlpha=support;ctx.setLineDash([5,9]);line(ctx,points,'#77aee8',3);ctx.setLineDash([]);line(ctx,points.slice(0,Math.floor(progress*180)+1),'#aad2fa',18);ctx.globalAlpha=1;const ghost=strokePoint(progress);hand(ctx,ghost.x,ghost.y-8,support*.68);}
-    const actual=points.slice(0,Math.floor(learner*180)+1).map((p,i)=>({x:p.x,y:p.y+4*Math.sin(i*.13)*(phase===2?.65:1)}));line(ctx,actual,'#0071e3',15);
-    const q=strokePoint(learner);can(ctx,q.x+12,q.y+16,-.2);
-    document.querySelectorAll('[data-guidance]').forEach((node,i)=>node.classList.toggle('is-current',i===phase));
+    const labels=['Ideal','Too close','Too far','Too slow','Wrong angle'];
+    const normal=clamp((t-.5)/10.5),slowTime=clamp((t-.5)/15.8);
+    const slow=slowTime<.28?slowTime/.28*.45:slowTime<.66?.45+.06*(slowTime-.28)/.38:.51+.49*(slowTime-.66)/.34;
+    const noise=n=>{const v=Math.sin(n*12.9898+78.233)*43758.5453;return v-Math.floor(v);};
+    for(let row=0;row<5;row++){
+      const y=38+62*row,p=row===3?slow:normal;
+      ctx.font=`${row===0?600:500} 17px -apple-system, Segoe UI, sans-serif`;ctx.fillStyle=row===0?'#0071e3':'#1d1d1f';ctx.textAlign='left';ctx.fillText(labels[row],20,y+6);
+      if(row<4){ctx.strokeStyle='#e5e5ea';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(20,y+38);ctx.lineTo(718,y+38);ctx.stroke();}
+      const until=Math.floor(230*p);
+      for(let i=0;i<=until&&p>0;i++){
+        const u=i/230,x=165+450*u;
+        if(row===0){
+          // A narrow, steady footprint gives a consistent opaque line with a soft rim.
+          const g=ctx.createRadialGradient(x,y,0,x,y,8);g.addColorStop(0,'rgba(0,113,227,.42)');g.addColorStop(.72,'rgba(0,113,227,.30)');g.addColorStop(1,'rgba(0,113,227,0)');ctx.fillStyle=g;ctx.fillRect(x-8,y-8,16,16);
+        }else if(row===1){
+          const g=ctx.createRadialGradient(x,y,0,x,y,13);g.addColorStop(0,'rgba(0,57,133,.75)');g.addColorStop(.65,'rgba(0,72,163,.53)');g.addColorStop(1,'rgba(0,72,163,0)');ctx.fillStyle=g;ctx.fillRect(x-13,y-13,26,26);
+        }else if(row===2){
+          const g=ctx.createRadialGradient(x,y,0,x,y,23);g.addColorStop(0,'rgba(0,113,227,.045)');g.addColorStop(.4,'rgba(0,113,227,.025)');g.addColorStop(1,'rgba(0,113,227,0)');ctx.fillStyle=g;ctx.fillRect(x-23,y-23,46,46);
+          for(let k=0;k<5;k++){const a=noise(i*11+k)*Math.PI*2,r=Math.sqrt(noise(i*17+k+20))*24;ctx.fillStyle='rgba(0,113,227,.18)';ctx.fillRect(x+Math.cos(a)*r,y+Math.sin(a)*r,1,1);}
+        }else if(row===3){
+          const linger=Math.exp(-Math.pow((u-.48)/.09,2)),r=8+11*linger;
+          const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(0,57,133,${.38+.4*linger})`);g.addColorStop(.7,`rgba(0,82,180,${.26+.35*linger})`);g.addColorStop(1,'rgba(0,82,180,0)');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);
+        }else{
+          // An oblique footprint has a faint upper edge and a dense lower lip.
+          const width=12+10*u;
+          ctx.save();ctx.translate(x,y);ctx.transform(1,.12,.6,1,0,0);ctx.scale(1,1.6);
+          const g=ctx.createRadialGradient(0,3,0,0,0,width);g.addColorStop(0,'rgba(0,72,163,.34)');g.addColorStop(.45,'rgba(0,113,227,.17)');g.addColorStop(1,'rgba(0,113,227,0)');ctx.fillStyle=g;ctx.fillRect(-width,-width,2*width,2*width);ctx.restore();
+          ctx.fillStyle='rgba(0,57,133,.35)';ctx.fillRect(x-1,y+6+5*u,3,4+4*u);
+        }
+      }
+      if(row===1){
+        for(const [u,length] of [[.12,16],[.28,26],[.42,13],[.61,22],[.78,17],[.92,25]]){
+          if(p<=u)continue;const x=165+450*u,age=t-(.5+10.5*u),drop=length*ease(age/2.2);
+          ctx.strokeStyle='#004b9b';ctx.lineWidth=3.5;ctx.beginPath();ctx.moveTo(x,y+5);ctx.lineTo(x,y+5+drop);ctx.stroke();ctx.fillStyle='#004b9b';ctx.beginPath();ctx.ellipse(x,y+5+drop,2.5,3.8,0,0,Math.PI*2);ctx.fill();
+        }
+      }
+      if(row===3&&p>.42){
+        const buildup=ease((t-4.9)/5.8);ctx.fillStyle=`rgba(0,46,112,${buildup*.62})`;ctx.beginPath();ctx.ellipse(382,y,10+12*buildup,6+9*buildup,0,0,Math.PI*2);ctx.fill();
+      }
+      const front=165+450*p,far=row===2,distance=far?22:row===1?2:9;
+      const nozzle={x:front+(row===4?22:5),y:y+distance};
+      const visible=ease(t/.35);ctx.save();ctx.globalAlpha=visible;
+      if(p<1){ctx.strokeStyle='rgba(0,113,227,.22)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(nozzle.x,nozzle.y);ctx.lineTo(front-5,y);ctx.moveTo(nozzle.x,nozzle.y);ctx.lineTo(front+5,y);ctx.stroke();}
+      ctx.translate(nozzle.x,nozzle.y);ctx.scale(far?.42:.54,far?.42:.54);can(ctx,0,0,row===4?-.65:-.12);ctx.restore();
+    }
   }
+
   const letterPaths=[
     'M0 28L170 0L153 62L75 74L65 112L139 104L127 159L52 167L30 250L-25 238Z',
     'M212 13L271 8L237 190L344 173L333 236L166 257Z',

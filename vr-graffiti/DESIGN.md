@@ -8,8 +8,10 @@ deterministic Canvas illustrations. The shared progress row stays at the same
 position and marks the current stage with `aria-current="step"` and blue type.
 Tools alone loops, as requested, with a fading seam. Pause, Replay, scrubbing,
 background-tab suspension and reduced-motion static frames use the existing
-presentation controller. The stroke lesson fades the ghost hand and guide path
-over three practice levels. The alphabet image remains intact, with selected
+presentation controller. The stroke lesson compares five moving spray cans:
+Ideal, Too close, Too far, Too slow and Wrong angle. Growing drips, diffuse
+overspray, a slow pass with local buildup and an oblique footprint distinguish
+the cases. All results remain visible at the end. The alphabet image remains intact, with selected
 grid cells enlarged from the original. No artist stroke order is inferred.
 Create develops an original FLOW composition from outline to colored artwork.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
