@@ -27,12 +27,12 @@ and Clear wall support free experimentation. Changing material preserves marks.
 Add stroke provides a keyboard-accessible alternative to drawing by dragging.
 All paint is clipped to the wall and uses the existing paused/replay timeline.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
-The original three-tools backup is now slide 19. The main deck has 16 slides,
-with 10:05 allocated in presenter metadata, followed by three backup slides.
+The original three-tools backup is now slide 12. The main deck has 11 slides,
+with 6:10 allocated in presenter metadata, followed by one tools reference backup.
 
 Slide-bottom reference and citation lines are omitted from the rendered deck,
 including print and offline exports. Source metadata, presenter notes and the
-dedicated References backup retain provenance. Slide 5's two image viewports
+retained source metadata retain provenance. Slide 5's two image viewports
 are 226px tall to show more of the supplied images, with tighter text spacing
 and a lower opportunity statement to preserve clear separation.
 
@@ -40,8 +40,8 @@ This deck uses the apple-design skill as its design source. It does not inherit
 Ensemble Mutual's Swiss type, red/green accent system, table rules or motion.
 Only the repository's delivery route and 1280 x 720 slide dimensions persist.
 
-The audience is an English-speaking XR course. The main talk now has 16 slides
-and 10:05. References, discussion and tools are backups. Notes retain the research,
+The audience is an English-speaking XR course. The main talk now has 11 slides
+and 6:10. A tools reference remains as the only backup. Notes retain the research,
 implementation and scope details that do not belong in the main visual field.
 
 ## Visual system
@@ -111,20 +111,12 @@ shows Observe, Trace, Reproduce, Remix above three educational theory columns.
 Both pages are static. Slide 3's photographs use CSS grayscale for monochrome
 display in the browser, PDF and offline export; original assets stay intact.
 
-The former slide 5 introduced the proposed learning environment: a concrete virtual studio
-with a practice wall, nearby tools and a creative playground. The real interior
-photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
-It references material and light; it does not depict the proposed VR layout.
-Original source metadata is in `assets/architecture/source-metadata.json`.
-
-Slide 9 is Free Space to Practice: players create walls of different sizes,
-move and rotate them, and build a personal layout. A projected 3D animation
-shows surface creation, arrangement and a gesture leaving a wall for open space.
-Editable walls belong to the core playground; spatial strokes are a creative
-extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
-The former evaluation-pilot slide has been removed.
-
-The original three-tools slide remains intact as backup slide 19. Its 13-second
+The original three-tools slide remains intact as backup slide 12. Its 13-second
 animation and product photo assets are retained; it adds no planned main-talk time.
 The hidden SVG used to sample the S path has explicit zero-size clipped inline
 styles so global SVG sizing cannot expose its filled path below the presentation.
+
+The main presentation ends at Technical Implementation Plan (slide 11). The old
+Bubble S lesson, guidance layers, free-space study, temporal art, semester plan,
+References and Discussion pages have been removed from the deck and exports.
+The explicitly retained Three tools page is the only resource backup (slide 12).

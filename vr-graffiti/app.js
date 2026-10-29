@@ -71,8 +71,8 @@ function showSlide(index,{updateHash=true,moveFocus=false}={}){
   });
   currentSlide=index;if(previous<0||motionPreference.matches)settleTransitions();
   previousButton.disabled=index===0;nextButton.disabled=index===deck.length-1;
-  nextButton.textContent=index===mainCount-1?'References':index===mainCount?'Q&A':'Next';
-  nextButton.setAttribute('aria-label',index===mainCount-1?'Open reference backup slide':index===mainCount?'Open Q&A backup slide':'Next slide');
+  nextButton.textContent=deck[index+1]?.backup?'Tools':'Next';
+  nextButton.setAttribute('aria-label',deck[index+1]?.backup?'Open tools reference backup':'Next slide');
   document.getElementById('slide-counter').textContent=deck[index].backup?`Backup ${index-mainCount+1}/${deck.length-mainCount}`:`${String(index+1).padStart(2,'0')} / ${mainCount}`;
   document.getElementById('slide-time').textContent=deck[index].backup?'Backup':formatTime(deck[index].seconds);
   document.title=deck[index].name+' | VR Graffiti';

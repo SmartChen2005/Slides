@@ -1,94 +1,44 @@
 # VR Graffiti
 
-English concept presentation for the XR skill-learning assignment. The main
-talk has 16 slides paced to 10:05, followed by reference and Q&A backups.
+English XR concept presentation with 11 main slides (6:10 in presenter metadata).
+The main talk ends with Technical Implementation Plan. One Three tools resource
+backup remains at slide 12, including its original photographs and animations.
+The superseded Bubble S, guidance, free-space, temporal-art, semester-plan,
+References and Discussion pages are removed from the deck and exports.
 
-Open `index.html` in a browser or open this deck from the slide archive. No
-install or server is required. All diagrams and animations are local.
+Open index.html in a browser or from the slide archive. No installation or
+server is required. All illustration assets and animations are local.
 
-- Arrow keys / Page Up / Page Down: navigate
-- Home / End: first / final main slide
-- N: presenter notes
-- R: replay the current animation
-- Space: pause or play (when a control is not focused)
-- F: fullscreen
-- Drag the animation timeline to inspect an intermediate frame
+- Arrows / Page Up / Page Down: navigate.
+- Home / End: first / final main slide (Technical Implementation Plan).
+- N: presenter notes. F: fullscreen.
+- R: replay. Space: pause/play when a control is not focused.
+- The final main slide's Tools button opens the retained resource backup.
 
-Animations play once and hold their final state, except the looping Tools lesson. Replay restarts the motion,
-and Play continues from the paused frame.
+The deck uses the apple-design skill, native system typography, 1280 x 720
+slides, spring navigation, and deterministic Canvas illustrations. The Tools
+lesson loops; other animations play once and hold. Reduced motion starts paused
+on explanatory frames. Print exports all 12 pages as static slides.
 
-The final main slide's Next button opens References, then Discussion. Notes
-include the speaker script and source links. `speaker-notes.md` is the separate
-rehearsal manuscript. Reduced motion starts with paused explanatory frames.
-The browser's print command shows all 19 slides as static pages.
-
-The provided brief supplies the concept and proposed solo scope. Course
-expectations govern coverage. Research sources inform design choices and do
-not establish learning benefits or transfer for the proposed application.
-All moving diagrams are concept illustrations, not recordings of a prototype.
-The semester deadline and presentation date remain unspecified.
-
-The deck has its own Apple-inspired visual and motion system, using the
-apple-design skill. It retains the archive route and 1280 × 720 dimensions.
-The cover contains only the title and colored S animation. Slide 2 asks
-Why Learn Graffiti in VR? and explains the coordination of movement, distance
-and speed, and lettering with a large statement and three text columns.
-`styles.css` owns the visual tokens. `content.js` holds the speaker script,
-`slides.js` composes the slides, `motion.js` renders deterministic interaction
-visualizations, and `app.js` owns playback and interruptible spring navigation.
-Real tool photography is credited in `assets/sources.json` and the slides.
-
-Slide 3 pairs practice barriers with actual photographs of a wall, spray cans
-and a respirator, followed by the VR opportunity. Sources and licenses are
-linked on the slide and recorded in `assets/practice/sources.json`.
-Slide 4 contains one sentence about the need for structured, repeatable
-practice with feedback. The former tool comparison and lettering gallery
-have been replaced as part of the opening-page rebuild. `lettering.js` and
-its assets remain available for later curriculum pages.
-
-To regenerate local deliverables with the bundled Playwright package available
-on `NODE_PATH`, run `node scripts/export_vr_graffiti.cjs` from the repository
-root. It creates the submission PDF at `output/pdf/VR-Graffiti-Concept.pdf`
-and the offline single-file deck at `artifacts/vr-graffiti/VR-Graffiti.html`.
-Then run `python scripts/build_archive.py` to refresh the archive thumbnails.
-`scripts/verify_vr_graffiti.cjs` exercises the browser presentation controls.
-
-Slide 3's three photographs now display in monochrome. Slide 5 compares
-Kingspray Graffiti VR and Vermillion VR using the supplied images, then states
-the learning opportunity. Slide 6 presents Observe, Trace, Reproduce, Remix
-and the three theories: Observational Learning, Scaffolding, Constructionism.
-Image provenance is recorded in `assets/solutions/sources.json`.
-
-The former slide 5 introduced the proposed learning environment: a concrete virtual studio
-with a practice wall, nearby tools and a creative playground. The real interior
-photograph is Tadao Ando’s Langen Foundation, by Till Niermann (CC BY 3.0).
-It references material and light; it does not depict the proposed VR layout.
-Original source metadata is in `assets/architecture/source-metadata.json`.
-
-Slide 9 is Free Space to Practice: players create walls of different sizes,
-move and rotate them, and build a personal layout. A projected 3D animation
-shows surface creation, arrangement and a gesture leaving a wall for open space.
-Editable walls belong to the core playground; spatial strokes are a creative
-extension. Slide 10, Beyond Traditional 3D Art, develops time-based artwork.
-The former evaluation-pilot slide has been removed.
-
-The original Three tools. Different control. page is retained as the final backup
-(slide 19), including the original product photos, control labels and animations.
-
-Slides 7–10 introduce Tools, Strokes, Lettering and Create. All four share a
-fixed progression row. Tools loops; the other motion studies play once and hold.
-The alphabet chart is the supplied original. Click a grid cell, or use arrow keys
-while a letter is focused, to select and enlarge its detail. Reduced motion
-starts on explanatory stills. learning.js owns the new layouts and illustrations.
-The revised Technical Implementation Plan follows at slide 11.
-
-Practicing Stroke Techniques compares five spray conditions in real time:
-Ideal, Too close, Too far, Too slow and Wrong angle. Can distance and tilt,
-progressive paint deposition, growing drips, faint overspray and a lingering
-slow pass illustrate why a consistent line requires physical control.
-The final comparison is the reduced-motion and print frame.
+Slides 7-10 introduce Tools, Strokes, Lettering and Create, with a fixed shared
+progression row. Spray Can is the protected MVP; Marker and Roller are optional
+if time permits. Stroke practice compares ideal control with close, far, slow
+and oblique spray conditions. The supplied alphabet remains intact: select a
+letter by clicking or using arrow keys while a letter button is focused. Its
+Bombing Science link opens further lettering styles in a new tab.
 
 Creative Expression is a free-exploration sandbox. Select Concrete, Brick or
 Metal, choose a color, then drag on the wall or use Add stroke. Clear wall
-removes the example studies and personal marks. Material changes keep the
-paint. Interacting pauses the demonstration at its current frame.
+removes example studies and personal marks. Changing material preserves paint.
+Interacting pauses the demonstration at its current frame.
+
+styles.css owns visual tokens. content.js holds presenter notes. slides.js
+and learning.js compose the current slides. motion.js and learning.js render
+animations; app.js owns navigation and playback. Image provenance remains in
+local asset metadata. Prior unused assets remain available for reuse.
+Illustrations describe a concept, without implying prototype results.
+
+Run node scripts/verify_vr_graffiti.cjs with runtime Playwright on NODE_PATH
+for browser checks. node scripts/export_vr_graffiti.cjs regenerates the PDF,
+speaker-notes.md, thumbnails, and artifacts/vr-graffiti/VR-Graffiti.html.
+Then run python scripts/build_archive.py to refresh archive metadata.
