@@ -25,9 +25,10 @@ and oblique spray conditions. The supplied alphabet remains intact: select a
 letter by clicking or using arrow keys while a letter button is focused. Its
 Bombing Science link opens further lettering styles in a new tab.
 
-Creative Expression shows three static wall-material photographs: concrete,
-brick and a shipping container. It has no interactive sandbox. The photographs and their public-domain
-source records are stored in assets/materials/.
+Creative Expression shows concrete, brick and a single front-facing container
+wall with three tag samples from the linked Bombing Science article. Static SVG
+crops and CSS blending place the original artwork onto each wall. Surface
+licenses and tag provenance are recorded in assets/materials/ and assets/tags/.
 
 styles.css owns visual tokens. content.js holds presenter notes. slides.js
 and learning.js compose the current slides. motion.js and learning.js render

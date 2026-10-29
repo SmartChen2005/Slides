@@ -85,6 +85,8 @@ fs.mkdirSync(path.join(root, "thumbnails"), { recursive: true });
   await page.evaluate(()=>{deckAPI.showSlide(9);deckAPI.seek(12);deckAPI.settleTransitions();});
   const wallsOffline=await page.locator('.wall-materials img').evaluateAll(nodes=>nodes.map(node=>node.src.startsWith('data:image/')&&node.complete&&node.naturalWidth>0));
   if(wallsOffline.length!==3||wallsOffline.some(valid=>!valid))throw new Error('Offline wall photos failed');
+  const tagsOffline=await page.locator('.wall-tag image').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href').startsWith('data:image/')));
+  if(tagsOffline.length!==3||tagsOffline.some(valid=>!valid))throw new Error('Offline tag artwork failed');
   await page.screenshot({path:path.join(artifacts,'qa','standalone-material-photos.png')});
   console.log(JSON.stringify({ standalone, pdf: path.join(pdfRoot, "VR-Graffiti-Concept.pdf"), slides: deck.length, mainSeconds: time, mainScriptWords: deck.filter(s => !s.backup).map(s => s.notes.join(" ")).join(" ").split(/\s+/).length, standaloneErrors: errors }, null, 2));
   await browser.close();

@@ -48,7 +48,7 @@ The supplied alphabet chart stays intact. Learners select individual letters to 
 
 ## 10. Creative Expression
 
-Players get a space for free creative exploration. These reference photographs show concrete, brick and shipping-container surfaces. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Photo sources and public-domain licenses are recorded in assets/materials/sources.json.
+Players get a space for free creative exploration. These visual studies show concrete, brick and a front-facing shipping-container wall, with three source tag samples from the linked Bombing Science article composited onto the surfaces. Players can choose a surface, experiment with painting techniques, and develop work in their own style. Customize the wall. Experiment with materials. Create your own style. Wall texture licenses are recorded in assets/materials/sources.json; original tag artwork provenance and display crops are recorded separately in assets/tags/sources.json.
 
 ## 11. Technical Implementation Plan
 

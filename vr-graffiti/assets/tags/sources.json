@@ -1,0 +1,53 @@
+[
+  {
+    "file": "angular.jpg",
+    "article": "https://www.bombingscience.com/graffiti-letters-61-graffiti-artists-share-their-styles/",
+    "retrievedFrom": "https://dm.savee-cdn.com/asset-image/original/5dcbd8d3d735626fc8eee070.jpg",
+    "sourceRecord": "https://savee.com/i/SRhRUes/",
+    "provenance": "The public saved-image record explicitly identifies the requested Bombing Science article as its pageURL. Original full alphabet photograph preserved byte-for-byte.",
+    "rights": "Original artwork belongs to its respective artist; no CC0 claim is made for the tag artwork.",
+    "display": {
+      "crop": [
+        377,
+        896,
+        375,
+        143
+      ],
+      "method": "Nested SVG viewBox crops the existing tag area. CSS blend mode removes paper and blends the sample into the separate wall surface. These composites illustrate the concept; they are not photographs of artwork painted on those walls."
+    }
+  },
+  {
+    "file": "flowing.jpg",
+    "article": "https://www.bombingscience.com/graffiti-letters-61-graffiti-artists-share-their-styles/",
+    "retrievedFrom": "https://dm.savee-cdn.com/asset-image/original/672be5b23c9caf2cf0fc904d.jpg",
+    "sourceRecord": "https://savee.com/i/6rUOnwH/",
+    "provenance": "The public saved-image record explicitly identifies the requested Bombing Science article as its pageURL. Original full alphabet photograph preserved byte-for-byte.",
+    "rights": "Original artwork belongs to its respective artist; no CC0 claim is made for the tag artwork.",
+    "display": {
+      "crop": [
+        725,
+        1446,
+        550,
+        160
+      ],
+      "method": "Nested SVG viewBox crops the existing tag area. CSS blend mode removes paper and blends the sample into the separate wall surface. These composites illustrate the concept; they are not photographs of artwork painted on those walls."
+    }
+  },
+  {
+    "file": "calligraphic.jpg",
+    "article": "https://www.bombingscience.com/graffiti-letters-61-graffiti-artists-share-their-styles/",
+    "retrievedFrom": "https://dm.savee-cdn.com/asset-image/original/64c91792c368ff22c61daf84.jpg",
+    "sourceRecord": "https://savee.com/i/ZAaZBD_/",
+    "provenance": "The public saved-image record explicitly identifies the requested Bombing Science article as its pageURL. Original full alphabet photograph preserved byte-for-byte.",
+    "rights": "Original artwork belongs to its respective artist; no CC0 claim is made for the tag artwork.",
+    "display": {
+      "crop": [
+        430,
+        846,
+        375,
+        150
+      ],
+      "method": "Nested SVG viewBox crops the existing tag area. CSS blend mode removes paper and blends the sample into the separate wall surface. These composites illustrate the concept; they are not photographs of artwork painted on those walls."
+    }
+  }
+]

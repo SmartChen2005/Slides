@@ -20,8 +20,10 @@ the cases. All results remain visible at the end. The alphabet image remains int
 grid cells enlarged from the original. No artist stroke order is inferred.
 The lettering detail area includes a native external link to the presenter’s
 Bombing Science style resource, opening in a new tab beside the enlarged image.
-Creative Expression is a static three-photo gallery of concrete, brick and
-a shipping-container surface. It has no drawing controls, material selectors or animation.
+Creative Expression is a static gallery of concrete, brick and a single
+front-facing shipping-container wall. Three original tag samples from the linked
+Bombing Science article are cropped with native SVG and blended onto the walls.
+The container shows only one planar face; no corner, door face or surrounding scene. It has no drawing controls, material selectors or animation.
 The existing title, supporting sentence and 04 Create progression remain.
 Slide 11 is the revised technical plan using Quest 3S, Unity, C# and XRI.
 The deck has 11 slides, with 6:10 allocated in presenter metadata and no backups.

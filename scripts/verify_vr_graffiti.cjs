@@ -93,6 +93,7 @@ fs.mkdirSync(out, { recursive: true });
   assert.equal(await page.locator('#slide-10>.lead').textContent(),'A space for experimentation and personal style.');
   assert.equal(await page.locator('.creation-note').textContent(),'Customize the wall. Experiment with materials. Create your own style.');
   assert.deepEqual(await page.locator('.wall-materials img').evaluateAll(nodes=>nodes.map(node=>node.complete&&node.naturalWidth>0)),[true,true,true]);
+  assert.equal(await page.locator('.wall-tag image').count(),3);
   assert.equal(await page.locator('#slide-10 button,#slide-10 canvas,#slide-10 input').count(),0);
   assert.equal(await page.locator('#pause').isDisabled(),true);
   // Keyboard, history and control behavior are verified in the rendered deck.

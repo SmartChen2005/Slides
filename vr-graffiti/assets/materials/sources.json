@@ -22,14 +22,14 @@
     "display": "Original photographic texture asset. Cropped in CSS to fit the static material gallery."
   },
   {
-    "file": "container.jpg",
+    "file": "container-side.png",
     "material": "Container",
-    "title": "Teu.jpg",
-    "creator": "BezumniyChasovshik; rotated by Finavon",
-    "page": "https://commons.wikimedia.org/wiki/File:Teu.jpg",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Teu.jpg",
-    "license": "Public domain (PD-self)",
-    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Teu.jpg#Licensing",
-    "display": "Original photograph of a 20-foot ISO shipping container. Cropped in CSS to fit the static material gallery."
+    "title": "Free Urban Textures: Containers - metal_container_side4.png",
+    "creator": "Scouser",
+    "page": "https://opengameart.org/node/34422",
+    "image": "https://opengameart.org/sites/default/files/oga-textures/34389/metal_container_side4.png",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "display": "Single front-facing container-side texture. Cropped in CSS; tag is a separate source-artwork overlay."
   }
 ]
