@@ -74,7 +74,7 @@ One feedback message can combine praise, movement information, and correction.
 ### Task demands
 
 - **Movement:** Discrete (throw), continuous (swimming), serial (gymnastics routine).
-- **Perception:** Open (changing conditions) vs. closed (stable conditions).
+- **Environmental predictability:** Open skills require adjustment to changing conditions, such as returning a tennis serve. Closed skills occur in relatively stable conditions, such as a basketball free throw with a fixed shooting position and target.
 
 ### Learner experience
 
