@@ -35,6 +35,13 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
     assert.deepEqual(await page.locator('.stacked-bar').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('aria-label'))),['Elementary: 12; Middle: 7; High: 4','RCT: 5; Quasi: 2; Controlled: 6; Pre-post: 10','Simple: 14; Complex: 7; Both: 2']);
     assert.equal(await page.locator('.quality-dot').count(),23);assert.equal(await page.locator('.quality-dot.filled').count(),8);
     assert.equal(await page.locator('.evidence-grading tbody tr').count(),5);
+    assert.equal(await page.locator('#slide-10 .evaluation').count(),0);
+    assert.equal(await page.locator('#slide-11 .evaluation li').count(),6);
+    assert.deepEqual(await page.locator('#slide-11 .evaluation>div:last-child li').allTextContents(),[
+      '65.2% of studies were low quality after screening 139 studies using PRISMA',
+      'Studies span 11 countries, with an uneven distribution of studies and participants',
+      'Half of high-quality studies scored 0 on methodological quality tests'
+    ]);
     assert.deepEqual(await page.locator('.findings-table tbody tr').allTextContents(),[
       'Feedback10 (76.9%) for 13 studiesStrongIndividual feedback',
       'Visual vs verbal3 (100%) for 3 studiesLimited3D replay',

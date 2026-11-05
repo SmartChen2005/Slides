@@ -121,8 +121,8 @@ Use slides 7–9 from the original PowerPoint, *Feedback & Motor Skill Learning 
 
 # Slide 10
 
-Use slide 10 of the updated *Effects of Feedback on Students’ Motor Skill Learning in Physical Education.pptx*. Preserve the complete four-column results table (Comparison, Results, Evidence, XR design), all five comparisons, percentages, strengths, and limitations. XR designs are proposed applications, not tested findings. The supplied randomisation summary needs cautious interpretation because the paper's summaries and quality table differ.
+Use slide 10 of the updated *Effects of Feedback on Students’ Motor Skill Learning in Physical Education.pptx*. Preserve the complete four-column results table (Comparison, Results, Evidence, XR design), all five comparisons and percentages. Strengths and limitations now belong on slide 11. XR designs are proposed applications, not tested findings.
 
 # Slide 11
 
-Use the updated PPT's potential applications: learning technical sports (golf, tennis, other ball games) and manufacturing (operating a machine with motion tracking). End with Questions. These are proposed applications. No placeholder pages follow.
+Use the latest PPT's two-column Strengths / Limitations section above the potential applications. Preserve its updated limitations: 65.2% low quality after screening 139 studies, uneven distribution across 11 countries, and methodological-quality test weaknesses in half of high-quality studies. Application contexts: learning technical sports (golf, tennis, other ball games) and manufacturing (operating a machine with motion tracking). End with Questions. These are proposed applications. No placeholder pages follow.

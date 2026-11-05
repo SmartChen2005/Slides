@@ -78,14 +78,18 @@ Source: Zhou, Shao & Wang (2021), Sections 2.4–2.5 and Table 2
 
 XR 设计这一列是提出的应用方向，不是综述验证的结论。“Give rewards”不意味着表扬加信息等同于积分奖励。
 
-随机分配的汇总表述与原文质量表存在不一致；78.3% 是所供 PPT 的数字，保留但需要谨慎解读。专家示范的质量计数在原文不同位置也不完全一致，不额外推导。
+专家示范的质量计数在原文不同位置不完全一致，不额外推导。研究优点与局限在下一页讨论。
 
 Source: Zhou, Shao & Wang (2021) · XR designs are proposals, not tested findings
 
-## 11. Potential applications
+## 11. Critical evaluation & potential applications
 
-这里提出两个应用方向：技术性运动，如高尔夫、网球和其他球类；以及制造业中的机器操作与动作追踪。
+先评价研究本身。优点包括两名评审者独立筛选和评分、采用适合异质性研究的最佳证据综合，以及完整研究表带来的可追溯性。
 
-这些是潜在应用，不是本文检验过的干预。自动追踪、回放或奖励是否帮助持久学习，仍需验证。演示在此结束，进入提问。
+局限包括筛选后仍有 65.2% 的研究质量偏低，11 个国家的研究和参与者分布不均。最后一条沿用所供 PPT 的表述，应区分方法学项目得 0 分与 PEDro 总分为 0，不能混为一谈。
 
-Source: Proposed applications · Not interventions tested in this review
+下半部提出两个应用方向：技术性运动，如高尔夫、网球和其他球类；以及制造业中的机器操作与动作追踪。这些是潜在应用，不是本文检验过的干预。
+
+XR 的评价应关注保持和迁移，而不只是即时表现。演示在此结束，进入提问。
+
+Source: Zhou, Shao & Wang (2021); updated supplied PowerPoint, slide 11 · Applications are proposals
