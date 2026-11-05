@@ -27,7 +27,7 @@ To enable the sheet-to-presentation transition on a future deck, link `../deck-t
 ## Preview locally
 
 The **Motor Skill Feedback** presentation lives at `/feedback-learning/`: 11 English
-slides with preserved source-PPT icons and charts, a Chinese Markdown manuscript, and a PDF export.
+slides with preserved source-PPT charts and decorative emoji, a Chinese Markdown manuscript, and a PDF export.
 Slides 1–6 follow `feedback-learning/slide-content.md`; slides 7–9 preserve the
 first supplied PPT, and slides 10–11 use the updated PPT. `content.js` holds the
 current slide markup and notes. The archive date is November 2026 (`2026-11`).

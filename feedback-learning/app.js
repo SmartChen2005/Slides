@@ -3,6 +3,16 @@
   const deck=window.FEEDBACK_DECK, root=document.getElementById('slides');
   root.innerHTML=deck.map((s,i)=>`<section class="slide ${s.theme}" id="slide-${i+1}" tabindex="-1" aria-label="${s.title}" ${i?'hidden inert aria-hidden="true"':''}>${s.html}</section>`).join('');
   const slides=[...root.children],stage=document.querySelector('.stage');
+  // Declare chart entrance groups once; the same timeline handles entry, seeking and print.
+  const entranceGroups=[
+    {slide:6,selector:'.selection-chart>div',kind:'selection',step:.13},
+    {slide:7,selector:'.chart-row',kind:'profile',step:.16},
+    {slide:8,selector:'.quality-dot',kind:'dot',step:.028},
+    {slide:8,selector:'.evidence-grading tbody tr',kind:'evidence',step:.1}
+  ];
+  entranceGroups.forEach(({slide,selector,kind,step})=>slides[slide].querySelectorAll(selector).forEach((node,i)=>{
+    node.dataset.enter=kind;node.dataset.delay=String(i*step);
+  }));
   const prev=document.getElementById('previous'),next=document.getElementById('next');
   const scrubber=document.getElementById('animation-time'),transport=document.querySelector('.transport'),counter=document.getElementById('slide-counter');
   const preference=matchMedia('(prefers-reduced-motion: reduce)'),status=document.getElementById('announcement');
@@ -40,6 +50,17 @@
       else if(kind==='tennis'){y=-6*pulse;rotation=10*pulse;}
       else if(kind==='gear'){rotation=20*pulse;}
       node.style.transform=`translate(${x}px,${y}px) rotate(${rotation}deg) scale(${scale})`;
+    });
+    slides[index].querySelectorAll('[data-enter]').forEach(node=>{
+      const progress=preference.matches?1:Math.min(1,Math.max(0,(t-Number(node.dataset.delay))/.55));
+      const p=1-(1-progress)**3,kind=node.dataset.enter;
+      if(kind==='dot'){
+        node.style.opacity=String(.3+.7*p);node.style.transform=`scale(${.72+.28*p})`;
+      }else{
+        // Move the intact diagrams, preserving their proportions and actual counts.
+        node.style.opacity=String(.75+.25*p);
+        node.style.transform=kind==='selection'?`translateX(${14*(1-p)}px)`:`translateY(${9*(1-p)}px)`;
+      }
     });
   }
   function updateTransport(){

@@ -30,7 +30,8 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
     }
     assert.equal(await page.locator('#next').isDisabled(),true);
     // Exact source-chart structures, counts, labels and table rows survive the redesign.
-    assert.equal(await page.locator('#slide-2 .original-icon').count(),3);
+    assert.deepEqual(await page.locator('#slide-2 .emoji-art').allTextContents(),['🏃','💪','🎓']);
+    assert.equal(await page.locator('#slide-4 .teacher-art .emoji-art').count(),2);
     assert.deepEqual(await page.locator('.selection-chart b').allTextContents(),['16,894','8,452','1,542','139','23']);
     assert.deepEqual(await page.locator('.stacked-bar').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('aria-label'))),['Elementary: 12; Middle: 7; High: 4','RCT: 5; Quasi: 2; Controlled: 6; Pre-post: 10','Simple: 14; Complex: 7; Both: 2']);
     assert.equal(await page.locator('.quality-dot').count(),23);assert.equal(await page.locator('.quality-dot.filled').count(),8);
@@ -49,7 +50,19 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
       'Praise + information vs praise2 (66.7%) for 3 studiesModerateGive rewards',
       'Information vs praise or corrective4 (57.1%) for 7 studiesConflictingAdaptive feedback'
     ]);
-    const images=await page.locator('.slide img').evaluateAll(nodes=>nodes.map(n=>n.complete&&n.naturalWidth>0));assert.equal(images.length,4);assert.ok(images.every(Boolean));
+    const images=await page.locator('.slide img').evaluateAll(nodes=>nodes.map(n=>n.complete&&n.naturalWidth>0));assert.equal(images.length,1);assert.ok(images.every(Boolean));
+    // Entry animations reveal the original diagrams once, without changing their data.
+    for(const i of [6,7,8]){
+      await page.evaluate(i=>{deckAPI.showSlide(i);deckAPI.seek(0);deckAPI.settleTransitions();},i);
+      const targets=page.locator(`#slide-${i+1} [data-enter]`);
+      assert.ok(await targets.count()>0);
+      const start=await targets.last().getAttribute('style');
+      await page.evaluate(()=>deckAPI.seek(.4));
+      await page.locator('.stage').screenshot({path:path.join(out,`entrance-${i+1}.png`)});
+      await page.evaluate(()=>deckAPI.seek(2.4));
+      assert.notEqual(await targets.last().getAttribute('style'),start);
+      assert.ok(await targets.evaluateAll(ns=>ns.every(n=>{const m=new DOMMatrix(getComputedStyle(n).transform);return Number(n.style.opacity)===1&&m.isIdentity;})));
+    }
     // Motion is finite on slide entry and responds deterministically to seeking.
     await page.evaluate(()=>{deckAPI.showSlide(4);deckAPI.seek(0);deckAPI.settleTransitions();});
     const swimmer=page.locator('[data-motion="swim"]'),rest=await swimmer.getAttribute('style');
@@ -83,6 +96,10 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
     await page.emulateMedia({reducedMotion:'reduce',contrast:'more'});await page.goto(`${url}#slide-5`);
     assert.equal(await page.locator('#animation-time').isDisabled(),true);assert.equal(await page.evaluate(()=>deckAPI.getState().paused),true);
     await page.evaluate(()=>deckAPI.seek(1.2));assert.equal(await swimmer.evaluate(n=>new DOMMatrix(getComputedStyle(n).transform).m41),0);
+    for(const i of [6,7,8]){
+      await page.evaluate(i=>deckAPI.showSlide(i),i);
+      assert.ok(await page.locator(`#slide-${i+1} [data-enter]`).evaluateAll(ns=>ns.every(n=>Number(n.style.opacity)===1&&new DOMMatrix(getComputedStyle(n).transform).isIdentity)));
+    }
     assert.deepEqual(errors,[]);
     console.log('Feedback deck passed: 11 slide bounds; presenter credit; simplified controls; no slide footers; original icons/charts/tables; finite motion; keyboard/history/deep links; contents/focus; fullscreen failure; 320–1600px; touch; reduced motion/high contrast.');
   }finally{await browser.close();}

@@ -39,7 +39,7 @@ p{font-size:23px;line-height:1.45;letter-spacing:-.01em}
 .cover-meta{position:absolute;bottom:52px;left:68px;right:68px;border-top:1px solid var(--line);padding-top:21px;display:flex;align-items:flex-end;justify-content:space-between;gap:25px}
 .cover-meta p{font-size:16px;line-height:1.6}.cover-meta span{color:var(--muted);font-size:14px}.cover-meta .presenters{font-size:17px;white-space:nowrap}
 .motivation-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:54px;margin-top:37px}
-.motivation-columns img{width:43px;height:43px;object-fit:contain;display:block;margin-bottom:20px}
+.motivation-columns .emoji-art{position:relative;width:78px;height:70px;font-size:64px;line-height:1;margin-bottom:17px;text-align:left}.motivation-columns>div:nth-child(1) .emoji-art{rotate:-5deg}.motivation-columns>div:nth-child(2) .emoji-art{rotate:5deg}.motivation-columns>div:nth-child(3) .emoji-art{rotate:-4deg}
 .motivation-columns h3{font-size:27px;line-height:1.2}.motivation-columns p{font-size:23px;color:var(--muted);margin-top:18px;line-height:1.45}
 .questions-layout{display:grid;grid-template-columns:1fr 1fr;gap:75px;margin-top:58px}
 .mixed-findings>div+div{margin-top:35px}.mixed-findings h3{font-size:27px;margin-bottom:13px}.mixed-findings p{font-size:23px;color:var(--muted)}.mixed-findings .small{margin-top:31px;font-size:18px}
@@ -84,3 +84,8 @@ dialog::backdrop{background:#0005;backdrop-filter:blur(5px)}.dialog-head{display
 .evaluation-applications .application-emoji [data-motion="gear"]{font-size:84px;right:38px;top:-1px}
 .evaluation-applications .closing{position:absolute;right:68px;bottom:30px;margin:0}
 .evaluation-applications .closing h3{font-size:36px}
+
+/* Decorative teachers and finite chart entrances. Labels always keep their actual values. */
+.teacher-art{position:absolute;right:90px;top:80px;width:216px;height:102px;pointer-events:none}
+.teacher-art .emoji-art:first-child{left:0;top:0;font-size:80px;rotate:-6deg}
+.teacher-art .emoji-art:last-child{right:0;top:10px;font-size:84px;rotate:6deg}
