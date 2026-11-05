@@ -5,8 +5,7 @@
   const source = 'Zhou, Shao & Wang (2021) · IJERPH 18, 6281';
   const header = (section, number) => `<header><p class="eyebrow">${section}</p><span class="folio">${String(number).padStart(2,'0')}</span></header>`;
   const cite = text => `<p class="cite">${text || source}</p>`;
-  const emoji = (glyph, name, motion) => `<span class="example-emoji" role="img" aria-label="${name}" data-motion="${motion}">${glyph}</span>`;
-  const inlineEmoji = (glyph, name) => `<span class="inline-emoji" role="img" aria-label="${name}" data-motion="icon">${glyph}</span>`;
+  const emoji = (glyph, name, motion) => `<span class="emoji-art" aria-hidden="true" data-emoji="${name}" data-motion="${motion}">${glyph}</span>`;
   const chart = (name, items) => `<div class="chart-row"><h3>${name}</h3><div class="stacked-bar" role="img" aria-label="${items.map(([label,n])=>`${label}: ${n}`).join('; ')}">${items.map(([label,n],i)=>`<span class="segment tone-${i}" style="flex:${n}">${label} <b>${n}</b></span>`).join('')}</div></div>`;
   window.FEEDBACK_DECK = [
     {
@@ -21,7 +20,7 @@
     },
     {
       title:'Does feedback help?',theme:'questions',duration:2.4,
-      html:`${header('Problem & motivation',3)}<h2>Does feedback help?</h2><div class="questions-layout"><div class="mixed-findings"><div><h3>Mixed findings</h3><p>Some studies found improved motor skills.<br>Others found no significant difference.</p></div><div><h3>Different feedback designs</h3><p>${inlineEmoji('💬','Spoken guidance')} Spoken guidance, ${inlineEmoji('🎥','Video replay')} video replay,<br>praise, and corrective comments offer different kinds of information.</p></div><p class="small">The review brings these studies together to assess the strength of the evidence.</p></div><div class="research-questions"><p class="label">Research questions</p><div><span class="question-number">1</span><p>Does feedback improve motor skill learning in school PE compared with no feedback?</p></div><div><span class="question-number">2</span><p>How do feedback format and content affect learning?</p></div></div></div>${cite()}`,
+      html:`${header('Problem & motivation',3)}<h2>Does feedback help?</h2><div class="feedback-art" aria-hidden="true">${emoji('💬','Spoken guidance','icon')}${emoji('🎥','Video replay','icon')}</div><div class="questions-layout"><div class="mixed-findings"><div><h3>Mixed findings</h3><p>Some studies found improved motor skills.<br>Others found no significant difference.</p></div><div><h3>Different feedback designs</h3><p>Spoken guidance, video replay,<br>praise, and corrective comments offer different kinds of information.</p></div><p class="small">The review brings these studies together to assess the strength of the evidence.</p></div><div class="research-questions"><p class="label">Research questions</p><div><span class="question-number">1</span><p>Does feedback improve motor skill learning in school PE compared with no feedback?</p></div><div><span class="question-number">2</span><p>How do feedback format and content affect learning?</p></div></div></div>${cite()}`,
       notes:['已有研究结果不一致，不能只凭直觉认为反馈一定有效。反馈覆盖表扬、动作指导、视频等不同干预。','作者分别问：反馈总体是否有用，以及形式和内容会不会改变效果。没有显著差异不等于证明没有效果，也可能与样本量或设计有关。']
     },
     {

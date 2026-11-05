@@ -10,7 +10,7 @@ Apple Design informs native system typography, purposeful whitespace, quiet cont
 
 ## Composition
 
-Use TAG!'s 1280×720 presentation canvas, scaled to the viewport, flat white pages and bottom floating material control bar. Its left group owns Archive / Prev / contents counter / Next; center owns animation time; right owns Chinese notes / PDF / Replay / Pause / fullscreen. On phones the same canvas remains intact for diagrams; the toolbar becomes two rows with all actions available. Notes offer a readable Chinese explanation at native text size. Type roles: 61px cover, 42–58px headings, 20–28px body, 18px dense results, 12–15px utilities. Signature: inline sport emoji make concrete movement examples recognizable, with one short physical gesture. No repeated card surfaces.
+Use TAG!'s 1280×720 presentation canvas, scaled to the viewport, flat white pages and bottom floating material control bar. Its left group owns Archive / Prev / contents counter / Next; center owns animation time; right owns Chinese notes / PDF / Replay / Pause / fullscreen. On phones the same canvas remains intact for diagrams; the toolbar becomes two rows with all actions available. Notes offer a readable Chinese explanation at native text size. Type roles: 61px cover, 42–58px headings, 20–28px body, 18px dense results, 12–15px utilities. Signature: 82–112px emoji sit in independent decorative layers in the whitespace beside relevant examples. Chat and camera float above the research questions; sports and machine motifs sit beside their text with slight static rotations and one short physical gesture. They are aria-hidden because the adjacent text carries the meaning. Decorations never cover titles, body copy or data charts. No repeated card surfaces.
 
 ## Behavior
 
