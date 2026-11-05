@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Feedback and motor skill learning in physical education. An 11-slide reading of Zhou, Shao & Wang (2021), presented by Smart Chen and Xinyue Xia.">
+  <title>Feedback & Motor Skill Learning | Paper presentation</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='white'/%3E%3C/svg%3E" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../deck-transition.css">
+  <script src="content.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#slide-1">Skip to presentation</a>
+  <div class="presentation">
+    <main class="stage" aria-label="Feedback and motor skill learning presentation" style="view-transition-name: open-deck"><div class="slide-canvas" id="slides"></div></main>
+    <footer class="site-footer" aria-label="Presentation controls">
+      <div class="deck-position"><a href="../" aria-label="Back to slide archive">Archive</a><button id="previous" aria-label="Previous slide" onclick="deckAPI.showSlide(deckAPI.getState().currentSlide - 1)">Prev</button><button id="slide-counter" aria-label="Open slide contents" aria-haspopup="dialog" onclick="deckAPI.openContents(this)">01 / 11</button><button id="next" class="primary" aria-label="Next slide" onclick="deckAPI.showSlide(deckAPI.getState().currentSlide + 1)">Next</button></div>
+      <div class="transport"><label for="animation-time" class="sr-only">Animation progress in seconds</label><input id="animation-time" type="range" min="0" max="2.4" step="0.01" value="0"><output id="animation-time-label" for="animation-time">0:00</output></div>
+      <div class="deck-controls"><button id="notes" aria-haspopup="dialog" lang="zh-CN" onclick="deckAPI.openNotes(this)">中文讲解</button><a class="pdf-link" href="feedback-learning.pdf" download>PDF</a><button id="replay" onclick="deckAPI.restart()">Replay</button><button id="pause" aria-pressed="false" onclick="deckAPI.togglePause()">Pause</button><button id="fullscreen" class="icon-button" aria-label="Enter fullscreen" title="Full screen (F)" onclick="deckAPI.fullscreen()"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg></button></div>
+    </footer>
+  </div>
+  <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="contents-dialog" aria-labelledby="contents-title"><div class="dialog-head"><h2 id="contents-title">Slide contents</h2><button data-close autofocus onclick="this.closest('dialog').close()">Close</button></div><ol id="contents-list"></ol></dialog>
+  <dialog id="notes-dialog" aria-labelledby="notes-title" lang="zh-CN"><div class="dialog-head"><h2 id="notes-title">中文讲解</h2><button data-close autofocus onclick="this.closest('dialog').close()">关闭</button></div><div id="notes-body"></div></dialog>
+  <noscript><p class="no-script">Open the <a href="feedback-learning.pdf">PDF presentation</a>, or enable JavaScript for slide navigation.</p></noscript>
+</body>
+</html>

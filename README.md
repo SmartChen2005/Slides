@@ -26,6 +26,16 @@ To enable the sheet-to-presentation transition on a future deck, link `../deck-t
 
 ## Preview locally
 
+The **Motor Skill Feedback** presentation lives at `/feedback-learning/`: 11 English
+slides with Chinese notes, preserved source-PPT icons and charts, and a PDF.
+Slides 1–6 follow `feedback-learning/slide-content.md`; slides 7–9 preserve the
+first supplied PPT, and slides 10–11 use the updated PPT. `content.js` holds the
+current slide markup and notes. The presentation date remains unrecorded.
+
+Verify with `node scripts/verify_feedback_learning.cjs`; regenerate its PDF,
+thumbnails and current speaker notes with `node scripts/export_feedback_learning.cjs`.
+Browser scripts use the bundled Playwright package on `NODE_PATH`.
+
 ```sh
 python scripts/build_archive.py
 python -m http.server 8000

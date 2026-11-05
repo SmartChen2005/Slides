@@ -118,3 +118,11 @@ Use slides 7–9 from the original PowerPoint, *Feedback & Motor Skill Learning 
 - **Slide 7:** Literature search, inclusion criteria, and study selection process.
 - **Slide 8:** Characteristics of the 23 included studies.
 - **Slide 9:** PEDro quality assessment and evidence grading.
+
+# Slide 10
+
+Use slide 10 of the updated *Effects of Feedback on Students’ Motor Skill Learning in Physical Education.pptx*. Preserve the complete four-column results table (Comparison, Results, Evidence, XR design), all five comparisons, percentages, strengths, and limitations. XR designs are proposed applications, not tested findings. The supplied randomisation summary needs cautious interpretation because the paper's summaries and quality table differ.
+
+# Slide 11
+
+Use the updated PPT's potential applications: learning technical sports (golf, tennis, other ball games) and manufacturing (operating a machine with motion tracking). End with Questions. These are proposed applications. No placeholder pages follow.
