@@ -31,8 +31,8 @@ const server = http.createServer((request, response) => {
   });
   try {
     await page.goto(base, { waitUntil: "networkidle" });
-    assert.deepEqual(await page.locator(".sheet-heading h3").allTextContents(), ["TAG!", "Ensemble Mutual", "Motor Skill Feedback"]);
-    assert.deepEqual(await page.locator(".sheet-bottom time").allTextContents(), ["OCT 2026", "OCT 2026", "DATE UNRECORDED"]);
+    assert.deepEqual(await page.locator(".sheet-heading h3").allTextContents(), ["Motor Skill Feedback", "TAG!", "Ensemble Mutual"]);
+    assert.deepEqual(await page.locator(".sheet-bottom time").allTextContents(), ["NOV 2026", "OCT 2026", "OCT 2026"]);
     assert.equal(await page.locator(".year-label").first().textContent(), "2026");
     await page.screenshot({ path: path.join(out, "desktop.png"), fullPage: true });
     // The existing hover fan and opening flight must still run.
@@ -41,7 +41,7 @@ const server = http.createServer((request, response) => {
     assert.equal(await page.locator(".is-previewing .preview-sheet").count(), 3);
     assert.equal(await page.locator(".is-previewing .preview-sheet").first().evaluate(node => getComputedStyle(node).opacity), "1");
     await page.screenshot({ path: path.join(out, "preview-fan.png"), fullPage: true });
-    await page.locator(".stack-link").first().click();
+    await page.locator('.stack-link[href="./vr-graffiti/"]').click();
     await page.locator(".deck-flight").waitFor({ state: "attached" });
     assert.equal(await page.locator("body.opening").count(), 1);
     await page.waitForURL("**/vr-graffiti/");
@@ -62,7 +62,7 @@ const server = http.createServer((request, response) => {
     for (let i = 0; i < 5; i++) await page.keyboard.press("Tab");
     assert.equal(await page.locator(".stack-link").first().evaluate(node => node === document.activeElement && node.matches(":focus-visible")), true);
     await page.keyboard.press("Enter");
-    await page.waitForURL("**/vr-graffiti/");
+    await page.waitForURL("**/feedback-learning/");
     await page.goBack({ waitUntil: "networkidle" });
     for (const width of [320, 390, 768, 1024, 1920]) {
       await page.setViewportSize({ width, height: 900 });
@@ -82,21 +82,21 @@ const server = http.createServer((request, response) => {
     await phone.waitForFunction(() => [...document.querySelectorAll(".preview-sheet")].every(node => getComputedStyle(node).opacity === "1"));
     assert.equal(await phone.locator(".preview-sheet").first().evaluate(node => getComputedStyle(node).opacity), "1");
     await phone.screenshot({ path: path.join(out, "mobile.png"), fullPage: true });
-    await phone.locator(".stack-link").nth(1).tap();
+    await phone.locator('.stack-link[href="./ensemble-mutual/"]').tap();
     await phone.waitForURL("**/ensemble-mutual/");
     await touch.close();
     await page.emulateMedia({ reducedMotion: "reduce", contrast: "more" });
     await page.goto(base);
     await page.locator(".stack-link").first().click();
-    await page.waitForURL("**/vr-graffiti/");
+    await page.waitForURL("**/feedback-learning/");
     assert.equal(await page.locator(".deck-flight").count(), 0);
     // The rebuilt deck is reachable through the actual archive route.
     await page.goto(base);
     await page.locator('.stack-link[href="./feedback-learning/"]').click();
     await page.waitForURL('**/feedback-learning/');
     assert.equal(await page.locator('.slide').count(), 11);
-    await page.locator('#notes').click();
-    assert.equal(await page.locator('#notes-dialog').isVisible(), true);
+    await page.locator('#slide-counter').click();
+    assert.equal(await page.locator('#contents-dialog').isVisible(), true);
     await page.keyboard.press('Escape');
     // Missing archive payload retains a usable recovery control.
     await page.route("**/archive-data.js", route => route.fulfill({ contentType: "text/javascript", body: "" }));

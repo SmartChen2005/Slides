@@ -12,6 +12,8 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
     const url=pathToFileURL(path.resolve('feedback-learning/index.html')).href;
     await page.goto(url,{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
     assert.equal(await page.locator('.slide').count(),11);
+    assert.equal(await page.locator('.presenters').textContent(),'Presented by Smart Chen & Xinyue Xia');
+    assert.equal(await page.locator('.cite, #notes, #notes-dialog, .pdf-link, #replay, #pause').count(),0);
     assert.equal(await page.locator('#previous').isDisabled(),true);
     for(let i=0;i<11;i++){
       await page.evaluate(i=>{deckAPI.showSlide(i);deckAPI.seek(1.2);deckAPI.settleTransitions();},i);
@@ -41,17 +43,17 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
       'Information vs praise or corrective4 (57.1%) for 7 studiesConflictingAdaptive feedback'
     ]);
     const images=await page.locator('.slide img').evaluateAll(nodes=>nodes.map(n=>n.complete&&n.naturalWidth>0));assert.equal(images.length,4);assert.ok(images.every(Boolean));
-    // Motion is finite and replayable, and responds deterministically to seeking.
+    // Motion is finite on slide entry and responds deterministically to seeking.
     await page.evaluate(()=>{deckAPI.showSlide(4);deckAPI.seek(0);deckAPI.settleTransitions();});
     const swimmer=page.locator('[data-motion="swim"]'),rest=await swimmer.getAttribute('style');
     await page.evaluate(()=>deckAPI.seek(1.2));assert.notEqual(await swimmer.getAttribute('style'),rest);
     await page.evaluate(()=>deckAPI.seek(2.4));
     const endMatrix=await swimmer.evaluate(n=>new DOMMatrix(getComputedStyle(n).transform).m41);assert.ok(Math.abs(endMatrix)<.01);
-    await page.locator('#replay').click();await page.waitForTimeout(2700);assert.equal(await page.evaluate(()=>deckAPI.getState().paused),true);
+    await page.evaluate(()=>{deckAPI.showSlide(0);deckAPI.showSlide(4);});await page.waitForTimeout(2700);assert.equal(await page.evaluate(()=>deckAPI.getState().paused),true);
     // Native range keys change the animation, not the slide.
     await page.locator('#animation-time').focus();await page.keyboard.press('ArrowLeft');assert.equal(await page.evaluate(()=>deckAPI.getState().currentSlide),4);
-    await page.locator('#notes').click();assert.equal(await page.locator('#notes-dialog').isVisible(),true);
-    assert.match(await page.locator('#notes-body').innerText(),/游泳/);await page.keyboard.press('Escape');assert.equal(await page.locator('#notes').evaluate(n=>n===document.activeElement),true);
+    await page.locator('#slide-counter').click();assert.equal(await page.locator('#contents-dialog').isVisible(),true);
+    await page.keyboard.press('Escape');assert.equal(await page.locator('#slide-counter').evaluate(n=>n===document.activeElement),true);
     await page.locator('#slide-counter').click();assert.equal(await page.locator('#contents-dialog [aria-current]').count(),1);
     await page.locator('[data-slide="9"]').click();assert.equal(await page.evaluate(()=>deckAPI.getState().currentSlide),9);
     await page.keyboard.press('ArrowLeft');assert.equal(await page.evaluate(()=>deckAPI.getState().currentSlide),8);
@@ -70,11 +72,11 @@ const out=path.resolve('artifacts/feedback-learning/qa');fs.mkdirSync(out,{recur
     }
     await page.screenshot({path:path.join(out,'responsive.png')});
     const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
-    const touch=await phone.newPage();await touch.goto(url);await touch.locator('#next').tap();assert.equal(await touch.evaluate(()=>deckAPI.getState().currentSlide),1);await touch.locator('#notes').tap();await touch.locator('#notes-dialog [data-close]').tap();await touch.screenshot({path:path.join(out,'mobile.png')});await phone.close();
+    const touch=await phone.newPage();await touch.goto(url);await touch.locator('#next').tap();assert.equal(await touch.evaluate(()=>deckAPI.getState().currentSlide),1);await touch.locator('#slide-counter').tap();await touch.locator('#contents-dialog [data-close]').tap();await touch.screenshot({path:path.join(out,'mobile.png')});await phone.close();
     await page.emulateMedia({reducedMotion:'reduce',contrast:'more'});await page.goto(`${url}#slide-5`);
-    assert.equal(await page.locator('#replay').isDisabled(),true);assert.equal(await page.evaluate(()=>deckAPI.getState().paused),true);
+    assert.equal(await page.locator('#animation-time').isDisabled(),true);assert.equal(await page.evaluate(()=>deckAPI.getState().paused),true);
     await page.evaluate(()=>deckAPI.seek(1.2));assert.equal(await swimmer.evaluate(n=>new DOMMatrix(getComputedStyle(n).transform).m41),0);
     assert.deepEqual(errors,[]);
-    console.log('Feedback deck passed: 11 slide bounds; original icons/charts/tables; finite motion; keyboard/history/deep links; notes/contents/focus; fullscreen failure; 320–1600px; touch; reduced motion/high contrast.');
+    console.log('Feedback deck passed: 11 slide bounds; presenter credit; simplified controls; no slide footers; original icons/charts/tables; finite motion; keyboard/history/deep links; contents/focus; fullscreen failure; 320–1600px; touch; reduced motion/high contrast.');
   }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
