@@ -66,3 +66,28 @@ Spoken comments, written comments, gestures, or visual feedback such as video.
 - **Correction:** “Raise your elbow on the next attempt.”
 
 One feedback message can combine praise, movement information, and correction.
+
+# Slide 5
+
+## Why might feedback needs differ?
+
+### Learner experience
+
+**Fitts and Posner’s stages of skill learning**
+
+- **Cognitive:** Understanding the movement.
+- **Associative:** Refining technique and consistency.
+- **Autonomous:** Performing with little conscious attention.
+
+**Possible feedback needs**
+
+- **Beginners:** Instructions on how to move.
+- **Experienced learners:** Specific cues about errors.
+
+### Task demands
+
+- **Movement:** Single action, repeated movement, or action sequence.
+- **Environment:** Stable conditions or changing opponents and objects.
+- **Implication:** Feedback needs may vary with the task.
+
+*Possible explanations, not established rules.*
