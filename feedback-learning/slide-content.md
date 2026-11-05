@@ -110,3 +110,11 @@ Give feedback regularly; combine praise with specific information rather than pr
 ### 4. A research agenda
 
 Calls for high-quality RCTs and studies of feedback frequency and technology-delivered video feedback.
+
+# Slides 7–9
+
+Use slides 7–9 from the original PowerPoint, *Feedback & Motor Skill Learning in PE.pptx*. Preserve their titles, text, data, tables, and diagrams. No content rewrite is needed.
+
+- **Slide 7:** Literature search, inclusion criteria, and study selection process.
+- **Slide 8:** Characteristics of the 23 included studies.
+- **Slide 9:** PEDro quality assessment and evidence grading.
