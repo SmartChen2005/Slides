@@ -44,3 +44,25 @@ Spoken guidance, video replay, praise, and corrective comments provide different
 2. How do feedback format and content affect learning?
 
 This review brings together existing studies to assess the strength of the evidence.
+
+# Slide 4
+
+## What is feedback?
+
+Feedback gives learners information about their performance. It may help them identify errors, adjust movements, and stay motivated to practise.
+
+### Provider: Who gives it?
+
+A teacher, a peer, or a video-based system.
+
+### Format: How is it delivered?
+
+Spoken comments, written comments, gestures, or visual feedback such as video.
+
+### Content: What does it communicate?
+
+- **Praise:** “Good effort.”
+- **Movement information:** “Your elbow was below shoulder height.”
+- **Correction:** “Raise your elbow on the next attempt.”
+
+One feedback message can combine praise, movement information, and correction.
