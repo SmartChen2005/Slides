@@ -31,8 +31,8 @@ const server = http.createServer((request, response) => {
   });
   try {
     await page.goto(base, { waitUntil: "networkidle" });
-    assert.deepEqual(await page.locator(".sheet-heading h3").allTextContents(), ["TAG!", "Ensemble Mutual", "Motor Skill Feedback"]);
-    assert.deepEqual(await page.locator(".sheet-bottom time").allTextContents(), ["OCT 2026", "OCT 2026", "DATE UNRECORDED"]);
+    assert.deepEqual(await page.locator(".sheet-heading h3").allTextContents(), ["TAG!", "Ensemble Mutual"]);
+    assert.deepEqual(await page.locator(".sheet-bottom time").allTextContents(), ["OCT 2026", "OCT 2026"]);
     assert.equal(await page.locator(".year-label").first().textContent(), "2026");
     await page.screenshot({ path: path.join(out, "desktop.png"), fullPage: true });
     // The existing hover fan and opening flight must still run.
@@ -53,7 +53,7 @@ const server = http.createServer((request, response) => {
     assert.equal(new URL(page.url()).searchParams.get("category"), "tech");
     assert.deepEqual(await page.locator(".sheet-heading h3").allTextContents(), ["Ensemble Mutual"]);
     await page.goBack();
-    assert.equal(await page.locator(".deck").count(), 3);
+    assert.equal(await page.locator(".deck").count(), 2);
     await page.getByRole("button", { name: "Design", exact: true }).click();
     assert.equal(await page.locator(".empty-state").isVisible(), true);
     await page.getByRole("button", { name: "View all presentations" }).click();
@@ -90,14 +90,10 @@ const server = http.createServer((request, response) => {
     await page.locator(".stack-link").first().click();
     await page.waitForURL("**/vr-graffiti/");
     assert.equal(await page.locator(".deck-flight").count(), 0);
-    // The new deck is reachable through the actual archive route.
+    // The removed deck is absent from both the archive and staged output.
     await page.goto(base);
-    await page.locator('.stack-link[href="./feedback-learning/"]').click();
-    await page.waitForURL("**/feedback-learning/");
-    assert.equal(await page.locator('.slide').count(), 16);
-    await page.locator('#notes').click();
-    assert.equal(await page.locator('#notes-dialog').isVisible(), true);
-    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('.stack-link[href="./feedback-learning/"]').count(), 0);
+    assert.equal((await page.request.get(`${base}feedback-learning/`)).status(), 404);
     // Missing archive payload retains a usable recovery control.
     await page.route("**/archive-data.js", route => route.fulfill({ contentType: "text/javascript", body: "" }));
     await page.goto(base);
