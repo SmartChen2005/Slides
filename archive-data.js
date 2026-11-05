@@ -27,5 +27,19 @@ window.SLIDE_ARCHIVE = [
       "./ensemble-mutual/thumbnails/slide-2.webp",
       "./ensemble-mutual/thumbnails/slide-3.webp"
     ]
+  },
+  {
+    "title": "Motor Skill Feedback",
+    "path": "./feedback-learning/",
+    "date": null,
+    "order": 0,
+    "category": "RESEARCH",
+    "slideCount": 16,
+    "description": "An explained reading of Zhou, Shao & Wang (2021), with concrete examples, evidence grading, Chinese speaker notes, and testable XR applications.",
+    "thumbnails": [
+      "./feedback-learning/thumbnails/01.webp",
+      "./feedback-learning/thumbnails/02.webp",
+      "./feedback-learning/thumbnails/03.webp"
+    ]
   }
 ];

@@ -26,6 +26,16 @@ To enable the sheet-to-presentation transition on a future deck, link `../deck-t
 
 ## Preview locally
 
+The **Motor Skill Feedback** paper presentation lives at `/feedback-learning/`.
+It has 16 English slides, Chinese notes, keyboard navigation, a contents dialog,
+and a downloadable PDF. Slides 2–9 cover problem, concepts, contribution, and
+methods. Its presentation date remains unrecorded.
+
+Rebuild its content with `python feedback-learning/build.py`, verify with
+`node scripts/verify_feedback_learning.cjs`, and regenerate its PDF and preview
+images with `node scripts/export_feedback_learning.cjs`. Browser scripts use the
+bundled Playwright installation on `NODE_PATH`, like the other decks.
+
 ```sh
 python scripts/build_archive.py
 python -m http.server 8000
