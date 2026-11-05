@@ -71,6 +71,11 @@ One feedback message can combine praise, movement information, and correction.
 
 ## Why might feedback needs differ?
 
+### Task demands
+
+- **Movement:** Discrete (throw), continuous (swimming), serial (gymnastics routine).
+- **Perception:** Open (changing conditions) vs. closed (stable conditions).
+
 ### Learner experience
 
 **Fitts and Posner’s stages of skill learning**
@@ -83,11 +88,5 @@ One feedback message can combine praise, movement information, and correction.
 
 - **Beginners:** Instructions on how to move.
 - **Experienced learners:** Specific cues about errors.
-
-### Task demands
-
-- **Movement:** Single action, repeated movement, or action sequence.
-- **Environment:** Stable conditions or changing opponents and objects.
-- **Implication:** Feedback needs may vary with the task.
 
 *Possible explanations, not established rules.*
