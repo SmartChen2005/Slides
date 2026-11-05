@@ -90,3 +90,23 @@ One feedback message can combine praise, movement information, and correction.
 - **Experienced learners:** Specific cues about errors.
 
 *Possible explanations, not established rules.*
+
+# Slide 6
+
+## What this review adds
+
+### 1. PE-specific synthesis
+
+Pulls together 23 intervention studies of feedback in school PE classes across 11 countries.
+
+### 2. Element-level evidence
+
+Splits feedback into format and content, and grades the strength of evidence for each comparison.
+
+### 3. Guidance for teachers
+
+Give feedback regularly; combine praise with specific information rather than praise alone.
+
+### 4. A research agenda
+
+Calls for high-quality RCTs and studies of feedback frequency and technology-delivered video feedback.
